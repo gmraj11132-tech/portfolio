@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Professional portfolio of a B.Tech CSE student — showcasing skills, internships, training, and projects.">
+    <title>Portfolio | B.Tech CSE Student</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-gradient"></div>
+        <canvas id="particleCanvas"></canvas>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar glass" id="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon">⟨/⟩</span>
+            <span class="brand-text">Portfolio</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#education" class="nav-link">Education</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#credentials" class="nav-link">Certificates & Achievements</a></li>
+            <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="theme-toggle glass-btn" id="themeToggle" aria-label="Toggle theme">
+                <span class="toggle-icon">🌙</span>
+            </button>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge glass animate-fade-in">
+                <span class="badge-dot"></span>
+                Available for Opportunities
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line animate-slide-up" style="--delay: 0.1s">Hi, I'm</span>
+                <span class="title-line title-name animate-slide-up text-3d" style="--delay: 0.3s">ARYAN RAJ</span>
+                <span class="title-line title-role animate-slide-up" style="--delay: 0.5s">
+                    <span class="typewriter" id="typewriter"></span>
+                    <span class="cursor">|</span>
+                </span>
+            </h1>
+            <p class="hero-description animate-fade-in" style="--delay: 0.7s">
+                4th Year B.Tech Computer Science & Engineering Student (7th Semester). Seeking Graduate Engineer Trainee (GET) & Software Engineer roles. Proficient across full-stack development, DBMS, and AI API integrations.
+            </p>
+            <div class="hero-buttons animate-fade-in" style="--delay: 0.9s">
+                <a href="#projects" class="btn btn-primary ripple-btn">
+                    <span>View Featured Projects</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+                <a href="#contact" class="btn btn-secondary glass ripple-btn">
+                    <span>Get In Touch</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                    </svg>
+                </a>
+            </div>
+            <div class="hero-stats animate-fade-in" style="--delay: 1.1s">
+                <div class="stat glass">
+                    <span class="stat-number" data-count="7">0</span><span class="stat-suffix">th</span>
+                    <span class="stat-label">Semester (2023-27)</span>
+                </div>
+                <div class="stat glass">
+                    <span class="stat-number" data-count="4">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Key Projects</span>
+                </div>
+                <div class="stat glass">
+                    <span class="stat-number" data-count="12">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Verified Credentials</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual animate-fade-in" style="--delay: 0.5s">
+            <div class="avatar-container">
+                <div class="avatar-ring"></div>
+                <div class="avatar-glow"></div>
+                <div class="avatar-placeholder">
+                    <img src="profile.jpg" alt="Aryan Raj" class="profile-img">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator animate-fade-in" style="--delay: 1.3s">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <span>Scroll Down</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag glass">About Me</span>
+                <h2 class="section-title text-3d-subtle">Who I Am</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="about-grid">
+                <div class="about-text glass-card reveal-left">
+                    <h3>Overview & Objective</h3>
+                    <p>
+                        I am a <strong>B.Tech Computer Science & Engineering student</strong> currently pursuing my 
+                        <strong>4th Year (7th Semester)</strong> at Techno India University / JUT Ranchi. Seeking a 
+                        <strong>Graduate Engineer Trainee (GET)</strong> or Software Engineering role to apply my knowledge of 
+                        programming, databases, web development, and AI tools.
+                    </p>
+                    <p>
+                        Comfortable across the entire software stack — from database architecture to front-end UI integration 
+                        and API-based AI tools — with a strong foundation in core CS subjects and a rapid learning curve.
+                    </p>
+                    <div class="about-info-grid">
+                        <div class="info-item">
+                            <span class="info-icon">🎓</span>
+                            <div>
+                                <span class="info-label">Degree</span>
+                                <span class="info-value">B.Tech CSE</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📅</span>
+                            <div>
+                                <span class="info-label">Status</span>
+                                <span class="info-value">7th Sem (2023-27)</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📊</span>
+                            <div>
+                                <span class="info-label">Academic CGPA</span>
+                                <span class="info-value">8.0 / 10 (6.67 JUT)</span>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-icon">📍</span>
+                            <div>
+                                <span class="info-label">Location</span>
+                                <span class="info-value">Ramgarh, Jharkhand</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-visual reveal-right">
+                    <div class="code-window glass-card">
+                        <div class="window-header">
+                            <div class="window-dots">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                            </div>
+                            <span class="window-title">aryan_profile.js</span>
+                        </div>
+                        <pre class="code-content"><code><span class="code-keyword">const</span> <span class="code-var">candidate</span> = {
+  <span class="code-key">name</span>: <span class="code-string">"ARYAN RAJ"</span>,
+  <span class="code-key">education</span>: <span class="code-string">"B.Tech CSE (7th Sem)"</span>,
+  <span class="code-key">college</span>: <span class="code-string">"Techno India / JUT Ranchi"</span>,
+  <span class="code-key">school10th_12th</span>: <span class="code-string">"SSVM School, Ranchi"</span>,
+  <span class="code-key">cgpa</span>: <span class="code-number">8.0</span>,
+  <span class="code-key">skills</span>: [
+    <span class="code-string">"Python"</span>,
+    <span class="code-string">"Java"</span>,
+    <span class="code-string">"C++"</span>,
+    <span class="code-string">"Web Stack & AI API"</span>
+  ],
+  <span class="code-key">targetRole</span>: <span class="code-string">"Graduate Engineer Trainee / Software Engineer"</span>,
+  <span class="code-key">availableForHire</span>: <span class="code-bool">true</span>
+};</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag glass">Education</span>
+                <h2 class="section-title text-3d-subtle">Academic Qualifications</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+                <!-- Degree: B.Tech CSE -->
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-badge">2023 - 2027 | Pursuing (7th Sem)</div>
+                        <h3>B.Tech in Computer Science & Engineering</h3>
+                        <h4>Techno India University / Jharkhand University of Technology (JUT), Ranchi</h4>
+                        <p><strong>Grade:</strong> 8.0 / 10 CGPA (6.67 CGPA through 5th Semester JUT SGPA System)</p>
+                        <ul class="timeline-highlights">
+                            <li>Focus Areas: Data Structures & Algorithms, Web Development, DBMS, AI/ML, and Data Analytics</li>
+                            <li>Active participation in technical activities, software project building, and computer science research</li>
+                            <li>Comfortable across the stack — from database design to frontend integration and AI API tooling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 12th Grade: SSVM School Ranchi -->
+                <div class="timeline-item reveal-right">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-badge">2021 - 2023</div>
+                        <h3>Higher Secondary (12th Grade)</h3>
+                        <h4>SSVM School, Ranchi (CBSE Board)</h4>
+                        <p><strong>Score:</strong> 64.8% | Science Stream (PCM with Computer Science)</p>
+                        <ul class="timeline-highlights">
+                            <li>Strong foundation in Physics, Chemistry, Mathematics, and Computer Science fundamentals</li>
+                            <li>Developed early programming & logic building skills in C / C++</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 10th Grade: SSVM School Ranchi -->
+                <div class="timeline-item reveal-left">
+                    <div class="timeline-marker">
+                        <div class="marker-dot"></div>
+                    </div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-badge">2020 - 2021</div>
+                        <h3>Secondary School (10th Grade)</h3>
+                        <h4>SSVM School, Ranchi (CBSE Board)</h4>
+                        <p><strong>Score:</strong> 72.4% | General Science & Mathematics</p>
+                        <ul class="timeline-highlights">
+                            <li>Completed secondary education with distinction in Science and Mathematics</li>
+                            <li>Fostered deep interest in computer technology, software, and logical problem solving</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag glass">Skills</span>
+                <h2 class="section-title text-3d-subtle">My Tech Stack</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category glass-card reveal-up">
+                    <div class="skill-icon">💻</div>
+                    <h3>Programming Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">C</span>
+                        <span class="skill-tag">JavaScript</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card reveal-up" style="--delay: 0.1s">
+                    <div class="skill-icon">🧠</div>
+                    <h3>Core CS Fundamentals</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Data Structures & Algorithms</span>
+                        <span class="skill-tag">DBMS (SQL)</span>
+                        <span class="skill-tag">Compiler Design</span>
+                        <span class="skill-tag">Digital Electronics</span>
+                        <span class="skill-tag">OOPs</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card reveal-up" style="--delay: 0.2s">
+                    <div class="skill-icon">🌐</div>
+                    <h3>Web Technologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript ES6+</span>
+                        <span class="skill-tag">WordPress</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Payment Gateway Integration</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card reveal-up" style="--delay: 0.3s">
+                    <div class="skill-icon">🤖</div>
+                    <h3>AI & Machine Learning</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Artificial Intelligence</span>
+                        <span class="skill-tag">Machine Learning</span>
+                        <span class="skill-tag">Pandas & NumPy</span>
+                        <span class="skill-tag">Scikit-Learn</span>
+                        <span class="skill-tag">Data Analytics</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card reveal-up" style="--delay: 0.4s">
+                    <div class="skill-icon">🛠️</div>
+                    <h3>Tools & Platforms</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git & GitHub</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Chrome DevTools</span>
+                        <span class="skill-tag">AI API Integration (Chat, Image, Audio)</span>
+                    </div>
+                </div>
+                <div class="skill-category glass-card reveal-up" style="--delay: 0.5s">
+                    <div class="skill-icon">🗣️</div>
+                    <h3>Languages & Professional Traits</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">English (Fluent)</span>
+                        <span class="skill-tag">Hindi (Native)</span>
+                        <span class="skill-tag">Analytical Problem Solving</span>
+                        <span class="skill-tag">Fast Learner</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credentials, Internships & Achievements Section -->
+    <section class="section" id="credentials">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag glass">Verified Qualifications</span>
+                <h2 class="section-title text-3d-subtle">Certificates & Experience</h2>
+                <p class="section-subtitle">Real-world Industry Internships, AI Workshops, Engineering Simulations &
+                    National Recognitions</p>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Category Filter Tabs -->
+            <div class="filter-tabs glass">
+                <button class="filter-btn active" data-filter="all">All (12)</button>
+                <button class="filter-btn" data-filter="internship">Internships (5)</button>
+                <button class="filter-btn" data-filter="ai">AI & Data Science (5)</button>
+                <button class="filter-btn" data-filter="simulation">Job Simulations & Analytics (3)</button>
+                <button class="filter-btn" data-filter="web">Web & Finance (2)</button>
+                <button class="filter-btn" data-filter="national">Govt & Standards (2)</button>
+            </div>
+
+            <!-- Credentials Grid (12 Items) -->
+            <div class="credentials-grid">
+
+                <!-- Certificate 1: Eisystems & IIT BHU AI Internship -->
+                <div class="credential-card glass-card reveal-up" data-category="internship ai" data-cert-id="iitbhu">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_iitbhu.jpg"
+                                alt="Certificate of Internship - Eisystems Services & Technex'25 IIT BHU"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-ai">Industry Internship</span>
+                            <span class="cred-date">May 2026 – July 2026 (8 Weeks)</span>
+                        </div>
+                        <h3 class="cred-title">Artificial Intelligence & Machine Learning Internship</h3>
+                        <h4 class="cred-issuer">Eisystems Services × Technex'25 (IIT BHU Varanasi) × Robokwik</h4>
+                        <p class="cred-summary">
+                            Completed an intensive 8-week AI engineering internship, building predictive Machine
+                            Learning models and submitting technical evaluation reports certified by Technex'25 IIT BHU.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">ID:</span>
+                                <span class="meta-val">EIS/THX/25SP-0380</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">AICTE ORID:</span>
+                                <span class="meta-val">CORPORATE65a015a925f071...</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">Artificial Intelligence</span>
+                            <span class="badge">Machine Learning</span>
+                            <span class="badge">Model Training</span>
+                            <span class="badge">Python</span>
+                            <span class="badge">IIT BHU Technex</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="iitbhu">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 2: IBM Python 101 for Data Science -->
+                <div class="credential-card glass-card reveal-up" data-category="ai" data-cert-id="ibm"
+                    style="--delay: 0.05s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_ibm_python.jpg"
+                                alt="IBM Developer Skills Network Cognitive Class Python 101 for Data Science"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-ai">IBM Professional Certificate</span>
+                            <span class="cred-date">May 29, 2025</span>
+                        </div>
+                        <h3 class="cred-title">Python 101 for Data Science</h3>
+                        <h4 class="cred-issuer">Cognitive Class (Powered by IBM Developer Skills Network)</h4>
+                        <p class="cred-summary">
+                            Earned passing grade in IBM's specialized Data Science course (PY0101EN), mastering Python data structures, Pandas dataframes, NumPy arrays, and API data fetching routines.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">Course Code:</span>
+                                <span class="meta-val">PY0101EN (IBM)</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">Validation ID:</span>
+                                <span class="meta-val">0e3f744c25ce424f8e4f0103c5f...</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">IBM Data Science</span>
+                            <span class="badge">Python 3</span>
+                            <span class="badge">Pandas & NumPy</span>
+                            <span class="badge">Data Analysis</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="ibm">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 3: TATA Data Visualisation Simulation -->
+                <div class="credential-card glass-card reveal-up" data-category="simulation ai" data-cert-id="tata"
+                    style="--delay: 0.1s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_tata_forage.jpg"
+                                alt="TATA Data Visualisation Empowering Business with Effective Insights"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-simulation">TATA Virtual Experience</span>
+                            <span class="cred-date">May 19th, 2025</span>
+                        </div>
+                        <h3 class="cred-title">Data Visualisation: Empowering Business Insights</h3>
+                        <h4 class="cred-issuer">TATA Group (via Forage)</h4>
+                        <p class="cred-summary">
+                            Completed practical virtual simulation for TATA leadership, framing business scenarios, selecting executive visuals, creating dashboard graphics, and presenting strategic data insights.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">Enrolment Code:</span>
+                                <span class="meta-val">pvESCMLSam63WB6WH</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">User Code:</span>
+                                <span class="meta-val">vBJu4tqQF4iz9aMfJ</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">Data Visualisation</span>
+                            <span class="badge">TATA Analytics</span>
+                            <span class="badge">Business Intelligence</span>
+                            <span class="badge">Executive Insights</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="tata">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 4: NV Enterprises ML Craft Internship -->
+                <div class="credential-card glass-card reveal-up" data-category="internship ai" data-cert-id="nventerprises"
+                    style="--delay: 0.15s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_nv_enterprises.jpg"
+                                alt="Certificate of Internship - NV Enterprises ML Craft With Python"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-ai">ML Internship</span>
+                            <span class="cred-date">10 June 2025 – 23 July 2025</span>
+                        </div>
+                        <h3 class="cred-title">ML Craft With Python Internship</h3>
+                        <h4 class="cred-issuer">NV Enterprises (Ranchi, Jharkhand) × Ramgarh Engineering College</h4>
+                        <p class="cred-summary">
+                            Practical Machine Learning internship developing custom Python predictive models, data analysis scripts, and feature extraction pipelines (Reg No: 23033440027).
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">Cert ID:</span>
+                                <span class="meta-val">NV/24/0218</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">Reg No:</span>
+                                <span class="meta-val">23033440027</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">Machine Learning</span>
+                            <span class="badge">Python Engineering</span>
+                            <span class="badge">Data Pipelines</span>
+                            <span class="badge">Supervised ML</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="nventerprises">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 5: InternPe AI/ML Internship -->
+                <div class="credential-card glass-card reveal-up" data-category="internship ai" data-cert-id="internpe"
+                    style="--delay: 0.2s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_internpe.jpg"
+                                alt="InternPe AI/ML Internship Completion Certificate"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-workshop">AI/ML Internship</span>
+                            <span class="cred-date">12 May 2025 – 08 June 2025</span>
+                        </div>
+                        <h3 class="cred-title">AI & Machine Learning Engineering Intern</h3>
+                        <h4 class="cred-issuer">InternPe (ISO 9001:2015, MSME & AICTE Approved)</h4>
+                        <p class="cred-summary">
+                            Worked as an AI/ML Intern building intelligent prediction algorithms, handling data preprocessing pipelines, and executing model accuracy evaluations.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">CID:</span>
+                                <span class="meta-val">IPI#53490</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">Affiliations:</span>
+                                <span class="meta-val">AICTE & ISO 9001:2015</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">AI/ML Domain</span>
+                            <span class="badge">Algorithmic Modeling</span>
+                            <span class="badge">Python</span>
+                            <span class="badge">AICTE Recognized</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="internpe">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 6: Prodigy InfoTech Full Stack Web Dev Internship -->
+                <div class="credential-card glass-card reveal-up" data-category="internship web" data-cert-id="prodigy"
+                    style="--delay: 0.25s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_prodigy.jpg"
+                                alt="Prodigy InfoTech Full Stack Web Development Internship Offer"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-eng">Full-Stack Internship</span>
+                            <span class="cred-date">01 June 2025 – 30 June 2025</span>
+                        </div>
+                        <h3 class="cred-title">Full-Stack Web Development Intern</h3>
+                        <h4 class="cred-issuer">Prodigy InfoTech (MSME & UDYAM Registered)</h4>
+                        <p class="cred-summary">
+                            Selected and served as Full-Stack Web Development Intern, creating production web applications, UI components, REST APIs, and database integrations.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">CIN:</span>
+                                <span class="meta-val">PIT/JUN25/02917</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">Registration:</span>
+                                <span class="meta-val">UDYAM-MH-19-0221586</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">Full Stack</span>
+                            <span class="badge">JavaScript</span>
+                            <span class="badge">RESTful APIs</span>
+                            <span class="badge">Web Apps</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="prodigy">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 7: EXCELRS Python & AI Agent Workshop -->
+                <div class="credential-card glass-card reveal-up" data-category="ai internship" data-cert-id="excelrs"
+                    style="--delay: 0.3s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_excelrs.jpg"
+                                alt="Enrollment & Training Letter - EXCELRS Powered by Lawazia Tech"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-workshop">AI & Workshop Training</span>
+                            <span class="cred-date">Sept 2026 (1 Month Program)</span>
+                        </div>
+                        <h3 class="cred-title">Python & Autonomous AI Agent Workshop</h3>
+                        <h4 class="cred-issuer">EXCELRS (Powered by Lawazia Tech)</h4>
+                        <p class="cred-summary">
+                            Advanced practical training on Python & LLM AI Agents. Engineered a Virtual Medical
+                            Assistant performing clinical reasoning, patient triage, and workflow automation using RAG
+                            architecture.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">Reg No:</span>
+                                <span class="meta-val">EXCELRS/2026/PAAAW/112</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">Director:</span>
+                                <span class="meta-val">Sandeep Jaiswal (Lawazia Tech)</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">AI Agents</span>
+                            <span class="badge">LLMs & RAG</span>
+                            <span class="badge">Python Advanced</span>
+                            <span class="badge">Healthcare Automation</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="excelrs">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 8: Bureau of Indian Standards & MyGov Quiz -->
+                <div class="credential-card glass-card reveal-up" data-category="national" data-cert-id="bis"
+                    style="--delay: 0.35s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_bis_mygov.jpg"
+                                alt="Bureau of Indian Standards & MyGov Bhartiya Manak Certificate"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-gov">National Standards Recognition</span>
+                            <span class="cred-date">Issued: 2026</span>
+                        </div>
+                        <h3 class="cred-title">Bhartiya Manak - Bharat ka Bharosa Quiz</h3>
+                        <h4 class="cred-issuer">Bureau of Indian Standards (BIS) & MyGov India</h4>
+                        <p class="cred-summary">
+                            National certification commending steps toward embedding a culture of quality standards, technical compliance, and empowering India's journey to a Viksit Bharat.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">Signatories:</span>
+                                <span class="meta-val">Sanjay Garg, IAS (DG, BIS) & Ajit Kumar, IAS (CEO, MyGov)</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">Authority:</span>
+                                <span class="meta-val">Govt of India National Quality Standards</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">Technical Standards</span>
+                            <span class="badge">BIS Compliance</span>
+                            <span class="badge">Quality Engineering</span>
+                            <span class="badge">Viksit Bharat</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="bis">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 9: SWAYAM Plus Mastering Personal Finance -->
+                <div class="credential-card glass-card reveal-up" data-category="web" data-cert-id="swayam"
+                    style="--delay: 0.4s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_swayam_finance.jpg"
+                                alt="SWAYAM Plus ArthNirmiti Personal Finance Certificate"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-workshop">SWAYAM Plus Certified</span>
+                            <span class="cred-date">11-10-2025 (30 Hours)</span>
+                        </div>
+                        <h3 class="cred-title">Mastering Personal Finance & Analytics</h3>
+                        <h4 class="cred-issuer">ArthNirmiti × SWAYAM Plus (Ministry of Education)</h4>
+                        <p class="cred-summary">
+                            Completed 30-hour certified course on financial modeling, budgeting analytics, and personal investment strategies. Scored 70 in Theory and 24 in Practical modules.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">Platform:</span>
+                                <span class="meta-val">SWAYAM Plus Certified</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">Director:</span>
+                                <span class="meta-val">Mr. Roshan Jain (Arthnirmiti)</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">Financial Analytics</span>
+                            <span class="badge">Quantitative Analysis</span>
+                            <span class="badge">SWAYAM Plus</span>
+                            <span class="badge">Asset Management</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="swayam">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 10: Johnson & Johnson Robotics Simulation -->
+                <div class="credential-card glass-card reveal-up" data-category="simulation" data-cert-id="jnj"
+                    style="--delay: 0.45s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_jnj.jpg" alt="Johnson & Johnson MedTech Robotics & Controls Job Simulation"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-simulation">Engineering Job Simulation</span>
+                            <span class="cred-date">Issued: Sept 7, 2026</span>
+                        </div>
+                        <h3 class="cred-title">Robotics & Controls Engineering Simulation</h3>
+                        <h4 class="cred-issuer">Johnson & Johnson MedTech (via Forage)</h4>
+                        <p class="cred-summary">
+                            Practical engineering simulation analyzing surgical robotic systems. Diagnosed latency
+                            delays in robot arms and optimized control design for high responsiveness.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">Verification:</span>
+                                <span class="meta-val">6a9ed2b539a1f8e666c9006f</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">Platform:</span>
+                                <span class="meta-val">Forage Verified Credential</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">Robotics Control</span>
+                            <span class="badge">Surgical Arm Optimization</span>
+                            <span class="badge">Signal Processing</span>
+                            <span class="badge">Control Systems</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="jnj">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 11: Siemens Operations Industrial Engineering -->
+                <div class="credential-card glass-card reveal-up" data-category="simulation" data-cert-id="siemens"
+                    style="--delay: 0.5s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_siemens.jpg" alt="Siemens Operations Industrial Engineer Job Simulation"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-eng">Operations Simulation</span>
+                            <span class="cred-date">Issued: Sept 7, 2026</span>
+                        </div>
+                        <h3 class="cred-title">Operations & Industrial Engineering Simulation</h3>
+                        <h4 class="cred-issuer">SIEMENS (via Forage)</h4>
+                        <p class="cred-summary">
+                            Industrial engineering simulation centered on time studies, bottleneck elimination, and
+                            proposing spatial plant layout modifications for maximum throughput.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">Verification:</span>
+                                <span class="meta-val">6a9ec5d339a1f8e666c5e06c</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">Issuer:</span>
+                                <span class="meta-val">Tom Brunskill (Co-Founder, Forage)</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">Time Studies</span>
+                            <span class="badge">Plant Layout Design</span>
+                            <span class="badge">Industrial Engineering</span>
+                            <span class="badge">Process Optimization</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="siemens">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Certificate 12: MyGov Govt of India Blue Economy Quiz -->
+                <div class="credential-card glass-card reveal-up" data-category="national" data-cert-id="mygov"
+                    style="--delay: 0.55s">
+                    <div class="rgb-frame">
+                        <div class="rgb-glow"></div>
+                        <div class="cert-img-wrapper">
+                            <img src="cert_mygov.jpg" alt="Government of India MyGov Blue Economy Certificate"
+                                class="cert-thumbnail">
+                            <div class="cert-overlay">
+                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cred-content">
+                        <div class="cred-header">
+                            <span class="cred-category-badge badge-gov">National Recognition</span>
+                            <span class="cred-date">Issued: 2026</span>
+                        </div>
+                        <h3 class="cred-title">Blue Economy & Fisheries National Initiative 2026</h3>
+                        <h4 class="cred-issuer">Department of Fisheries, Ministry of Fisheries & MyGov India</h4>
+                        <p class="cred-summary">
+                            National level recognition from the Government of India celebrating knowledge & analytical
+                            capability in sustainable ocean resources and tech-driven fisheries policies.
+                        </p>
+                        <div class="cred-meta">
+                            <div class="meta-row">
+                                <span class="meta-key">Signatories:</span>
+                                <span class="meta-val">Dr. Surabhi Rai & Ajit Kumar, IAS (CEO MyGov)</span>
+                            </div>
+                            <div class="meta-row">
+                                <span class="meta-key">Authority:</span>
+                                <span class="meta-val">Government of India</span>
+                            </div>
+                        </div>
+                        <div class="skill-badges">
+                            <span class="badge">Government Policy</span>
+                            <span class="badge">Blue Economy</span>
+                            <span class="badge">Sustainable Tech</span>
+                            <span class="badge">National Competition</span>
+                        </div>
+                        <button class="btn btn-secondary glass cred-view-btn open-modal-btn" data-cert="mygov">
+                            <span>View Full Case Study & Badge</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M15 3h6v6M10 14L21 3M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- iOS 18 Glassmorphic Interactive RGB Detail Modal -->
+    <div class="cert-modal-backdrop" id="certModal">
+        <div class="cert-modal-dialog glass">
+            <button class="modal-close-btn" id="modalClose" aria-label="Close modal">✕</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamically populated via JS for each certificate -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag glass">Projects</span>
+                <h2 class="section-title text-3d-subtle">Featured Projects</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="projects-grid">
+                <!-- Project 1: Personal Portfolio Website -->
+                <div class="project-card glass-card reveal-up">
+                    <div class="project-image gradient-bg-1">
+                        <span class="project-emoji">🌟</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Personal Portfolio Website</h3>
+                        <p>Designed and built a modern professional portfolio with iOS 18 glassmorphic styling, 3D text effects, dark mode support, and interactive credentials showcase.</p>
+                        <div class="card-tags">
+                            <span>HTML5</span><span>Vanilla CSS</span><span>JavaScript ES6+</span><span>Glassmorphism</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/gmraj11132-tech" target="_blank" rel="noopener noreferrer" class="project-link ripple-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                </svg>
+                                Code
+                            </a>
+                            <a href="#" class="project-link ripple-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                </svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Secure Multi-User Web Portal -->
+                <div class="project-card glass-card reveal-up" style="--delay: 0.15s">
+                    <div class="project-image gradient-bg-2">
+                        <span class="project-emoji">🛡️</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Secure Multi-User Web Portal</h3>
+                        <p>Full-stack Insurance/Government-style application with secure user authentication, role-based access control, automated record handling, and integrated AI chat assistant.</p>
+                        <div class="card-tags">
+                            <span>Full-Stack</span><span>Node.js</span><span>DBMS (SQL)</span><span>REST APIs</span><span>AI Assistant</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/gmraj11132-tech" target="_blank" rel="noopener noreferrer" class="project-link ripple-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                </svg>
+                                Code
+                            </a>
+                            <a href="#" class="project-link ripple-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                </svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Unified AI Tools Platform -->
+                <div class="project-card glass-card reveal-up" style="--delay: 0.3s">
+                    <div class="project-image gradient-bg-3">
+                        <span class="project-emoji">🤖</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Unified AI Tools Platform</h3>
+                        <p>Web application aggregating multiple AI capabilities (text chat, image generation, music generation) into a single sleek interface using third-party AI APIs, accessible without login.</p>
+                        <div class="card-tags">
+                            <span>JavaScript</span><span>AI API Integration</span><span>Image Gen</span><span>Audio Gen</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/gmraj11132-tech" target="_blank" rel="noopener noreferrer" class="project-link ripple-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                </svg>
+                                Code
+                            </a>
+                            <a href="#" class="project-link ripple-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                </svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: AI Study Assistant for Students -->
+                <div class="project-card glass-card reveal-up" style="--delay: 0.45s">
+                    <div class="project-image gradient-bg-1">
+                        <span class="project-emoji">🎓</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>AI Study Assistant for Students</h3>
+                        <p>Interactive chatbot answering CS coursework doubts, explaining DSA/DBMS concepts using AI APIs, featuring a query log database to revisit past questions.</p>
+                        <div class="card-tags">
+                            <span>Python</span><span>AI API</span><span>DSA & DBMS Assistant</span><span>Database Log</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/gmraj11132-tech" target="_blank" rel="noopener noreferrer" class="project-link ripple-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+                                </svg>
+                                Code
+                            </a>
+                            <a href="#" class="project-link ripple-btn">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                                    <polyline points="15 3 21 3 21 9" />
+                                    <line x1="10" y1="14" x2="21" y2="3" />
+                                </svg>
+                                Live Demo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag glass">Contact</span>
+                <h2 class="section-title text-3d-subtle">Get In Touch</h2>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal-left">
+                    <h3>Let's Connect</h3>
+                    <p>I'm always open to discussing new opportunities, creative projects, or just having a tech
+                        conversation. Feel free to reach out!</p>
+                    <div class="contact-items">
+                        <a href="mailto:aryanjaiswal11132@gmail.com" class="contact-item glass-card">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <span class="contact-label">Email</span>
+                                <span class="contact-value">aryanjaiswal11132@gmail.com</span>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com/in/aaryan-raj" target="_blank" rel="noopener noreferrer" class="contact-item glass-card">
+                            <div class="contact-icon">💼</div>
+                            <div>
+                                <span class="contact-label">LinkedIn</span>
+                                <span class="contact-value">linkedin.com/in/aaryan-raj</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com/gmraj11132-tech" target="_blank" rel="noopener noreferrer" class="contact-item glass-card">
+                            <div class="contact-icon">🐙</div>
+                            <div>
+                                <span class="contact-label">GitHub</span>
+                                <span class="contact-value">github.com/gmraj11132-tech</span>
+                            </div>
+                        </a>
+                        <a href="tel:+918340177620" class="contact-item glass-card">
+                            <div class="contact-icon">📱</div>
+                            <div>
+                                <span class="contact-label">Phone</span>
+                                <span class="contact-value">+91 8340177620</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper reveal-right">
+                    <form class="contact-form glass-card" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="formName" required placeholder=" ">
+                            <label for="formName">Your Name</label>
+                            <div class="input-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="formEmail" required placeholder=" ">
+                            <label for="formEmail">Your Email</label>
+                            <div class="input-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="formSubject" required placeholder=" ">
+                            <label for="formSubject">Subject</label>
+                            <div class="input-line"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="formMessage" rows="4" required placeholder=" "></textarea>
+                            <label for="formMessage">Message</label>
+                            <div class="input-line"></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary ripple-btn form-submit">
+                            <span>Send Message</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <line x1="22" y1="2" x2="11" y2="13" />
+                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer glass">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="brand-icon">⟨/⟩</span>
+                <span>Designed & Built with ❤️ for ARYAN RAJ</span>
+            </div>
+            <div class="footer-socials">
+                <a href="https://github.com/gmraj11132-tech" target="_blank" rel="noopener noreferrer" class="social-link ripple-btn" aria-label="GitHub">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/aaryan-raj" target="_blank" rel="noopener noreferrer" class="social-link ripple-btn" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                </a>
+            </div>
+                <a href="#" class="social-link ripple-btn" aria-label="Twitter">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                </a>
+            </div>
+            <p class="footer-copy">© 2026 ARYAN RAJ. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
