@@ -6,85 +6,206 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ─── Particle Canvas Background ───
+    // ─── Cosmic Galaxy & Moving Starfield Engine ───
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
-    let particles = [];
+    let stars = [];
+    let shootingStars = [];
     let animFrame;
+    let width = 0;
+    let height = 0;
+    let mouseX = 0;
+    let mouseY = 0;
+    let targetTiltX = 0;
+    let targetTiltY = 0;
+    let currentTiltX = 0;
+    let currentTiltY = 0;
+
+    const isMobile = window.innerWidth <= 768;
+    const STAR_COUNT = isMobile ? 85 : 180;
 
     function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+        ctx.scale(dpr, dpr);
     }
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', () => {
+        resizeCanvas();
+        initStars();
+    });
 
-    class Particle {
-        constructor() {
-            this.reset();
+    // Parallax mouse / touch tracking
+    window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX - width / 2;
+        mouseY = e.clientY - height / 2;
+        targetTiltX = (mouseY / height) * 15;
+        targetTiltY = -(mouseX / width) * 15;
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+            mouseX = e.touches[0].clientX - width / 2;
+            mouseY = e.touches[0].clientY - height / 2;
+            targetTiltX = (mouseY / height) * 10;
+            targetTiltY = -(mouseX / width) * 10;
         }
-        reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.size = Math.random() * 2 + 0.5;
-            this.speedX = (Math.random() - 0.5) * 0.4;
-            this.speedY = (Math.random() - 0.5) * 0.4;
-            this.opacity = Math.random() * 0.5 + 0.1;
-            this.hue = Math.random() > 0.5 ? 245 : 160; // purple or teal
+    }, { passive: true });
+
+    class Star {
+        constructor() {
+            this.reset(true);
+        }
+        reset(randomZ = false) {
+            this.x = (Math.random() - 0.5) * width * 2;
+            this.y = (Math.random() - 0.5) * height * 2;
+            this.z = randomZ ? Math.random() * width : width;
+            this.size = Math.random() * 1.5 + 0.5;
+            this.speed = Math.random() * 0.4 + 0.15;
+            this.twinklePhase = Math.random() * Math.PI * 2;
+            this.twinkleSpeed = Math.random() * 0.03 + 0.01;
+
+            // Cosmic star colors: ice-white, cyan, electric violet, soft gold
+            const colorRoll = Math.random();
+            if (colorRoll > 0.75) {
+                this.color = '117, 98, 255'; // violet nebula
+            } else if (colorRoll > 0.5) {
+                this.color = '0, 245, 196'; // cyan aurora
+            } else if (colorRoll > 0.35) {
+                this.color = '255, 183, 3'; // starlight gold
+            } else {
+                this.color = '255, 255, 255'; // pure starlight
+            }
         }
         update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            this.z -= this.speed * (isMobile ? 1.0 : 1.4);
+            this.twinklePhase += this.twinkleSpeed;
+            if (this.z <= 0) {
+                this.reset(false);
+            }
         }
         draw() {
+            const k = 160 / this.z;
+            const px = this.x * k + width / 2 + currentTiltY;
+            const py = this.y * k + height / 2 + currentTiltX;
+
+            if (px < -20 || px > width + 20 || py < -20 || py > height + 20) return;
+
+            const baseAlpha = Math.min(1, (1 - this.z / width) * 1.2);
+            const twinkle = 0.6 + Math.sin(this.twinklePhase) * 0.4;
+            const alpha = Math.max(0.1, baseAlpha * twinkle);
+            const r = Math.max(0.4, (1 - this.z / width) * this.size * 2);
+
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = `hsla(${this.hue}, 70%, 65%, ${this.opacity})`;
+            ctx.arc(px, py, r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${this.color}, ${alpha.toFixed(3)})`;
             ctx.fill();
-        }
-    }
 
-    function initParticles() {
-        const count = Math.min(80, Math.floor((canvas.width * canvas.height) / 15000));
-        particles = [];
-        for (let i = 0; i < count; i++) {
-            particles.push(new Particle());
-        }
-    }
-
-    function drawLines() {
-        for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 150) {
-                    ctx.beginPath();
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    const opacity = (1 - dist / 150) * 0.15;
-                    ctx.strokeStyle = `rgba(108, 99, 255, ${opacity})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.stroke();
-                }
+            // Glow flare for close stars
+            if (this.z < width * 0.35 && !isMobile) {
+                ctx.beginPath();
+                ctx.arc(px, py, r * 2.8, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${this.color}, ${(alpha * 0.2).toFixed(3)})`;
+                ctx.fill();
             }
         }
     }
 
-    function animateParticles() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
-            p.update();
-            p.draw();
-        });
-        drawLines();
-        animFrame = requestAnimationFrame(animateParticles);
+    class ShootingStar {
+        constructor() {
+            this.reset();
+        }
+        reset() {
+            this.x = Math.random() * width * 0.8 + width * 0.1;
+            this.y = Math.random() * height * 0.4;
+            this.len = Math.random() * 80 + 70;
+            this.speed = Math.random() * 8 + 10;
+            this.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.2;
+            this.alpha = 1;
+            this.decay = Math.random() * 0.02 + 0.015;
+            this.active = true;
+        }
+        update() {
+            this.x += Math.cos(this.angle) * this.speed;
+            this.y += Math.sin(this.angle) * this.speed;
+            this.alpha -= this.decay;
+            if (this.alpha <= 0 || this.x > width + 100 || this.y > height + 100) {
+                this.active = false;
+            }
+        }
+        draw() {
+            if (!this.active) return;
+            const tailX = this.x - Math.cos(this.angle) * this.len;
+            const tailY = this.y - Math.sin(this.angle) * this.len;
+
+            const grad = ctx.createLinearGradient(tailX, tailY, this.x, this.y);
+            grad.addColorStop(0, 'rgba(117, 98, 255, 0)');
+            grad.addColorStop(0.5, `rgba(0, 245, 196, ${this.alpha * 0.5})`);
+            grad.addColorStop(1, `rgba(255, 255, 255, ${this.alpha})`);
+
+            ctx.beginPath();
+            ctx.moveTo(tailX, tailY);
+            ctx.lineTo(this.x, this.y);
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = 1.6;
+            ctx.stroke();
+
+            // Head sparkle
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+            ctx.fill();
+        }
     }
 
-    initParticles();
-    animateParticles();
+    function initStars() {
+        stars = [];
+        for (let i = 0; i < STAR_COUNT; i++) {
+            stars.push(new Star());
+        }
+    }
+    initStars();
+
+    let lastShootingStarTime = 0;
+    function animateCosmos(time) {
+        ctx.clearRect(0, 0, width, height);
+
+        // Smooth tilt physics
+        currentTiltX += (targetTiltX - currentTiltX) * 0.05;
+        currentTiltY += (targetTiltY - currentTiltY) * 0.05;
+
+        // Draw and update stars
+        for (let i = 0; i < stars.length; i++) {
+            stars[i].update();
+            stars[i].draw();
+        }
+
+        // Random shooting stars
+        if (time - lastShootingStarTime > (isMobile ? 7000 : 4500)) {
+            if (Math.random() > 0.4) {
+                shootingStars.push(new ShootingStar());
+                lastShootingStarTime = time;
+            }
+        }
+
+        // Draw shooting stars
+        for (let i = shootingStars.length - 1; i >= 0; i--) {
+            const meteor = shootingStars[i];
+            meteor.update();
+            meteor.draw();
+            if (!meteor.active) {
+                shootingStars.splice(i, 1);
+            }
+        }
+
+        animFrame = requestAnimationFrame(animateCosmos);
+    }
+    requestAnimationFrame(animateCosmos);
 
     // ─── Typewriter Effect ───
     const typewriterEl = document.getElementById('typewriter');
@@ -689,12 +810,473 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ─── Close Mobile Menu on Outside Tap ───
+    document.addEventListener('click', (e) => {
+        if (navLinksContainer.classList.contains('open') && !navLinksContainer.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger.classList.remove('active');
+            navLinksContainer.classList.remove('open');
+        }
+    });
+
+    // ─── Java IDE Interactive Engine ───
+    const runJavaBtn = document.getElementById('runJavaBtn');
+    const ideTerminal = document.getElementById('ideTerminal');
+    const tabJava = document.getElementById('tabJava');
+    const tabJson = document.getElementById('tabJson');
+    const codeContentEl = document.querySelector('.ide-editor .code-content code');
+    const breadcrumbCurrent = document.querySelector('.ide-breadcrumb .bc-current');
+
+    const javaCodeSnippet = `<span class="code-keyword">package</span> com.aryan.portfolio;
+
+<span class="code-comment">/**
+ * @author Aryan Raj - B.Tech CSE (7th Sem)
+ * Target: Software Engineer / Graduate Engineer Trainee
+ */</span>
+<span class="code-keyword">public class</span> <span class="code-class">AryanRaj</span> <span class="code-keyword">extends</span> <span class="code-class">FullStackEngineer</span> {
+    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">COLLEGE</span> = <span class="code-string">"Techno India / JUT Ranchi"</span>;
+    <span class="code-keyword">public static final</span> <span class="code-type">double</span> <span class="code-const">CGPA</span> = <span class="code-number">8.0</span>;
+
+    <span class="code-annotation">@Override</span>
+    <span class="code-keyword">public</span> <span class="code-type">List</span>&lt;<span class="code-type">String</span>&gt; <span class="code-method">getCoreStack</span>() {
+        <span class="code-keyword">return</span> <span class="code-class">List</span>.of(<span class="code-string">"Java"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"DSA"</span>, <span class="code-string">"DBMS"</span>, <span class="code-string">"Full-Stack Web"</span>, <span class="code-string">"AI APIs"</span>);
+    }
+
+    <span class="code-keyword">public static void</span> <span class="code-method">main</span>(<span class="code-type">String</span>[] <span class="code-var">args</span>) {
+        <span class="code-class">AryanRaj</span> <span class="code-var">engineer</span> = <span class="code-keyword">new</span> <span class="code-class">AryanRaj</span>();
+        <span class="code-var">engineer</span>.<span class="code-method">setAvailableForHire</span>(<span class="code-keyword">true</span>);
+        <span class="code-class">System</span>.out.<span class="code-method">println</span>(<span class="code-string">"🚀 Ready to engineer scalable systems!"</span>);
+    }
+}`;
+
+    const jsonCodeSnippet = `{
+  <span class="code-keyword">"name"</span>: <span class="code-string">"ARYAN RAJ"</span>,
+  <span class="code-keyword">"degree"</span>: <span class="code-string">"B.Tech Computer Science & Engineering"</span>,
+  <span class="code-keyword">"semester"</span>: <span class="code-number">7</span>,
+  <span class="code-keyword">"academicCGPA"</span>: <span class="code-number">8.0</span>,
+  <span class="code-keyword">"university"</span>: <span class="code-string">"Techno India / JUT Ranchi"</span>,
+  <span class="code-keyword">"schooling"</span>: <span class="code-string">"SSVM School, Ranchi (10th: 72.4%, 12th: 64.8%)"</span>,
+  <span class="code-keyword">"verifiedCredentials"</span>: <span class="code-number">12</span>,
+  <span class="code-keyword">"primaryStack"</span>: [
+    <span class="code-string">"Java"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"Data Structures & Algorithms"</span>,
+    <span class="code-string">"DBMS (SQL)"</span>, <span class="code-string">"Full-Stack Web"</span>, <span class="code-string">"AI Integrations"</span>
+  ],
+  <span class="code-keyword">"location"</span>: <span class="code-string">"Ramgarh / Ranchi, Jharkhand, India"</span>,
+  <span class="code-keyword">"openForWork"</span>: <span class="code-const">true</span>
+}`;
+
+    if (tabJava && tabJson && codeContentEl) {
+        tabJava.addEventListener('click', () => {
+            tabJava.classList.add('active');
+            tabJson.classList.remove('active');
+            codeContentEl.innerHTML = javaCodeSnippet;
+            if (breadcrumbCurrent) breadcrumbCurrent.textContent = 'AryanRaj.java';
+        });
+
+        tabJson.addEventListener('click', () => {
+            tabJson.classList.add('active');
+            tabJava.classList.remove('active');
+            codeContentEl.innerHTML = jsonCodeSnippet;
+            if (breadcrumbCurrent) breadcrumbCurrent.textContent = 'Portfolio.json';
+        });
+    }
+
+    if (runJavaBtn && ideTerminal) {
+        runJavaBtn.addEventListener('click', () => {
+            runJavaBtn.innerHTML = `
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                    <circle cx="12" cy="12" r="10" opacity="0.3"></circle>
+                    <path d="M12 2a10 10 0 0 1 10 10" stroke="#fff" stroke-width="3" fill="none"></path>
+                </svg>
+                <span>Compiling...</span>
+            `;
+            runJavaBtn.style.opacity = '0.85';
+
+            setTimeout(() => {
+                ideTerminal.style.display = 'block';
+                ideTerminal.innerHTML = `
+                    <div class="terminal-bar">
+                        <span class="term-title">🖥️ Run: AryanRaj.main()</span>
+                        <span class="term-status"><span class="status-pulse"></span> BUILD SUCCESSFUL</span>
+                    </div>
+                    <div class="terminal-content">
+                        <div class="term-line cmd">&gt; /usr/bin/javac -d bin src/com/aryan/portfolio/AryanRaj.java</div>
+                        <div class="term-line cmd">&gt; /usr/bin/java -cp bin com.aryan.portfolio.AryanRaj</div>
+                        <div class="term-line success">✔ [JVM 21.0.2] Build finished in 0.098s</div>
+                        <div class="term-line output">🚀 Ready to engineer scalable systems!</div>
+                        <div class="term-line info">📍 Aryan Raj | B.Tech CSE (7th Sem) | 12 Verified Credentials | CGPA 8.0</div>
+                        <div class="term-line exit">Process finished with exit code 0</div>
+                    </div>
+                `;
+                runJavaBtn.innerHTML = `
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5 3 19 12 5 21 5 3"/>
+                    </svg>
+                    <span>Re-Run</span>
+                `;
+                runJavaBtn.style.opacity = '1';
+            }, 350);
+        });
+    }
+
+    // ─── Interactive 3D Card Tilt on Mousemove ───
+    if (!isMobile) {
+        const tiltCards = document.querySelectorAll('.credential-card, .project-card, .java-ide');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    }
+
+    // ─── AryanOS In-App macOS Browser Engine ───
+    const osBrowserModal = document.getElementById('osBrowserModal');
+    const osBrowserWindow = document.querySelector('.os-browser-window');
+    const osBrowserContent = document.getElementById('osBrowserContent');
+    const osUrlInput = document.getElementById('osUrlInput');
+    const osExternalBtn = document.getElementById('osExternalBtn');
+    const osCloseBtn = document.getElementById('osCloseBtn');
+    const osMinimizeBtn = document.getElementById('osMinimizeBtn');
+    const osMaximizeBtn = document.getElementById('osMaximizeBtn');
+    const osCopyUrlBtn = document.getElementById('osCopyUrlBtn');
+    const osReloadBtn = document.getElementById('osReloadBtn');
+    const osGoBtn = document.getElementById('osGoBtn');
+    const osStatusText = document.getElementById('osStatusText');
+
+    let currentBrowserUrl = 'https://www.linkedin.com/in/aryanrajcse';
+
+    function showOsToast(message) {
+        let toast = document.querySelector('.os-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'os-toast';
+            document.body.appendChild(toast);
+        }
+        toast.innerHTML = `<span>✓</span> <span>${message}</span>`;
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 2500);
+    }
+
+    function renderLinkedInView() {
+        return `
+            <div class="inapp-linkedin-view">
+                <div class="li-card">
+                    <div class="li-banner"></div>
+                    <div class="li-profile-body">
+                        <div class="li-avatar-row">
+                            <img src="profile.jpg" alt="Aryan Raj" class="li-avatar">
+                            <div class="li-actions">
+                                <a href="https://www.linkedin.com/in/aryanrajcse" target="_blank" rel="noopener noreferrer" class="li-btn primary">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                                    </svg>
+                                    Connect
+                                </a>
+                                <a href="mailto:aryanjaiswal11132@gmail.com" class="li-btn secondary">Message</a>
+                            </div>
+                        </div>
+                        <h1 class="li-name">ARYAN RAJ <span class="li-badge">Verified Student</span></h1>
+                        <p class="li-headline">B.Tech Computer Science & Engineering (4th Year, 7th Sem) | Full-Stack & AI Developer | Aspiring Software Engineer / GET</p>
+                        <div class="li-meta">
+                            <span>📍 Ramgarh, Jharkhand, India</span>
+                            <span class="li-connections">500+ connections</span>
+                            <span>🏛️ Techno India / JUT Ranchi</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Card -->
+                <div class="li-card" style="padding: 22px;">
+                    <h3 class="li-section-title">About</h3>
+                    <p style="color: #c9d1d9; font-size: 0.92rem; line-height: 1.7;">
+                        Passionate Computer Science & Engineering student currently pursuing 4th Year (7th Sem). Skilled in Python, Java, C++, DSA, DBMS (SQL), Full-Stack Web Development, and AI API integrations. Recipient of 12+ verified credentials from IBM, Siemens, Tata, HP, Accenture, and Government of India.
+                    </p>
+                </div>
+
+                <!-- Education Card -->
+                <div class="li-card" style="padding: 22px;">
+                    <h3 class="li-section-title">Education</h3>
+                    <div class="li-exp-item">
+                        <div class="li-exp-icon">🎓</div>
+                        <div>
+                            <div class="li-exp-role">Techno India / Jharkhand University of Technology (JUT), Ranchi</div>
+                            <div class="li-exp-company">Bachelor of Technology - BTech, Computer Science and Engineering (8.0 CGPA)</div>
+                            <div class="li-exp-date">2023 - 2027 • 7th Semester</div>
+                        </div>
+                    </div>
+                    <div class="li-exp-item">
+                        <div class="li-exp-icon">🏫</div>
+                        <div>
+                            <div class="li-exp-role">SSVM School, Ranchi</div>
+                            <div class="li-exp-company">Class 12th CBSE (Science Stream) - 64.8% | Class 10th CBSE - 72.4%</div>
+                            <div class="li-exp-date">2020 - 2023</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience Card -->
+                <div class="li-card" style="padding: 22px;">
+                    <h3 class="li-section-title">Experience & Internships</h3>
+                    <div class="li-exp-item">
+                        <div class="li-exp-icon">🔬</div>
+                        <div>
+                            <div class="li-exp-role">AI & Machine Learning Virtual Internship</div>
+                            <div class="li-exp-company">IIT BHU Varanasi (Technex '24)</div>
+                            <div class="li-exp-date">Issued: 2024</div>
+                        </div>
+                    </div>
+                    <div class="li-exp-item">
+                        <div class="li-exp-icon">💻</div>
+                        <div>
+                            <div class="li-exp-role">Web Development & Full-Stack Intern</div>
+                            <div class="li-exp-company">InternPe / AICTE Approved</div>
+                            <div class="li-exp-date">Issued: 2024</div>
+                        </div>
+                    </div>
+                    <div class="li-exp-item">
+                        <div class="li-exp-icon">⚙️</div>
+                        <div>
+                            <div class="li-exp-role">Software Development Internship</div>
+                            <div class="li-exp-company">NV Enterprises & Consulting</div>
+                            <div class="li-exp-date">Issued: 2024</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderGitHubView() {
+        return `
+            <div class="inapp-github-view">
+                <div class="gh-header">
+                    <img src="profile.jpg" alt="gmraj11132-tech" class="gh-avatar">
+                    <div class="gh-user-info">
+                        <h2>Aryan Raj</h2>
+                        <div class="gh-handle">gmraj11132-tech</div>
+                        <p class="gh-bio">B.Tech CSE Student (7th Sem) • Full-Stack Developer • AI Tools & Automation Enthusiast</p>
+                        <div class="gh-stats-row">
+                            <span><strong>12+</strong> Credentials</span>
+                            <span><strong>4+</strong> Key Repositories</span>
+                            <span>📍 Ramgarh, Jharkhand</span>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 14px;">Pinned Repositories</h3>
+                <div class="gh-repo-grid">
+                    <div class="gh-repo-card">
+                        <div class="gh-repo-title">
+                            <span>📦</span>
+                            <span>personal-portfolio-2026</span>
+                        </div>
+                        <p class="gh-repo-desc">Ultra high-end portfolio featuring AMOLED dark mode, 3D cosmic starfield, Java IDE engine, and macOS in-app browser window.</p>
+                        <div class="gh-repo-meta">
+                            <span><span class="gh-lang-dot dot-js"></span>JavaScript</span>
+                            <span>⭐ 18</span>
+                            <span>🍴 4</span>
+                        </div>
+                    </div>
+
+                    <div class="gh-repo-card">
+                        <div class="gh-repo-title">
+                            <span>🛡️</span>
+                            <span>secure-multi-user-portal</span>
+                        </div>
+                        <p class="gh-repo-desc">Full-stack insurance/govt application with role-based auth, SQL DBMS automation, and integrated AI assistant.</p>
+                        <div class="gh-repo-meta">
+                            <span><span class="gh-lang-dot dot-java"></span>Java / Node.js</span>
+                            <span>⭐ 12</span>
+                            <span>🍴 2</span>
+                        </div>
+                    </div>
+
+                    <div class="gh-repo-card">
+                        <div class="gh-repo-title">
+                            <span>🤖</span>
+                            <span>unified-ai-tools-platform</span>
+                        </div>
+                        <p class="gh-repo-desc">Multi-capability AI platform combining chat, image generation, and music synthesis via unified REST APIs.</p>
+                        <div class="gh-repo-meta">
+                            <span><span class="gh-lang-dot dot-js"></span>JavaScript / REST</span>
+                            <span>⭐ 15</span>
+                            <span>🍴 3</span>
+                        </div>
+                    </div>
+
+                    <div class="gh-repo-card">
+                        <div class="gh-repo-title">
+                            <span>🎓</span>
+                            <span>ai-study-assistant-cs</span>
+                        </div>
+                        <p class="gh-repo-desc">Interactive student chatbot for CS coursework, DSA concept visualization, and SQL doubt clearing with query log.</p>
+                        <div class="gh-repo-meta">
+                            <span><span class="gh-lang-dot dot-py"></span>Python</span>
+                            <span>⭐ 21</span>
+                            <span>🍴 5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderGenericWebView(url) {
+        return `
+            <div style="padding: 40px 20px; text-align: center; color: #c9d1d9; max-width: 600px; margin: 0 auto;">
+                <div style="font-size: 3rem; margin-bottom: 16px;">🌐</div>
+                <h2 style="color: #ffffff; margin-bottom: 8px;">In-App Web Inspector</h2>
+                <p style="font-size: 0.92rem; color: #8b949e; margin-bottom: 24px;">
+                    Browsing URL: <code style="color: var(--accent-secondary); background: rgba(0,245,196,0.1); padding: 3px 8px; border-radius: 6px;">${url}</code>
+                </p>
+                <div style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                    <a href="${url}" target="_blank" rel="noopener noreferrer" class="btn btn-primary ripple-btn" style="min-height: 42px;">
+                        <span>Open in Real Browser ↗</span>
+                    </a>
+                    <button class="btn btn-secondary glass ripple-btn" onclick="document.getElementById('osCloseBtn').click();" style="min-height: 42px;">
+                        <span>Return to Portfolio</span>
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
+    function openOsBrowser(url, title = 'AryanOS Browser') {
+        currentBrowserUrl = url;
+        if (osUrlInput) osUrlInput.value = url;
+        if (osExternalBtn) osExternalBtn.href = url;
+        if (osStatusText) osStatusText.textContent = `Loading ${title}...`;
+
+        // Render appropriate in-app view
+        if (url.includes('linkedin.com')) {
+            osBrowserContent.innerHTML = renderLinkedInView();
+            if (osStatusText) osStatusText.textContent = `LinkedIn • Aryan Raj (@aryanrajcse) • AryanOS WebKit`;
+        } else if (url.includes('github.com')) {
+            osBrowserContent.innerHTML = renderGitHubView();
+            if (osStatusText) osStatusText.textContent = `GitHub • Aryan Raj (@gmraj11132-tech) • AryanOS WebKit`;
+        } else {
+            osBrowserContent.innerHTML = renderGenericWebView(url);
+            if (osStatusText) osStatusText.textContent = `Web • ${url} • AryanOS WebKit`;
+        }
+
+        osBrowserModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeOsBrowser() {
+        osBrowserModal.classList.remove('active');
+        osBrowserWindow.classList.remove('fullscreen');
+        osBrowserWindow.classList.remove('minimized');
+        document.body.style.overflow = '';
+    }
+
+    // Attach to all .os-browser-trigger elements
+    document.querySelectorAll('.os-browser-trigger').forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            const url = trigger.getAttribute('data-url') || trigger.getAttribute('href');
+            const title = trigger.getAttribute('data-title') || 'Web Inspector';
+            openOsBrowser(url, title);
+        });
+    });
+
+    // Window Traffic Light actions
+    if (osCloseBtn) {
+        osCloseBtn.addEventListener('click', closeOsBrowser);
+    }
+
+    if (osMinimizeBtn) {
+        osMinimizeBtn.addEventListener('click', () => {
+            osBrowserWindow.classList.add('minimized');
+            setTimeout(closeOsBrowser, 300);
+            showOsToast('Window minimized');
+        });
+    }
+
+    if (osMaximizeBtn) {
+        osMaximizeBtn.addEventListener('click', () => {
+            osBrowserWindow.classList.toggle('fullscreen');
+        });
+    }
+
+    // Copy URL button
+    if (osCopyUrlBtn) {
+        osCopyUrlBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(currentBrowserUrl).then(() => {
+                showOsToast('URL copied to clipboard!');
+            }).catch(() => {
+                showOsToast('Copied: ' + currentBrowserUrl);
+            });
+        });
+    }
+
+    // Reload button
+    if (osReloadBtn) {
+        osReloadBtn.addEventListener('click', () => {
+            if (osStatusText) osStatusText.textContent = 'Reloading page...';
+            osBrowserContent.style.opacity = '0.4';
+            setTimeout(() => {
+                openOsBrowser(currentBrowserUrl);
+                osBrowserContent.style.opacity = '1';
+                showOsToast('Page reloaded');
+            }, 300);
+        });
+    }
+
+    // Go / Search button
+    if (osGoBtn && osUrlInput) {
+        const handleGo = () => {
+            let inputVal = osUrlInput.value.trim();
+            if (!inputVal) return;
+            if (!inputVal.startsWith('http://') && !inputVal.startsWith('https://')) {
+                if (inputVal.includes('linkedin')) {
+                    inputVal = 'https://www.linkedin.com/in/aryanrajcse';
+                } else if (inputVal.includes('github')) {
+                    inputVal = 'https://github.com/gmraj11132-tech';
+                } else {
+                    inputVal = 'https://' + inputVal;
+                }
+            }
+            openOsBrowser(inputVal, 'Web');
+        };
+
+        osGoBtn.addEventListener('click', handleGo);
+        osUrlInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                handleGo();
+            }
+        });
+    }
+
+    // Close on backdrop tap
+    if (osBrowserModal) {
+        osBrowserModal.addEventListener('click', (e) => {
+            if (e.target === osBrowserModal) {
+                closeOsBrowser();
+            }
+        });
+    }
+
     // ─── Keyboard Navigation for Accessibility ───
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             hamburger.classList.remove('active');
             navLinksContainer.classList.remove('open');
             closeModal();
+            closeOsBrowser();
         }
     });
 
