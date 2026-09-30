@@ -6,206 +6,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ─── Cosmic Galaxy & Moving Starfield Engine ───
-    const canvas = document.getElementById('particleCanvas');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-    let shootingStars = [];
-    let animFrame;
-    let width = 0;
-    let height = 0;
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetTiltX = 0;
-    let targetTiltY = 0;
-    let currentTiltX = 0;
-    let currentTiltY = 0;
+    // ─── High Performance Zero-Lag Environment ───
+    // Dynamic canvas loop removed in favor of hardware-accelerated CSS mesh (120Hz smooth)
 
-    const isMobile = window.innerWidth <= 768;
-    const STAR_COUNT = isMobile ? 85 : 180;
-
-    function resizeCanvas() {
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        width = window.innerWidth;
-        height = window.innerHeight;
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-        canvas.style.width = width + 'px';
-        canvas.style.height = height + 'px';
-        ctx.scale(dpr, dpr);
-    }
-    resizeCanvas();
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        initStars();
-    });
-
-    // Parallax mouse / touch tracking
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX - width / 2;
-        mouseY = e.clientY - height / 2;
-        targetTiltX = (mouseY / height) * 15;
-        targetTiltY = -(mouseX / width) * 15;
-    }, { passive: true });
-
-    window.addEventListener('touchmove', (e) => {
-        if (e.touches.length > 0) {
-            mouseX = e.touches[0].clientX - width / 2;
-            mouseY = e.touches[0].clientY - height / 2;
-            targetTiltX = (mouseY / height) * 10;
-            targetTiltY = -(mouseX / width) * 10;
-        }
-    }, { passive: true });
-
-    class Star {
-        constructor() {
-            this.reset(true);
-        }
-        reset(randomZ = false) {
-            this.x = (Math.random() - 0.5) * width * 2;
-            this.y = (Math.random() - 0.5) * height * 2;
-            this.z = randomZ ? Math.random() * width : width;
-            this.size = Math.random() * 1.5 + 0.5;
-            this.speed = Math.random() * 0.4 + 0.15;
-            this.twinklePhase = Math.random() * Math.PI * 2;
-            this.twinkleSpeed = Math.random() * 0.03 + 0.01;
-
-            // Cosmic star colors: ice-white, cyan, electric violet, soft gold
-            const colorRoll = Math.random();
-            if (colorRoll > 0.75) {
-                this.color = '117, 98, 255'; // violet nebula
-            } else if (colorRoll > 0.5) {
-                this.color = '0, 245, 196'; // cyan aurora
-            } else if (colorRoll > 0.35) {
-                this.color = '255, 183, 3'; // starlight gold
-            } else {
-                this.color = '255, 255, 255'; // pure starlight
-            }
-        }
-        update() {
-            this.z -= this.speed * (isMobile ? 1.0 : 1.4);
-            this.twinklePhase += this.twinkleSpeed;
-            if (this.z <= 0) {
-                this.reset(false);
-            }
-        }
-        draw() {
-            const k = 160 / this.z;
-            const px = this.x * k + width / 2 + currentTiltY;
-            const py = this.y * k + height / 2 + currentTiltX;
-
-            if (px < -20 || px > width + 20 || py < -20 || py > height + 20) return;
-
-            const baseAlpha = Math.min(1, (1 - this.z / width) * 1.2);
-            const twinkle = 0.6 + Math.sin(this.twinklePhase) * 0.4;
-            const alpha = Math.max(0.1, baseAlpha * twinkle);
-            const r = Math.max(0.4, (1 - this.z / width) * this.size * 2);
-
-            ctx.beginPath();
-            ctx.arc(px, py, r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${this.color}, ${alpha.toFixed(3)})`;
-            ctx.fill();
-
-            // Glow flare for close stars
-            if (this.z < width * 0.35 && !isMobile) {
-                ctx.beginPath();
-                ctx.arc(px, py, r * 2.8, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${this.color}, ${(alpha * 0.2).toFixed(3)})`;
-                ctx.fill();
-            }
-        }
-    }
-
-    class ShootingStar {
-        constructor() {
-            this.reset();
-        }
-        reset() {
-            this.x = Math.random() * width * 0.8 + width * 0.1;
-            this.y = Math.random() * height * 0.4;
-            this.len = Math.random() * 80 + 70;
-            this.speed = Math.random() * 8 + 10;
-            this.angle = Math.PI / 4 + (Math.random() - 0.5) * 0.2;
-            this.alpha = 1;
-            this.decay = Math.random() * 0.02 + 0.015;
-            this.active = true;
-        }
-        update() {
-            this.x += Math.cos(this.angle) * this.speed;
-            this.y += Math.sin(this.angle) * this.speed;
-            this.alpha -= this.decay;
-            if (this.alpha <= 0 || this.x > width + 100 || this.y > height + 100) {
-                this.active = false;
-            }
-        }
-        draw() {
-            if (!this.active) return;
-            const tailX = this.x - Math.cos(this.angle) * this.len;
-            const tailY = this.y - Math.sin(this.angle) * this.len;
-
-            const grad = ctx.createLinearGradient(tailX, tailY, this.x, this.y);
-            grad.addColorStop(0, 'rgba(117, 98, 255, 0)');
-            grad.addColorStop(0.5, `rgba(0, 245, 196, ${this.alpha * 0.5})`);
-            grad.addColorStop(1, `rgba(255, 255, 255, ${this.alpha})`);
-
-            ctx.beginPath();
-            ctx.moveTo(tailX, tailY);
-            ctx.lineTo(this.x, this.y);
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = 1.6;
-            ctx.stroke();
-
-            // Head sparkle
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, 2, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
-            ctx.fill();
-        }
-    }
-
-    function initStars() {
-        stars = [];
-        for (let i = 0; i < STAR_COUNT; i++) {
-            stars.push(new Star());
-        }
-    }
-    initStars();
-
-    let lastShootingStarTime = 0;
-    function animateCosmos(time) {
-        ctx.clearRect(0, 0, width, height);
-
-        // Smooth tilt physics
-        currentTiltX += (targetTiltX - currentTiltX) * 0.05;
-        currentTiltY += (targetTiltY - currentTiltY) * 0.05;
-
-        // Draw and update stars
-        for (let i = 0; i < stars.length; i++) {
-            stars[i].update();
-            stars[i].draw();
-        }
-
-        // Random shooting stars
-        if (time - lastShootingStarTime > (isMobile ? 7000 : 4500)) {
-            if (Math.random() > 0.4) {
-                shootingStars.push(new ShootingStar());
-                lastShootingStarTime = time;
-            }
-        }
-
-        // Draw shooting stars
-        for (let i = shootingStars.length - 1; i >= 0; i--) {
-            const meteor = shootingStars[i];
-            meteor.update();
-            meteor.draw();
-            if (!meteor.active) {
-                shootingStars.splice(i, 1);
-            }
-        }
-
-        animFrame = requestAnimationFrame(animateCosmos);
-    }
-    requestAnimationFrame(animateCosmos);
 
     // ─── Typewriter Effect ───
     const typewriterEl = document.getElementById('typewriter');
@@ -435,22 +238,117 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ─── Contact Form (Demo) ───
+    // ─── Production Contact Form Backend (Direct to aryanjaiswal11132@gmail.com) ───
     const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
+    const formStatusMsg = document.getElementById('formStatusMsg');
+    const formSubmitBtn = document.getElementById('formSubmitBtn') || (contactForm ? contactForm.querySelector('.form-submit') : null);
+
+    function showFormStatus(type, msg) {
+        if (!formStatusMsg) return;
+        formStatusMsg.className = `form-status-msg ${type}`;
+        formStatusMsg.innerHTML = msg;
+        formStatusMsg.style.display = 'block';
+
+        setTimeout(() => {
+            if (formStatusMsg) formStatusMsg.style.display = 'none';
+        }, 9000);
+    }
+
+    if (contactForm && formSubmitBtn) {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const btn = contactForm.querySelector('.form-submit');
-            const originalHTML = btn.innerHTML;
 
-            btn.innerHTML = `<span>Message Sent! ✓</span>`;
-            btn.style.background = 'linear-gradient(135deg, #00d4aa, #00b4d8)';
+            // Anti-spam honeypot check
+            const honeyField = contactForm.querySelector('input[name="_honey"]');
+            if (honeyField && honeyField.value.trim() !== '') {
+                // Silently drop bot submission
+                return;
+            }
 
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.style.background = '';
-                contactForm.reset();
-            }, 2500);
+            const nameInput = document.getElementById('formName');
+            const emailInput = document.getElementById('formEmail');
+            const subjectInput = document.getElementById('formSubject');
+            const messageInput = document.getElementById('formMessage');
+
+            const name = nameInput ? nameInput.value.trim() : '';
+            const email = emailInput ? emailInput.value.trim() : '';
+            const subject = subjectInput ? subjectInput.value.trim() : 'Portfolio Inquiry';
+            const message = messageInput ? messageInput.value.trim() : '';
+
+            // Input Validation & Security Sanitization
+            if (!name || !email || !message) {
+                showFormStatus('error', '⚠️ Please complete Name, Email, and Message.');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showFormStatus('error', '⚠️ Please enter a valid email address.');
+                return;
+            }
+
+            // UI: Loading State
+            const originalBtnHTML = formSubmitBtn.innerHTML;
+            formSubmitBtn.disabled = true;
+            formSubmitBtn.innerHTML = `
+                <span class="btn-spinner"></span>
+                <span class="btn-text">Transmitting to Gmail...</span>
+            `;
+
+            // Prepare Payload for Direct Delivery
+            const payload = {
+                name: name,
+                email: email,
+                subject: `Portfolio Inquiry: ${subject}`,
+                message: message,
+                _subject: `[Aryan Portfolio] ${subject} from ${name}`,
+                _template: 'table',
+                _captcha: 'false',
+                _replyto: email
+            };
+
+            try {
+                const response = await fetch('https://formsubmit.co/ajax/aryanjaiswal11132@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+
+                if (response.ok && (data.success === 'true' || data.success === true || data.message)) {
+                    // Success feedback
+                    showFormStatus('success', '🎉 Message delivered directly to Aryan Raj (aryanjaiswal11132@gmail.com)! Expect a response within 24 hours.');
+                    formSubmitBtn.innerHTML = `
+                        <span class="btn-icon">✓</span>
+                        <span class="btn-text">Delivered to Gmail</span>
+                    `;
+                    formSubmitBtn.style.background = 'linear-gradient(180deg, rgba(0, 245, 196, 0.4) 0%, rgba(0, 245, 196, 0.15) 100%), rgba(14, 30, 28, 0.9)';
+                    contactForm.reset();
+
+                    setTimeout(() => {
+                        formSubmitBtn.innerHTML = originalBtnHTML;
+                        formSubmitBtn.style.background = '';
+                        formSubmitBtn.disabled = false;
+                    }, 5000);
+                } else {
+                    throw new Error(data.message || 'Transmission response not successful');
+                }
+            } catch (err) {
+                console.warn('FormSubmit AJAX dispatch notice, triggering mailto fallback:', err);
+                
+                // Fallback to native mailto direct to aryanjaiswal11132@gmail.com
+                const mailtoUrl = `mailto:aryanjaiswal11132@gmail.com?subject=${encodeURIComponent('[Portfolio] ' + subject)}&body=${encodeURIComponent('From: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message)}`;
+                window.location.href = mailtoUrl;
+
+                showFormStatus('info', 'ℹ️ Direct Gmail client triggered. If your mail app didn\'t open, email Aryan directly at <a href="mailto:aryanjaiswal11132@gmail.com" style="color:#00f5c4;text-decoration:underline;">aryanjaiswal11132@gmail.com</a>.');
+
+                formSubmitBtn.innerHTML = originalBtnHTML;
+                formSubmitBtn.disabled = false;
+            }
         });
     }
 
