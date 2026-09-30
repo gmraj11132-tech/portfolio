@@ -6,6 +6,8 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
     // ─── High Performance Zero-Lag Environment ───
     // Dynamic canvas loop removed in favor of hardware-accelerated CSS mesh (120Hz smooth)
 
@@ -1179,64 +1181,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ─── MacBook Terminal Coding Boot Sequence ───
-    const bootScreen = document.getElementById('bootScreen');
-    const bootLogs = document.getElementById('bootLogs');
-    const bootProgressBar = document.getElementById('bootProgressBar');
-    const bootPercent = document.getElementById('bootPercent');
-    const bootSkipBtn = document.getElementById('bootSkipBtn');
-
-    if (bootScreen && bootLogs) {
-        const bootSteps = [
-            { tag: '[KERNEL]', text: 'Initializing JVM 21 & AryanOS core kernel...', status: 'OK', progress: 18, delay: 180 },
-            { tag: '[GEO]', text: 'Target Location: Noida, Alpha 2, India', status: 'VERIFIED', progress: 38, delay: 280 },
-            { tag: '[STACK]', text: 'Loading: Java, Spring Boot, Python, React, SQL', status: 'LOADED', progress: 58, delay: 280 },
-            { tag: '[CERTS]', text: 'Mounting 12 verified industry credentials...', status: 'ACTIVE', progress: 78, delay: 280 },
-            { tag: '[UI]', text: 'Rendering MacBook crystal glass interface...', status: 'COMPILED', progress: 92, delay: 240 },
-            { tag: '[ONLINE]', text: 'Aryan Raj Portfolio ready. Welcome!', status: '100%', progress: 100, delay: 220 }
-        ];
-
-        let isDismissed = false;
-
-        function dismissBoot() {
-            if (isDismissed) return;
-            isDismissed = true;
-            if (bootProgressBar) bootProgressBar.style.width = '100%';
-            if (bootPercent) bootPercent.textContent = '100%';
-            bootScreen.classList.add('dismissed');
-            setTimeout(() => {
-                bootScreen.style.display = 'none';
-            }, 650);
-        }
-
-        if (bootSkipBtn) {
-            bootSkipBtn.addEventListener('click', dismissBoot);
-        }
-
-        let stepIndex = 0;
-        function runNextStep() {
-            if (isDismissed) return;
-            if (stepIndex >= bootSteps.length) {
-                setTimeout(dismissBoot, 350);
-                return;
-            }
-
-            const step = bootSteps[stepIndex];
-            const logEntry = document.createElement('div');
-            logEntry.className = 'boot-log-entry';
-            logEntry.innerHTML = `<span class="log-tag">${step.tag}</span><span class="log-text">${step.text}</span><span class="log-status">${step.status}</span>`;
-            bootLogs.appendChild(logEntry);
-
-            if (bootProgressBar) bootProgressBar.style.width = `${step.progress}%`;
-            if (bootPercent) bootPercent.textContent = `${step.progress}%`;
-
-            stepIndex++;
-            setTimeout(runNextStep, step.delay);
-        }
-
-        // Start boot sequence slightly after DOM ready
-        setTimeout(runNextStep, 100);
-    }
-
 });
+
 

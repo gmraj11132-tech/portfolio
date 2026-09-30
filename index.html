@@ -37,7 +37,7 @@
                     <span class="boot-icon">💻</span>
                     <span>aryan@macbook-pro: ~ (boot.sh)</span>
                 </div>
-                <button class="boot-skip-btn" id="bootSkipBtn" type="button" aria-label="Skip boot sequence">Skip ↗</button>
+                <button class="boot-skip-btn" id="bootSkipBtn" type="button" onclick="dismissBootScreen()" aria-label="Skip boot sequence">Skip ↗</button>
             </div>
             <div class="boot-terminal-body">
                 <div class="boot-line"><span class="boot-prompt">sys:~$</span> <span class="boot-cmd">bash ./boot_portfolio.sh --env=production</span></div>
@@ -51,6 +51,64 @@
             </div>
         </div>
     </div>
+    <script>
+        (function() {
+            var screen = document.getElementById('bootScreen');
+            var logs = document.getElementById('bootLogs');
+            var bar = document.getElementById('bootProgressBar');
+            var pct = document.getElementById('bootPercent');
+            var isDismissed = false;
+
+            function dismiss() {
+                if (isDismissed) return;
+                isDismissed = true;
+                if (bar) bar.style.width = '100%';
+                if (pct) pct.textContent = '100%';
+                if (screen) {
+                    screen.classList.add('dismissed');
+                    setTimeout(function() {
+                        if (screen && screen.parentNode) screen.style.display = 'none';
+                    }, 500);
+                }
+            }
+            window.dismissBootScreen = dismiss;
+
+            var steps = [
+                { tag: '[INIT]', text: 'Booting AryanOS JVM 21 environment...', status: 'OK', progress: 18, delay: 500 },
+                { tag: '[CONFIG]', text: 'Target Location: Noida, Alpha 2, India', status: 'VERIFIED', progress: 38, delay: 700 },
+                { tag: '[MODULES]', text: 'Loading: Java, Spring Boot, React, SQL...', status: 'LOADED', progress: 62, delay: 800 },
+                { tag: '[SECURITY]', text: 'Verifying 12 Industry Credentials...', status: 'ACTIVE', progress: 84, delay: 800 },
+                { tag: '[GUI]', text: 'Launching MacBook Crystal UI...', status: 'READY', progress: 96, delay: 650 },
+                { tag: '[SUCCESS]', text: 'Welcome to Aryan Raj Portfolio!', status: '100%', progress: 100, delay: 500 }
+            ];
+
+            var idx = 0;
+            function next() {
+                if (isDismissed) return;
+                if (idx >= steps.length) {
+                    setTimeout(dismiss, 350);
+                    return;
+                }
+                var s = steps[idx];
+                if (logs) {
+                    var el = document.createElement('div');
+                    el.className = 'boot-log-entry';
+                    el.innerHTML = '<span class="log-tag">' + s.tag + '</span><span class="log-text">' + s.text + '</span><span class="log-status">' + s.status + '</span>';
+                    logs.appendChild(el);
+                }
+                if (bar) bar.style.width = s.progress + '%';
+                if (pct) pct.textContent = s.progress + '%';
+                idx++;
+                setTimeout(next, s.delay);
+            }
+
+            // Start immediately
+            setTimeout(next, 100);
+
+            // Safety timeout: automatically close after 4.5 seconds no matter what
+            setTimeout(dismiss, 4500);
+        })();
+    </script>
 
     <!-- Clean High-Performance macOS / Vercel Grid Background (Zero Lag) -->
     <div class="bg-clean-grid">
