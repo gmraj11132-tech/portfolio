@@ -1,7 +1,7 @@
 # Aryan Raj — Professional Developer Portfolio & AryanOS
 
 > **B.Tech Computer Science & Engineering Student (4th Year, 7th Semester)**  
-> Techno India University / Jharkhand University of Technology (JUT), Ranchi • **8.0 CGPA**  
+> Techno India University • **8.0 CGPA**  
 > *Seeking Software Engineer / Graduate Engineer Trainee (GET) Roles*
 
 ---
@@ -53,7 +53,7 @@
 - **LinkedIn:** [linkedin.com/in/aryanrajcse](https://www.linkedin.com/in/aryanrajcse)
 - **GitHub:** [github.com/gmraj11132-tech](https://github.com/gmraj11132-tech)
 - **Phone:** +91 8340177620
-- **Location:** Ramgarh, Jharkhand, India
+- **Location:** Noida, Alpha 2, India
 
 ---
 

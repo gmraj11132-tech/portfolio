@@ -3366,3 +3366,217 @@ img { max-width: 100%; display: block; }
         padding: 14px;
     }
 }
+
+/* ============================================================
+   MacBook Terminal Coding Boot Loader Screen
+   ============================================================ */
+.boot-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    background: #040508;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.6s;
+}
+
+.boot-screen.dismissed {
+    opacity: 0;
+    transform: scale(1.04);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.boot-terminal {
+    width: 100%;
+    max-width: 540px;
+    background: rgba(13, 17, 23, 0.95);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 14px;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9),
+                0 0 35px rgba(56, 189, 248, 0.15);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    overflow: hidden;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    animation: bootTerminalPop 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes bootTerminalPop {
+    0% { transform: scale(0.92); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.boot-titlebar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: rgba(22, 27, 34, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.boot-traffic-lights {
+    display: flex;
+    gap: 7px;
+}
+
+.boot-light {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.boot-light.red { background: #ff5f56; box-shadow: 0 0 6px rgba(255, 95, 86, 0.5); }
+.boot-light.yellow { background: #ffbd2e; box-shadow: 0 0 6px rgba(255, 189, 46, 0.5); }
+.boot-light.green { background: #27c93f; box-shadow: 0 0 6px rgba(39, 201, 63, 0.5); }
+
+.boot-title {
+    font-size: 0.78rem;
+    color: #94a3b8;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.boot-skip-btn {
+    padding: 0.25rem 0.65rem;
+    font-size: 0.72rem;
+    font-family: inherit;
+    font-weight: 600;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #94a3b8;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.boot-skip-btn:hover {
+    background: rgba(56, 189, 248, 0.15);
+    border-color: #38bdf8;
+    color: #ffffff;
+}
+
+.boot-terminal-body {
+    padding: 1.25rem 1.25rem 1.4rem;
+    font-size: 0.84rem;
+    color: #cbd5e1;
+}
+
+.boot-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    margin-bottom: 0.75rem;
+}
+
+.boot-prompt {
+    color: #38bdf8;
+    font-weight: 700;
+}
+
+.boot-cmd {
+    color: #f1f5f9;
+}
+
+.boot-logs {
+    min-height: 145px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    margin-bottom: 1rem;
+}
+
+.boot-log-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    animation: bootLogFade 0.2s ease forwards;
+}
+
+@keyframes bootLogFade {
+    0% { opacity: 0; transform: translateX(-6px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+.boot-log-entry .log-tag {
+    color: #38bdf8;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.boot-log-entry .log-text {
+    color: #94a3b8;
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.boot-log-entry .log-status {
+    color: #34d399;
+    font-weight: 700;
+    margin-left: 0.5rem;
+}
+
+.boot-progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.boot-progress-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.boot-progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8, #818cf8, #34d399);
+    border-radius: 999px;
+    transition: width 0.18s ease-out;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+.boot-percent {
+    font-size: 0.78rem;
+    color: #38bdf8;
+    font-weight: 700;
+    min-width: 38px;
+    text-align: right;
+}
+
+@media (max-width: 480px) {
+    .boot-terminal {
+        border-radius: 12px;
+    }
+    .boot-terminal-body {
+        padding: 1rem 0.9rem;
+    }
+    .boot-log-entry {
+        font-size: 0.74rem;
+    }
+    .boot-title {
+        font-size: 0.7rem;
+    }
+}
+

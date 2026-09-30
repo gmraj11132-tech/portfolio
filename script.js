@@ -456,13 +456,13 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         nventerprises: {
             title: "ML Craft With Python Internship",
-            issuer: "NV Enterprises (Ranchi, Jharkhand) in collaboration with Ramgarh Engineering College",
+            issuer: "NV Enterprises in collaboration with Techno India University",
             date: "10th June 2025 to 23rd July 2025",
             certId: "NV/24/0218",
             aicteId: "Student Reg No: 23033440027",
             image: "cert_nv_enterprises.jpg",
             category: "ML Engineering Internship",
-            summary: "Completed practical industrial training on Machine Learning Craft With Python. Built custom predictive models, data analysis scripts, and feature selection routines under direct corporate supervision at NV Enterprises, Ranchi.",
+            summary: "Completed practical industrial training on Machine Learning Craft With Python. Built custom predictive models, data analysis scripts, and feature selection routines under direct corporate supervision at NV Enterprises.",
             learnings: [
                 "Engineered Python scripts for automated feature scaling, missing value imputation, and out-of-fold cross validation.",
                 "Trained regression & classification models for tabular datasets with high prediction reliability.",
@@ -470,7 +470,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 "Delivered final internship project defense evaluated and signed by Director, NV Enterprises."
             ],
             skills: ["Python ML", "Data Cleaning", "Scikit-Learn", "Exploratory Data Analysis", "Feature Engineering"],
-            verifiable: "Officially signed Certificate ID: NV/24/0218 issued by Director, NV Enterprises, Ranchi."
+            verifiable: "Officially signed Certificate ID: NV/24/0218 issued by Director, NV Enterprises."
         },
         internpe: {
             title: "AI & Machine Learning Engineering Internship",
@@ -731,7 +731,8 @@ document.addEventListener('DOMContentLoaded', () => {
  * Target: Software Engineer / Graduate Engineer Trainee
  */</span>
 <span class="code-keyword">public class</span> <span class="code-class">AryanRaj</span> <span class="code-keyword">extends</span> <span class="code-class">FullStackEngineer</span> {
-    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">COLLEGE</span> = <span class="code-string">"Techno India / JUT Ranchi"</span>;
+    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">COLLEGE</span> = <span class="code-string">"Techno India University"</span>;
+    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">LOCATION</span> = <span class="code-string">"Noida, Alpha 2"</span>;
     <span class="code-keyword">public static final</span> <span class="code-type">double</span> <span class="code-const">CGPA</span> = <span class="code-number">8.0</span>;
 
     <span class="code-annotation">@Override</span>
@@ -751,14 +752,14 @@ document.addEventListener('DOMContentLoaded', () => {
   <span class="code-keyword">"degree"</span>: <span class="code-string">"B.Tech Computer Science & Engineering"</span>,
   <span class="code-keyword">"semester"</span>: <span class="code-number">7</span>,
   <span class="code-keyword">"academicCGPA"</span>: <span class="code-number">8.0</span>,
-  <span class="code-keyword">"university"</span>: <span class="code-string">"Techno India / JUT Ranchi"</span>,
-  <span class="code-keyword">"schooling"</span>: <span class="code-string">"SSVM School, Ranchi (10th: 72.4%, 12th: 64.8%)"</span>,
+  <span class="code-keyword">"university"</span>: <span class="code-string">"Techno India University"</span>,
+  <span class="code-keyword">"schooling"</span>: <span class="code-string">"SSVM School (10th: 72.4%, 12th: 64.8%)"</span>,
   <span class="code-keyword">"verifiedCredentials"</span>: <span class="code-number">12</span>,
   <span class="code-keyword">"primaryStack"</span>: [
     <span class="code-string">"Java"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"Data Structures & Algorithms"</span>,
     <span class="code-string">"DBMS (SQL)"</span>, <span class="code-string">"Full-Stack Web"</span>, <span class="code-string">"AI Integrations"</span>
   ],
-  <span class="code-keyword">"location"</span>: <span class="code-string">"Ramgarh / Ranchi, Jharkhand, India"</span>,
+  <span class="code-keyword">"location"</span>: <span class="code-string">"Noida, Alpha 2, India"</span>,
   <span class="code-keyword">"openForWork"</span>: <span class="code-const">true</span>
 }`;
 
@@ -889,9 +890,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h1 class="li-name">ARYAN RAJ <span class="li-badge">Verified Student</span></h1>
                         <p class="li-headline">B.Tech Computer Science & Engineering (4th Year, 7th Sem) | Full-Stack & AI Developer | Aspiring Software Engineer / GET</p>
                         <div class="li-meta">
-                            <span>📍 Ramgarh, Jharkhand, India</span>
+                            <span>📍 Noida, Alpha 2, India</span>
                             <span class="li-connections">500+ connections</span>
-                            <span>🏛️ Techno India / JUT Ranchi</span>
+                            <span>🏛️ Techno India University</span>
                         </div>
                     </div>
                 </div>
@@ -910,7 +911,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="li-exp-item">
                         <div class="li-exp-icon">🎓</div>
                         <div>
-                            <div class="li-exp-role">Techno India / Jharkhand University of Technology (JUT), Ranchi</div>
+                            <div class="li-exp-role">Techno India University</div>
                             <div class="li-exp-company">Bachelor of Technology - BTech, Computer Science and Engineering (8.0 CGPA)</div>
                             <div class="li-exp-date">2023 - 2027 • 7th Semester</div>
                         </div>
@@ -918,7 +919,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="li-exp-item">
                         <div class="li-exp-icon">🏫</div>
                         <div>
-                            <div class="li-exp-role">SSVM School, Ranchi</div>
+                            <div class="li-exp-role">SSVM School</div>
                             <div class="li-exp-company">Class 12th CBSE (Science Stream) - 64.8% | Class 10th CBSE - 72.4%</div>
                             <div class="li-exp-date">2020 - 2023</div>
                         </div>
@@ -969,7 +970,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="gh-stats-row">
                             <span><strong>12+</strong> Credentials</span>
                             <span><strong>4+</strong> Key Repositories</span>
-                            <span>📍 Ramgarh, Jharkhand</span>
+                            <span>📍 Noida, Alpha 2</span>
                         </div>
                     </div>
                 </div>
@@ -1178,4 +1179,64 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // ─── MacBook Terminal Coding Boot Sequence ───
+    const bootScreen = document.getElementById('bootScreen');
+    const bootLogs = document.getElementById('bootLogs');
+    const bootProgressBar = document.getElementById('bootProgressBar');
+    const bootPercent = document.getElementById('bootPercent');
+    const bootSkipBtn = document.getElementById('bootSkipBtn');
+
+    if (bootScreen && bootLogs) {
+        const bootSteps = [
+            { tag: '[KERNEL]', text: 'Initializing JVM 21 & AryanOS core kernel...', status: 'OK', progress: 18, delay: 180 },
+            { tag: '[GEO]', text: 'Target Location: Noida, Alpha 2, India', status: 'VERIFIED', progress: 38, delay: 280 },
+            { tag: '[STACK]', text: 'Loading: Java, Spring Boot, Python, React, SQL', status: 'LOADED', progress: 58, delay: 280 },
+            { tag: '[CERTS]', text: 'Mounting 12 verified industry credentials...', status: 'ACTIVE', progress: 78, delay: 280 },
+            { tag: '[UI]', text: 'Rendering MacBook crystal glass interface...', status: 'COMPILED', progress: 92, delay: 240 },
+            { tag: '[ONLINE]', text: 'Aryan Raj Portfolio ready. Welcome!', status: '100%', progress: 100, delay: 220 }
+        ];
+
+        let isDismissed = false;
+
+        function dismissBoot() {
+            if (isDismissed) return;
+            isDismissed = true;
+            if (bootProgressBar) bootProgressBar.style.width = '100%';
+            if (bootPercent) bootPercent.textContent = '100%';
+            bootScreen.classList.add('dismissed');
+            setTimeout(() => {
+                bootScreen.style.display = 'none';
+            }, 650);
+        }
+
+        if (bootSkipBtn) {
+            bootSkipBtn.addEventListener('click', dismissBoot);
+        }
+
+        let stepIndex = 0;
+        function runNextStep() {
+            if (isDismissed) return;
+            if (stepIndex >= bootSteps.length) {
+                setTimeout(dismissBoot, 350);
+                return;
+            }
+
+            const step = bootSteps[stepIndex];
+            const logEntry = document.createElement('div');
+            logEntry.className = 'boot-log-entry';
+            logEntry.innerHTML = `<span class="log-tag">${step.tag}</span><span class="log-text">${step.text}</span><span class="log-status">${step.status}</span>`;
+            bootLogs.appendChild(logEntry);
+
+            if (bootProgressBar) bootProgressBar.style.width = `${step.progress}%`;
+            if (bootPercent) bootPercent.textContent = `${step.progress}%`;
+
+            stepIndex++;
+            setTimeout(runNextStep, step.delay);
+        }
+
+        // Start boot sequence slightly after DOM ready
+        setTimeout(runNextStep, 100);
+    }
+
 });
+
