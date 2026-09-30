@@ -128,8 +128,10 @@
             <li><a href="#about" class="nav-link">About</a></li>
             <li><a href="#education" class="nav-link">Education</a></li>
             <li><a href="#skills" class="nav-link">Skills</a></li>
-            <li><a href="#credentials" class="nav-link">Certificates & Achievements</a></li>
+            <li><a href="#credentials" class="nav-link">Certificates</a></li>
             <li><a href="#projects" class="nav-link">Projects</a></li>
+            <li><a href="#resume" class="nav-link">Resume</a></li>
+            <li><a href="about.html" class="nav-link" style="color: #38bdf8; font-weight: 600;">About Aryan ↗</a></li>
             <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
         <div class="nav-actions">
@@ -185,6 +187,11 @@
                     <span class="btn-icon">📜</span>
                     <span class="btn-text">12 Credentials</span>
                     <span class="btn-kbd">⌘C</span>
+                </a>
+                <a href="#resume" class="btn-crystal ripple-btn">
+                    <span class="btn-icon">📄</span>
+                    <span class="btn-text">Resume</span>
+                    <span class="btn-kbd">⌘R</span>
                 </a>
                 <a href="https://www.linkedin.com/in/aryanrajcse" class="btn-crystal os-browser-trigger ripple-btn" data-url="https://www.linkedin.com/in/aryanrajcse" data-title="LinkedIn — Aryan Raj">
                     <span class="btn-icon">💼</span>
@@ -1264,6 +1271,40 @@
         </div>
     </div>
 
+    <!-- macOS Terminal Resume Pop-Up Modal -->
+    <div class="resume-modal-backdrop" id="resumeModal" role="dialog" aria-modal="true" aria-label="Resume Document Preview">
+        <div class="resume-modal-window mac-window">
+            <div class="resume-modal-titlebar">
+                <div class="resume-modal-dots">
+                    <span class="dot red" id="resumeModalCloseDot" title="Close Preview"></span>
+                    <span class="dot yellow" title="Minimize"></span>
+                    <span class="dot green" title="Maximize"></span>
+                </div>
+                <div class="resume-modal-title">
+                    <span class="title-icon">📄</span>
+                    <span class="title-text">Preview — Aryan_Raj_Resume.pdf (High Resolution)</span>
+                </div>
+                <div class="resume-modal-actions">
+                    <a href="resume_aryan_raj.jpg" download="Aryan_Raj_Resume.jpg" class="resume-action-btn primary" title="Download Document">
+                        <span>📥 Download</span>
+                    </a>
+                    <button type="button" class="resume-action-btn close" id="resumeModalCloseBtn" title="Close Window">
+                        ✕
+                    </button>
+                </div>
+            </div>
+            <div class="resume-modal-body">
+                <div class="resume-scroll-container">
+                    <img src="resume_aryan_raj.jpg" alt="Aryan Raj Full Resume Document" class="resume-full-img">
+                </div>
+            </div>
+            <div class="resume-modal-statusbar">
+                <span>📄 Aryan Raj — B.Tech CSE (7th Sem) • Techno India University • 8.0 CGPA</span>
+                <span class="status-zoom">100% Crisp Quality View</span>
+            </div>
+        </div>
+    </div>
+
     <!-- Projects Section -->
     <section class="section" id="projects">
         <div class="section-container">
@@ -1393,6 +1434,165 @@
                                 <span class="btn-text">Demo</span>
                                 <span class="btn-kbd">↗</span>
                             </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume & Data Science / Analytics Career Section -->
+    <section class="section" id="resume">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-tag glass">Curriculum Vitae</span>
+                <h2 class="section-title text-3d-subtle">Resume & Career Focus</h2>
+                <div class="section-line"></div>
+            </div>
+
+            <!-- Resume macOS Deck -->
+            <div class="resume-deck glass-card reveal-up">
+                <div class="mac-window-bar">
+                    <div class="mac-dots">
+                        <span class="mac-dot red"></span>
+                        <span class="mac-dot yellow"></span>
+                        <span class="mac-dot green"></span>
+                    </div>
+                    <span class="mac-path">~/documents/aryan_raj_resume.pdf</span>
+                    <span class="mac-tag">Verified Document (2026)</span>
+                </div>
+
+                <div class="resume-grid">
+                    <!-- Left: Resume Interactive Preview -->
+                    <div class="resume-preview-col">
+                        <div class="resume-sheet-wrap" id="resumeTriggerWrap" title="Click to View in Terminal Pop-up">
+                            <img src="resume_aryan_raj.jpg" alt="Aryan Raj Professional Resume" class="resume-thumb-img">
+                            <div class="resume-sheet-overlay">
+                                <span class="resume-overlay-badge">🔍 Click to Open in Terminal Viewer</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Quick Specs & Direct Download Actions -->
+                    <div class="resume-details-col">
+                        <div class="resume-header-box">
+                            <span class="resume-badge">B.Tech CSE • 7th Semester</span>
+                            <h3 class="resume-candidate-name">ARYAN RAJ</h3>
+                            <p class="resume-candidate-sub">Aspiring Data Scientist • Data Analyst • Software Engineer</p>
+                        </div>
+
+                        <div class="resume-meta-list">
+                            <div class="meta-item">
+                                <span class="meta-icon">🏛️</span>
+                                <div>
+                                    <div class="meta-label">University</div>
+                                    <div class="meta-value">Techno India University</div>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-icon">📊</span>
+                                <div>
+                                    <div class="meta-label">Academic Score</div>
+                                    <div class="meta-value">8.0 / 10 CGPA</div>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-icon">📍</span>
+                                <div>
+                                    <div class="meta-label">Current Location</div>
+                                    <div class="meta-value">Noida, Alpha 2, India</div>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <span class="meta-icon">📜</span>
+                                <div>
+                                    <div class="meta-label">Industry Credentials</div>
+                                    <div class="meta-value">12 Verified Certifications (IIT BHU, IBM, Tata, Siemens)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="resume-actions-group">
+                            <a href="resume_aryan_raj.jpg" download="Aryan_Raj_Resume.jpg" class="btn-crystal primary ripple-btn" id="resumeDownloadBtn">
+                                <span class="btn-icon">📥</span>
+                                <span class="btn-text">Download Official Resume</span>
+                                <span class="btn-kbd">⌘D</span>
+                            </a>
+                            <button type="button" class="btn-crystal secondary ripple-btn" id="resumeOpenModalBtn">
+                                <span class="btn-icon">🖥️</span>
+                                <span class="btn-text">Terminal Pop-up Viewer</span>
+                                <span class="btn-kbd">Space</span>
+                            </button>
+                            <a href="about.html" class="btn-crystal ripple-btn">
+                                <span class="btn-icon">👤</span>
+                                <span class="btn-text">Read Full Biography &amp; Dossier</span>
+                                <span class="btn-kbd">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dedicated Career Specialization: Data Science & Analytics Engineering -->
+            <div class="ds-specialization-card glass-card reveal-up" style="margin-top: 35px;">
+                <div class="mac-window-bar">
+                    <div class="mac-dots">
+                        <span class="mac-dot red"></span>
+                        <span class="mac-dot yellow"></span>
+                        <span class="mac-dot green"></span>
+                    </div>
+                    <span class="mac-path">~/specialization/data_science_analytics.py</span>
+                    <span class="mac-tag">Primary Career Objective</span>
+                </div>
+
+                <div class="ds-card-body">
+                    <div class="ds-header-block">
+                        <div class="ds-tag-badge">🎯 Target Roles: Data Scientist • Data Analyst • Machine Learning Engineer</div>
+                        <h3 class="ds-title">Specialization in Data Science &amp; Business Intelligence Analytics</h3>
+                        <p class="ds-desc">
+                            Passionate about decoding complex datasets to discover high-value business insights and engineering automated machine learning pipelines. Combining rigorous mathematical reasoning with modern Python analytics, relational SQL databases, and executive data storytelling.
+                        </p>
+                    </div>
+
+                    <div class="ds-pillars-grid">
+                        <div class="ds-pillar">
+                            <div class="pillar-icon">🐍</div>
+                            <h4>Python for Data Science &amp; ML</h4>
+                            <p>Hands-on proficiency in NumPy, Pandas, Scikit-Learn, data cleaning, automated feature scaling, and predictive classification/regression pipelines (Certified by IBM &amp; trained at NV Enterprises).</p>
+                        </div>
+                        <div class="ds-pillar">
+                            <div class="pillar-icon">🗄️</div>
+                            <h4>Advanced SQL &amp; Relational Databases</h4>
+                            <p>Expertise in complex multi-table joins, subqueries, aggregations, window functions, and database schema normalization (DBMS) for high-performance enterprise querying.</p>
+                        </div>
+                        <div class="ds-pillar">
+                            <div class="pillar-icon">📊</div>
+                            <h4>Executive Data Visualisation</h4>
+                            <p>Translating quantitative trends into intuitive C-suite dashboards and charts. Experience with data storytelling principles and business intelligence metrics (Certified by Tata via Forage).</p>
+                        </div>
+                        <div class="ds-pillar">
+                            <div class="pillar-icon">🤖</div>
+                            <h4>AI &amp; Predictive Modeling Pipelines</h4>
+                            <p>Building predictive algorithms, integrating pre-trained transformer APIs, and developing end-to-end data pipelines from ingestion to automated prediction reports.</p>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming & Active Data Science Projects -->
+                    <div class="ds-projects-banner">
+                        <div class="ds-banner-title">
+                            <span>🚀</span>
+                            <span>Dedicated Data Science &amp; Analytics Projects</span>
+                        </div>
+                        <div class="ds-project-chips">
+                            <div class="ds-chip">
+                                <strong>Customer Churn Predictive Pipeline:</strong> Machine learning classifier utilizing Scikit-Learn &amp; Pandas for churn risk scoring with feature importance analysis.
+                            </div>
+                            <div class="ds-chip">
+                                <strong>Interactive Retail Intelligence Dashboard:</strong> Multi-dimensional business KPI analysis modeling revenue trends and customer lifetime value using SQL &amp; Data Visualisation.
+                            </div>
+                            <div class="ds-chip">
+                                <strong>Automated EDA &amp; Statistical Report Engine:</strong> Python CLI tool generating comprehensive data summaries, outlier detections, and distribution plots.
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1171,6 +1171,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ─── Resume Modal Controller ───
+    const resumeModal = document.getElementById('resumeModal');
+    const resumeOpenModalBtn = document.getElementById('resumeOpenModalBtn');
+    const resumeTriggerWrap = document.getElementById('resumeTriggerWrap');
+    const resumeModalCloseBtn = document.getElementById('resumeModalCloseBtn');
+    const resumeModalCloseDot = document.getElementById('resumeModalCloseDot');
+
+    function openResumeModal() {
+        if (!resumeModal) return;
+        resumeModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeResumeModal() {
+        if (!resumeModal) return;
+        resumeModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (resumeOpenModalBtn) {
+        resumeOpenModalBtn.addEventListener('click', openResumeModal);
+    }
+    if (resumeTriggerWrap) {
+        resumeTriggerWrap.addEventListener('click', openResumeModal);
+    }
+    if (resumeModalCloseBtn) {
+        resumeModalCloseBtn.addEventListener('click', closeResumeModal);
+    }
+    if (resumeModalCloseDot) {
+        resumeModalCloseDot.addEventListener('click', closeResumeModal);
+    }
+    if (resumeModal) {
+        resumeModal.addEventListener('click', (e) => {
+            if (e.target === resumeModal) {
+                closeResumeModal();
+            }
+        });
+    }
+
     // ─── Keyboard Navigation for Accessibility ───
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
@@ -1178,6 +1217,7 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinksContainer.classList.remove('open');
             closeModal();
             closeOsBrowser();
+            closeResumeModal();
         }
     });
 
