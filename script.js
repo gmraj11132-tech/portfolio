@@ -197,17 +197,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── Smooth Scroll for Nav Links ───
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-height')) || 72;
-                const top = target.getBoundingClientRect().top + window.scrollY - offset;
-                window.scrollTo({
-                    top: top,
-                    behavior: 'smooth'
-                });
-            }
+            const targetId = this.getAttribute('href');
+            if (!targetId || targetId === '#' || targetId.length <= 1) return;
+            try {
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    if (hamburger && hamburger.classList.contains('active')) {
+                        hamburger.classList.remove('active');
+                    }
+                    if (navLinksContainer && navLinksContainer.classList.contains('open')) {
+                        navLinksContainer.classList.remove('open');
+                    }
+                    const offset = (window.innerWidth <= 768) ? 68 : 80;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({
+                        top: Math.max(0, top),
+                        behavior: 'smooth'
+                    });
+                }
+            } catch (err) {}
         });
+    });
+
+    // Close mobile nav when clicking outside
+    document.addEventListener('click', (e) => {
+        if (navLinksContainer && navLinksContainer.classList.contains('open')) {
+            if (!navLinksContainer.contains(e.target) && hamburger && !hamburger.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinksContainer.classList.remove('open');
+            }
+        }
     });
 
     // ─── Tilt Effect on Glass Cards (Desktop Only) ───
@@ -354,17 +374,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ─── Section Header Parallax ───
-    window.addEventListener('scroll', () => {
-        const scrollY = window.scrollY;
-        document.querySelectorAll('.section-title').forEach(title => {
-            const rect = title.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom > 0) {
-                const offset = (rect.top - window.innerHeight / 2) * 0.03;
-                title.style.transform = `translateY(${offset}px)`;
-            }
-        });
-    }, { passive: true });
+    // ─── Section Header Stability (Parallax disabled to keep headers static & crisp) ───
+    // Keeping section titles static prevents mobile bouncing and jitter ("uper nich ho rha")
 
     // ─── CERTIFICATE FILTERING & INTERACTIVE MODAL ───
     const filterBtns = document.querySelectorAll('.filter-btn');
@@ -373,28 +384,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalBody = document.getElementById('modalBody');
     const modalClose = document.getElementById('modalClose');
 
-    // Filter Logic
+    // Filter Logic - Clean, instant, jump-free across all devices
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
 
-            const filter = btn.getAttribute('data-filter');
+            const filter = btn.getAttribute('data-filter') || 'all';
 
             credCards.forEach(card => {
-                const category = card.getAttribute('data-category');
+                const category = card.getAttribute('data-category') || '';
                 if (filter === 'all' || category.includes(filter)) {
-                    card.style.display = 'flex';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 50);
+                    card.style.display = '';
+                    card.style.opacity = '1';
+                    card.style.transform = 'none';
+                    card.style.visibility = 'visible';
                 } else {
+                    card.style.display = 'none';
                     card.style.opacity = '0';
-                    card.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
+                    card.style.visibility = 'hidden';
                 }
             });
         });
@@ -739,13 +747,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     <span class="code-annotation">@Override</span>
     <span class="code-keyword">public</span> <span class="code-type">List</span>&lt;<span class="code-type">String</span>&gt; <span class="code-method">getCoreStack</span>() {
-        <span class="code-keyword">return</span> <span class="code-class">List</span>.of(<span class="code-string">"Java"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"DSA"</span>, <span class="code-string">"DBMS"</span>, <span class="code-string">"Full-Stack Web"</span>, <span class="code-string">"AI APIs"</span>);
+        <span class="code-keyword">return</span> <span class="code-class">List</span>.of(
+            <span class="code-string">"Java"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"DSA"</span>,
+            <span class="code-string">"DBMS"</span>, <span class="code-string">"Web"</span>, <span class="code-string">"AI APIs"</span>
+        );
     }
 
     <span class="code-keyword">public static void</span> <span class="code-method">main</span>(<span class="code-type">String</span>[] <span class="code-var">args</span>) {
         <span class="code-class">AryanRaj</span> <span class="code-var">engineer</span> = <span class="code-keyword">new</span> <span class="code-class">AryanRaj</span>();
         <span class="code-var">engineer</span>.<span class="code-method">setAvailableForHire</span>(<span class="code-keyword">true</span>);
-        <span class="code-class">System</span>.out.<span class="code-method">println</span>(<span class="code-string">"🚀 Ready to engineer scalable systems!"</span>);
+        <span class="code-class">System</span>.out.<span class="code-method">println</span>(
+            <span class="code-string">"🚀 Ready to engineer systems!"</span>
+        );
     }
 }`;
 
