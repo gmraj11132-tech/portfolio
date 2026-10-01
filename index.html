@@ -21,11 +21,37 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="alternate icon" href="favicon.svg">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Instant First-Frame AMOLED Boot Screen Guarantee */
+        #bootScreen {
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 99999999 !important;
+            background: #000000 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 1.5rem !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        #bootScreen.dismissed {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s !important;
+        }
+        body.booting {
+            overflow: hidden !important;
+        }
+    </style>
 </head>
 
-<body>
+<body class="booting">
     <!-- MacBook Terminal Coding Boot Loader Screen -->
-    <div id="bootScreen" class="boot-screen" role="dialog" aria-label="System Boot Sequence">
+    <div id="bootScreen" class="boot-screen" role="dialog" aria-label="System Boot Sequence" style="position: fixed; inset: 0; z-index: 99999999; background: #000000; display: flex; align-items: center; justify-content: center;">
         <div class="boot-terminal mac-window">
             <div class="boot-titlebar">
                 <div class="boot-traffic-lights">
@@ -66,29 +92,31 @@
                 isDismissed = true;
                 if (bar) bar.style.width = '100%';
                 if (pct) pct.textContent = '100%';
+                document.body.classList.remove('booting');
+                document.body.style.overflow = '';
                 if (screen) {
                     screen.classList.add('dismissed');
                     setTimeout(function() {
                         if (screen && screen.parentNode) screen.style.display = 'none';
-                    }, 400);
+                    }, 450);
                 }
             }
             window.dismissBootScreen = dismiss;
 
             var steps = [
-                { tag: '[INIT]', text: 'Booting AryanOS JVM 21 environment...', status: 'OK', progress: 18, delay: 180 },
-                { tag: '[CONFIG]', text: 'Target Location: Noida, Alpha 2, India', status: 'VERIFIED', progress: 38, delay: 200 },
-                { tag: '[MODULES]', text: 'Loading: Java, Spring Boot, React, SQL...', status: 'LOADED', progress: 62, delay: 220 },
-                { tag: '[SECURITY]', text: 'Verifying 12 Industry Credentials...', status: 'ACTIVE', progress: 84, delay: 200 },
-                { tag: '[GUI]', text: 'Launching MacBook Crystal UI...', status: 'READY', progress: 96, delay: 180 },
-                { tag: '[SUCCESS]', text: 'Welcome to Aryan Raj Portfolio!', status: '100%', progress: 100, delay: 220 }
+                { tag: '[INIT]', text: 'Booting AryanOS JVM 21 environment...', status: 'OK', progress: 18, delay: 380 },
+                { tag: '[CONFIG]', text: 'Target Location: Noida, Alpha 2, India', status: 'VERIFIED', progress: 38, delay: 420 },
+                { tag: '[MODULES]', text: 'Loading: Java, Spring Boot, React, SQL...', status: 'LOADED', progress: 62, delay: 450 },
+                { tag: '[SECURITY]', text: 'Verifying 12 Industry Credentials...', status: 'ACTIVE', progress: 84, delay: 450 },
+                { tag: '[GUI]', text: 'Launching MacBook Crystal UI...', status: 'READY', progress: 96, delay: 400 },
+                { tag: '[SUCCESS]', text: 'Welcome to Aryan Raj Portfolio!', status: '100%', progress: 100, delay: 450 }
             ];
 
             var idx = 0;
             function next() {
                 if (isDismissed) return;
                 if (idx >= steps.length) {
-                    setTimeout(dismiss, 300);
+                    setTimeout(dismiss, 400);
                     return;
                 }
                 var s = steps[idx];
@@ -105,11 +133,16 @@
                 setTimeout(next, s.delay);
             }
 
+            // Keyboard shortcut Escape to skip
+            window.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') dismiss();
+            });
+
             // Start immediately
             setTimeout(next, 50);
 
             // Safety failsafe
-            setTimeout(dismiss, 3500);
+            setTimeout(dismiss, 5000);
         })();
     </script>
 

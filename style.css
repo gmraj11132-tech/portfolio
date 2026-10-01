@@ -3615,6 +3615,7 @@ img { max-width: 100%; height: auto; display: block; }
             0 4px 14px rgba(0, 0, 0, 0.45);
         color: #ffffff;
     }
+}
 
 /* Compact Smartphones (max-width: 480px) */
 @media (max-width: 480px) {
@@ -3721,7 +3722,7 @@ img { max-width: 100%; height: auto; display: block; }
 .boot-screen {
     position: fixed;
     inset: 0;
-    z-index: 9999999 !important;
+    z-index: 99999999 !important;
     background: #000000 !important;
     display: flex;
     align-items: center;
