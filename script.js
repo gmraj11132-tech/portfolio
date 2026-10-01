@@ -721,19 +721,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // ─── CareerPilot Project Deep Dive & User Manual Modal ───
     const careerpilotModal = document.getElementById('careerpilotModal');
     function openCareerpilotModal() {
-        if (careerpilotModal) {
-            careerpilotModal.classList.add('active');
+        const modal = careerpilotModal || document.getElementById('careerpilotModal');
+        if (modal) {
+            modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
     }
     function closeCareerpilotModal() {
-        if (careerpilotModal) {
-            careerpilotModal.classList.remove('active');
+        const modal = careerpilotModal || document.getElementById('careerpilotModal');
+        if (modal) {
+            modal.classList.remove('active');
             document.body.style.overflow = '';
         }
     }
+    window.openCareerpilotModal = openCareerpilotModal;
+    window.closeCareerpilotModal = closeCareerpilotModal;
 
-    document.querySelectorAll('.open-careerpilot-modal-btn').forEach(btn => {
+    document.querySelectorAll('.open-careerpilot-modal-btn, .careerpilot-preview, [onclick*="openCareerpilotModal"]').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
@@ -752,6 +756,48 @@ document.addEventListener('DOMContentLoaded', () => {
         careerpilotModal.addEventListener('click', (e) => {
             if (e.target === careerpilotModal) {
                 closeCareerpilotModal();
+            }
+        });
+    }
+
+    // ─── ScamShield AI Project Deep Dive & User Manual Modal ───
+    const scamshieldModal = document.getElementById('scamshieldModal');
+    function openScamshieldModal() {
+        const modal = scamshieldModal || document.getElementById('scamshieldModal');
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    function closeScamshieldModal() {
+        const modal = scamshieldModal || document.getElementById('scamshieldModal');
+        if (modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    window.openScamshieldModal = openScamshieldModal;
+    window.closeScamshieldModal = closeScamshieldModal;
+
+    document.querySelectorAll('.open-scamshield-modal-btn, .scamshield-preview, [onclick*="openScamshieldModal"]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openScamshieldModal();
+        });
+    });
+
+    document.querySelectorAll('.close-scamshield-modal').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeScamshieldModal();
+        });
+    });
+
+    if (scamshieldModal) {
+        scamshieldModal.addEventListener('click', (e) => {
+            if (e.target === scamshieldModal) {
+                closeScamshieldModal();
             }
         });
     }
@@ -1271,6 +1317,10 @@ document.addEventListener('DOMContentLoaded', () => {
             closeOsBrowser();
             closeResumeModal();
             closeCareerpilotModal();
+            closeScamshieldModal();
+        } else if ((e.metaKey || e.ctrlKey) && (e.key === 'm' || e.key === 'M')) {
+            e.preventDefault();
+            openCareerpilotModal();
         }
     });
 

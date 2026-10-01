@@ -4471,233 +4471,189 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* ============================================
-   FLAGSHIP FEATURED PROJECT — CareerPilot Showcase & Modal
+   SINGLE FEATURED PROJECT — CareerPilot Card
    ============================================ */
 
-.flagship-project-card {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 32px;
-    padding: 28px;
-    border-radius: 24px;
-    background: rgba(12, 14, 26, 0.85);
-    border: 1px solid rgba(117, 98, 255, 0.25);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(117, 98, 255, 0.15);
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s var(--transition-smooth);
+.projects-grid.single-project-grid {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    margin: 0 auto;
 }
 
-.flagship-project-card:hover {
-    border-color: rgba(0, 245, 196, 0.45);
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 45px rgba(0, 245, 196, 0.2);
-    transform: translateY(-4px);
-}
-
-.flagship-visual {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: #02040a;
+.single-project-grid .project-card {
+    max-width: 560px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.careerpilot-preview,
+.scamshield-preview {
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    background: #080a14;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 
-.flagship-window-bar {
-    background: rgba(15, 18, 30, 0.95);
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+.scamshield-preview {
+    background: #05060b;
 }
 
-.flagship-window-bar .mac-dots {
-    display: flex;
-    gap: 6px;
-}
-
-.flagship-url-pill {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 3px 12px;
-    border-radius: 20px;
-    font-size: 0.76rem;
-    font-family: 'JetBrains Mono', monospace;
-    color: #a9afc3;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.flagship-live-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(0, 245, 196, 0.12);
-    color: #00f5c4;
-    border: 1px solid rgba(0, 245, 196, 0.3);
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 600;
-}
-
-.flagship-img-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 280px;
-    overflow: hidden;
-    background: #000;
-}
-
-.flagship-img-wrapper img {
+.careerpilot-preview img,
+.scamshield-preview img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: top;
-    display: block;
-    transition: transform 0.5s ease;
+    transition: transform 0.4s var(--transition-smooth);
 }
 
-.flagship-visual:hover .flagship-img-wrapper img {
-    transform: scale(1.03);
+.careerpilot-preview:hover img,
+.scamshield-preview:hover img {
+    transform: scale(1.04);
 }
 
-.flagship-visual-overlay {
+.careerpilot-status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0, 245, 196, 0.18);
+    border: 1px solid rgba(0, 245, 196, 0.45);
+    color: #00f5c4;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 2;
+}
+
+.status-pulse-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #00f5c4;
+    box-shadow: 0 0 8px #00f5c4;
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.project-img-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, transparent 40%, rgba(0, 0, 0, 0.85) 100%);
+    background: rgba(4, 6, 15, 0.6);
+    backdrop-filter: blur(3px);
     display: flex;
-    align-items: flex-end;
-    padding: 20px;
-    opacity: 0.9;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
     transition: opacity 0.3s ease;
+    z-index: 3;
 }
 
-.flagship-visual:hover .flagship-visual-overlay {
+.careerpilot-preview:hover .project-img-overlay,
+.scamshield-preview:hover .project-img-overlay {
     opacity: 1;
 }
 
-.flagship-inspect-hint {
-    background: rgba(117, 98, 255, 0.85);
-    backdrop-filter: blur(12px);
-    color: #fff;
-    padding: 8px 16px;
-    border-radius: 30px;
-    font-size: 0.8rem;
+.overlay-hint {
+    background: rgba(15, 18, 32, 0.85);
+    color: #ffffff;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.78rem;
     font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(117, 98, 255, 0.5);
+    border: 1px solid rgba(117, 98, 255, 0.4);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
 }
 
-.flagship-content {
+/* Two Featured Projects Layout */
+.two-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+    align-items: stretch;
+}
+
+.two-projects-grid .project-card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    height: 100%;
 }
 
-.flagship-tag-bar {
+.two-projects-grid .project-card .project-info {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.two-projects-grid .project-card .project-links {
+    margin-top: auto;
+}
+
+.scamshield-card {
+    border-color: rgba(239, 68, 68, 0.25);
+}
+
+.scamshield-card:hover {
+    border-color: rgba(239, 68, 68, 0.45);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 35px rgba(239, 68, 68, 0.18);
+}
+
+@media (max-width: 950px) {
+    .two-projects-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+.project-badge-row {
+    display: flex;
+    align-items: center;
     gap: 8px;
     margin-bottom: 12px;
-}
-
-.flagship-badge-capstone {
-    background: linear-gradient(135deg, rgba(117, 98, 255, 0.2), rgba(0, 245, 196, 0.15));
-    border: 1px solid rgba(117, 98, 255, 0.4);
-    color: #ffffff;
-    font-size: 0.74rem;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.flagship-title {
-    font-family: 'Outfit', sans-serif;
-    font-size: 1.6rem;
-    font-weight: 800;
-    color: #ffffff;
-    line-height: 1.25;
-    margin-bottom: 10px;
-}
-
-.flagship-desc {
-    color: #a9afc3;
-    font-size: 0.9rem;
-    line-height: 1.65;
-    margin-bottom: 16px;
-}
-
-.flagship-features-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-bottom: 18px;
-}
-
-.flagship-feat-item {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 12px;
-    padding: 10px 12px;
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.flagship-feat-icon {
-    font-size: 1.1rem;
-    flex-shrink: 0;
-    margin-top: 2px;
-}
-
-.flagship-feat-text h5 {
-    font-size: 0.82rem;
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 2px;
-}
-
-.flagship-feat-text p {
-    font-size: 0.75rem;
-    color: #8890a6;
-    line-height: 1.4;
-    margin: 0;
-}
-
-.flagship-tech-stack {
-    display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 20px;
 }
 
-.flagship-tech-chip {
-    background: rgba(117, 98, 255, 0.08);
-    border: 1px solid rgba(117, 98, 255, 0.2);
-    color: #cbd5e1;
-    font-family: 'JetBrains Mono', monospace;
+.capstone-badge {
     font-size: 0.72rem;
-    padding: 4px 9px;
-    border-radius: 6px;
+    background: rgba(117, 98, 255, 0.15);
+    color: #a594fd;
+    border: 1px solid rgba(117, 98, 255, 0.3);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
 }
 
-.flagship-actions {
+.model-badge {
+    font-size: 0.72rem;
+    background: rgba(0, 245, 196, 0.1);
+    color: #00f5c4;
+    border: 1px solid rgba(0, 245, 196, 0.25);
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.card-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    align-items: center;
+    gap: 7px;
+    margin-bottom: 16px;
 }
 
 /* Modal for Project Deep Dive & User Manual */
@@ -4707,7 +4663,7 @@ img { max-width: 100%; height: auto; display: block; }
     background: rgba(4, 5, 12, 0.88);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    z-index: 2500;
+    z-index: 100000 !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4718,8 +4674,9 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .project-modal-backdrop.active {
-    opacity: 1;
-    pointer-events: auto;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    display: flex !important;
 }
 
 .project-modal-window {
@@ -4939,18 +4896,64 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 @media (max-width: 900px) {
-    .flagship-project-card {
-        grid-template-columns: 1fr;
-        padding: 20px;
+    .single-project-grid .project-card {
+        max-width: 100%;
+        margin: 0;
     }
-    .flagship-img-wrapper {
-        min-height: 200px;
+    .careerpilot-preview {
+        height: 200px;
+    }
+    .project-modal-backdrop {
+        padding: 12px;
+    }
+    .project-modal-window {
+        max-height: 94vh;
+        border-radius: 16px;
+    }
+    .project-modal-topbar {
+        padding: 12px 16px;
     }
     .project-modal-body {
-        padding: 20px;
+        padding: 18px 16px;
+    }
+    .manual-banner {
+        padding: 18px 14px;
+    }
+    .manual-banner-text h2 {
+        font-size: 1.2rem;
     }
     .manual-step-grid {
         grid-template-columns: 1fr;
+    }
+    .project-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .project-links .btn-crystal {
+        flex: 1 1 calc(50% - 6px);
+        min-width: 110px;
+        justify-content: center;
+        padding: 8px 10px;
+        font-size: 0.78rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .careerpilot-preview {
+        height: 180px;
+    }
+    .project-links .btn-crystal {
+        flex: 1 1 100%;
+    }
+    .project-modal-title span:nth-child(2) {
+        max-width: 160px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .project-modal-topbar-actions a span:last-child {
+        display: none;
     }
 }
 

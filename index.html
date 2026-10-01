@@ -1221,13 +1221,13 @@
     </div>
 
     <!-- CareerPilot Project Deep Dive & Complete Student User Manual Modal -->
-    <div class="project-modal-backdrop" id="careerpilotModal" role="dialog" aria-modal="true" aria-labelledby="careerpilotModalTitle">
+    <div class="project-modal-backdrop" id="careerpilotModal" role="dialog" aria-modal="true" aria-labelledby="careerpilotModalTitle" onclick="if (event.target === this) closeCareerpilotModal()">
         <div class="project-modal-window glass">
             <!-- macOS Topbar -->
             <div class="project-modal-topbar">
                 <div class="project-modal-topbar-left">
                     <div class="mac-dots">
-                        <button class="mac-dot red close-careerpilot-modal" title="Close (Esc)" aria-label="Close modal"></button>
+                        <button class="mac-dot red close-careerpilot-modal" title="Close (Esc)" aria-label="Close modal" onclick="closeCareerpilotModal()"></button>
                         <span class="mac-dot yellow"></span>
                         <span class="mac-dot green"></span>
                     </div>
@@ -1244,7 +1244,7 @@
                     <a href="https://github.com/gmraj11132-tech/careerpilot-ai-resume-analyzer" target="_blank" rel="noopener noreferrer" class="btn-crystal" style="padding: 6px 14px; font-size: 0.78rem;">
                         <span>🐙 GitHub Repo</span>
                     </a>
-                    <button class="modal-close-btn close-careerpilot-modal" style="position: static; width: 34px; height: 34px; font-size: 1rem;" aria-label="Close modal">✕</button>
+                    <button class="modal-close-btn close-careerpilot-modal" style="position: static; width: 34px; height: 34px; font-size: 1rem;" aria-label="Close modal" onclick="closeCareerpilotModal()">✕</button>
                 </div>
             </div>
 
@@ -1517,6 +1517,364 @@
         </div>
     </div>
 
+    <!-- CareerPilot Modal Controller Script (Immediate Global Execution) -->
+    <script>
+        function openCareerpilotModal() {
+            var m = document.getElementById('careerpilotModal');
+            if (m) {
+                m.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        function closeCareerpilotModal() {
+            var m = document.getElementById('careerpilotModal');
+            if (m) {
+                m.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        window.openCareerpilotModal = openCareerpilotModal;
+        window.closeCareerpilotModal = closeCareerpilotModal;
+    </script>
+
+    <!-- ScamShield AI Project Deep Dive & Complete Forensic User Manual Modal -->
+    <div class="project-modal-backdrop" id="scamshieldModal" role="dialog" aria-modal="true" aria-labelledby="scamshieldModalTitle">
+        <div class="project-modal-window glass">
+            <!-- macOS Topbar -->
+            <div class="project-modal-topbar">
+                <div class="project-modal-topbar-left">
+                    <div class="mac-dots">
+                        <button class="mac-dot red close-scamshield-modal" title="Close (Esc)" aria-label="Close modal"></button>
+                        <span class="mac-dot yellow"></span>
+                        <span class="mac-dot green"></span>
+                    </div>
+                    <div class="project-modal-title" id="scamshieldModalTitle">
+                        <span>🛡️</span>
+                        <span>ScamShield AI — System Architecture &amp; Forensic User Manual</span>
+                        <span class="flagship-live-badge" style="font-size: 0.68rem; padding: 2px 8px; background: rgba(239, 68, 68, 0.18); border-color: rgba(239, 68, 68, 0.45); color: #f87171;">v3.0.0 Production</span>
+                    </div>
+                </div>
+                <div class="project-modal-topbar-actions">
+                    <a href="https://gmraj11132-tech.github.io/scamshield-ai/" target="_blank" rel="noopener noreferrer" class="btn-crystal secondary" style="padding: 6px 14px; font-size: 0.78rem;">
+                        <span>🚀 Open Live App</span>
+                    </a>
+                    <a href="https://github.com/gmraj11132-tech/scamshield-ai" target="_blank" rel="noopener noreferrer" class="btn-crystal" style="padding: 6px 14px; font-size: 0.78rem;">
+                        <span>🐙 GitHub Repo</span>
+                    </a>
+                    <button class="modal-close-btn close-scamshield-modal" style="position: static; width: 34px; height: 34px; font-size: 1rem;" aria-label="Close modal">✕</button>
+                </div>
+            </div>
+
+            <!-- Modal Body (Comprehensive Specifications & User Manual) -->
+            <div class="project-modal-body">
+                <!-- Hero Highlight Banner -->
+                <div class="manual-banner" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%); border-color: rgba(239, 68, 68, 0.25);">
+                    <div class="manual-banner-text">
+                        <h2>ScamShield AI — Deceptive Signal Detection &amp; Threat Verification Platform</h2>
+                        <p>
+                            An industrial-grade cybersecurity SaaS web application built with React 19, TypeScript, Tailwind CSS, Google Gemini 2.5 Flash, client-side Tesseract.js OCR, and a deterministic offline heuristic rule engine. Analyzes SMS, emails, phishing URLs, and screenshots for social engineering signals, computes a multi-factor risk score (0-100), and provides actionable forensic guidance.
+                        </p>
+                    </div>
+                    <div class="manual-banner-links">
+                        <a href="https://gmraj11132-tech.github.io/scamshield-ai/" target="_blank" rel="noopener noreferrer" class="btn-crystal primary ripple-btn">
+                            <span class="btn-icon">🚀</span>
+                            <span class="btn-text">Visit Live Deployment</span>
+                        </a>
+                        <a href="https://github.com/gmraj11132-tech/scamshield-ai" target="_blank" rel="noopener noreferrer" class="btn-crystal ripple-btn">
+                            <span class="btn-icon">🐙</span>
+                            <span class="btn-text">View GitHub Repo</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Section 1: Executive Summary & The Real-World Cyber Threat Crisis -->
+                <div class="manual-section-card">
+                    <div class="manual-sec-header">
+                        <span style="font-size: 1.3rem;">🎯</span>
+                        <h3>1. Project Overview &amp; The Real-World Cybersecurity Crisis</h3>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; margin-bottom: 14px;">
+                        Globally, over <strong>$10.3 Billion is lost annually to social engineering and fraud schemes</strong>. Threat actors exploit psychological panic through artificial urgency, bank impersonation, credential harvesting, spoofed domains, and forged payment screenshots. Traditional spam filters and opaque AI chatbots fail users by offering either binary "Is it a scam?" answers with high hallucination rates, or offering no actionable out-of-band verification steps.
+                    </p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+                        <div style="background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.2); padding: 16px; border-radius: 12px;">
+                            <h4 style="color: #f87171; font-size: 0.92rem; margin-bottom: 6px;">❌ The Problem With Existing Solutions</h4>
+                            <ul style="color: #cbd5e1; font-size: 0.82rem; line-height: 1.6; padding-left: 18px; margin: 0;">
+                                <li>Binary verdicts ("Scam" vs "Safe") that provide zero forensic explanation of why.</li>
+                                <li>AI Hallucinations: Generic LLMs making definitive claims without citing verbatim evidence.</li>
+                                <li>Privacy violations: Services sending user messages and financial screenshots to third-party databases.</li>
+                                <li>Lack of offline resilience: If the external AI API is down, the entire analysis fails.</li>
+                            </ul>
+                        </div>
+                        <div style="background: rgba(0, 245, 196, 0.06); border: 1px solid rgba(0, 245, 196, 0.2); padding: 16px; border-radius: 12px;">
+                            <h4 style="color: #00f5c4; font-size: 0.92rem; margin-bottom: 6px;">✔️ The ScamShield AI Solution</h4>
+                            <ul style="color: #cbd5e1; font-size: 0.82rem; line-height: 1.6; padding-left: 18px; margin: 0;">
+                                <li><strong>Hybrid Dual-Engine:</strong> 70% Gemini 2.5 Flash neural reasoning + 30% deterministic heuristics.</li>
+                                <li><strong>Verbatim Flagging:</strong> Quotes and annotates the exact deceptive triggers from the user input.</li>
+                                <li><strong>In-Browser OCR:</strong> Offline Tesseract.js worker extracting text from screenshots without server upload.</li>
+                                <li><strong>Actionable Safe Steps:</strong> Practical out-of-band verification steps and a strict DO NOT checklist.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Architecture & Working Principle -->
+                <div class="manual-section-card">
+                    <div class="manual-sec-header">
+                        <span style="font-size: 1.3rem;">🏗️</span>
+                        <h3>2. System Architecture &amp; Working Principle</h3>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px;">
+                        ScamShield AI utilizes a multi-vector decoupled pipeline designed for speed, zero-trust cybersecurity, and complete client-side data privacy:
+                    </p>
+
+                    <div class="manual-arch-diagram">
++-----------------------------------------------------------------------------------+
+|                       CLIENT INGESTION (React 19 + TypeScript + Vite)             |
+|    [Message Tab]    •    [URL Tab]    •    [Screenshot Tab]    •    [Email Tab]   |
++------------------------------------------+----------------------------------------+
+                                           | In-Browser Preprocessing
++------------------------------------------v----------------------------------------+
+|                PREPROCESSING & IN-BROWSER FORENSIC PIPELINE                       |
+|  • Tesseract.js OCR Web Worker (Offline Text Extraction from Images)               |
+|  • URL Normalizer, Punycode Decoder, TLD Entropy & Phishing Domain Parser         |
+|  • Social Engineering Regex Heuristic Matrix (Urgency, Impersonation, Credential)  |
++------------------------------------------+----------------------------------------+
+                                           |
+               +---------------------------+---------------------------+
+               |                                                       |
++--------------v---------------------------+   +-----------------------v------------+
+|   VECTOR A: NEURAL INTELLIGENCE ENGINE   |   |   VECTOR B: DETERMINISTIC ENGINE   |
+|   • Google Gemini 2.5 Flash API          |   |   • 100% Offline Rule Engine       |
+|   • Multimodal Vision + Deceptive Logic  |   |   • Zero External Network Latency  |
+|   • Strict JSON Schema Validation        |   |   • Zero-Cost Fallback Guarantee   |
++------------------------------------------+   +------------------------------------+
+                                           |
++------------------------------------------v----------------------------------------+
+|                  HYBRID RISK SCORING & FORENSIC SYNTHESIS                         |
+|  Risk Score = (0.70 × Neural Score) + (0.30 × Deterministic Score) [Weighted Mean]|
+|  • Threat Level (Low / Moderate / High / Critical)  • Confidence Interval Metric  |
+|  • Verbatim Inline Quotes [Urgency] [External Link] [Financial Request]           |
+|  • Safe Verification Guidance Protocols             • DO NOT Threat Checklist     |
+|  • Local Storage Encrypted Vault (Zero Permanent Server Logging)                  |
++-----------------------------------------------------------------------------------+
+                    </div>
+
+                    <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 12px; padding: 16px; margin-top: 14px;">
+                        <h4 style="color: #f87171; font-size: 0.92rem; margin-bottom: 6px;">🧠 Hybrid AI &amp; Graceful Degradation Engine (Core Viva Defense Concept)</h4>
+                        <p style="color: #cbd5e1; font-size: 0.84rem; line-height: 1.6; margin: 0;">
+                            A key design requirement of ScamShield AI is <strong>Non-Authoritative Risk Modeling</strong> and <strong>Zero-Failure Resilience</strong>. The system never claims <em>"This is definitely a scam."</em> Instead, it outputs <em>"High-risk indicators detected"</em> based on mathematical signals. When an API key is present, it computes a 70/30 weighted synthesis of Gemini 2.5 Flash reasoning and deterministic regex heuristics. When offline or during network outages, it seamlessly falls back to 100% local deterministic heuristics with zero user interruption and zero privacy compromise.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Section 3: Core Functional Capabilities -->
+                <div class="manual-section-card">
+                    <div class="manual-sec-header">
+                        <span style="font-size: 1.3rem;">⚙️</span>
+                        <h3>3. Core Modules &amp; Functional Capabilities</h3>
+                    </div>
+                    <div class="manual-step-grid">
+                        <div class="manual-step-item">
+                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">01</div>
+                            <h4>Multi-Vector Input Workspace</h4>
+                            <p>Specialized tabs for SMS/Chat messages, live URLs, image screenshots, and raw email headers. Includes token counters, analysis depth toggles (Standard vs Deep Neural), and one-click test scenarios.</p>
+                        </div>
+                        <div class="manual-step-item">
+                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">02</div>
+                            <h4>Client-Side OCR Engine</h4>
+                            <p>Integrates Tesseract.js running in a local Web Worker. Ingests PNG, JPG, and WEBP screenshots of suspicious payment transactions, bank alerts, or WhatsApp chats and extracts textual content without server transmission.</p>
+                        </div>
+                        <div class="manual-step-item">
+                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">03</div>
+                            <h4>Typosquatting &amp; URL Inspector</h4>
+                            <p>Parses hostname entropy, detects punycode homograph attacks, flags suspicious high-risk TLDs (<code>.top</code>, <code>.xyz</code>, <code>.loan</code>), extracts embedded IP addresses, and detects domain impersonation of major financial institutions.</p>
+                        </div>
+                        <div class="manual-step-item">
+                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">04</div>
+                            <h4>Verbatim Evidence Flagging</h4>
+                            <p>Extracts and quotes exact incriminating phrases directly from user input (e.g., <em>"Account blocked within 30 minutes"</em>) and labels them with specific risk tags: <code>[Urgency]</code>, <code>[Credential Request]</code>, <code>[Financial Request]</code>.</p>
+                        </div>
+                        <div class="manual-step-item">
+                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">05</div>
+                            <h4>Safe Verification Guidance</h4>
+                            <p>Automatically generates organization-specific out-of-band verification steps (e.g., navigating directly to an official bank portal, dialing published customer care numbers) to verify claims without touching suspicious links.</p>
+                        </div>
+                        <div class="manual-step-item">
+                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">06</div>
+                            <h4>Local Vault &amp; Forensic History</h4>
+                            <p>Maintains an encrypted, zero-knowledge threat telemetry log stored strictly in browser LocalStorage. Allows users to view historical risk scores, inspect past reports, and export forensic JSON audit logs with one click.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 4: Complete Step-by-Step User Manual -->
+                <div class="manual-section-card">
+                    <div class="manual-sec-header">
+                        <span style="font-size: 1.3rem;">📖</span>
+                        <h3>4. Step-by-Step User Manual (How to Use ScamShield AI)</h3>
+                    </div>
+                    <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">
+                        Follow this 6-step operational walkthrough to analyze suspicious messages, phishing URLs, or screenshots on the live production application:
+                    </p>
+
+                    <div style="display: flex; flex-direction: column; gap: 14px;">
+                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #ef4444; padding: 14px 18px; border-radius: 0 12px 12px 0;">
+                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 1: Open Live Web Application</h4>
+                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
+                                Navigate to <a href="https://gmraj11132-tech.github.io/scamshield-ai/" target="_blank" style="color: #00f5c4; text-decoration: underline;">https://gmraj11132-tech.github.io/scamshield-ai/</a>. The interface greets you with a technical, cybersecurity-inspired dark console featuring live threat telemetry badges and instant navigation.
+                            </p>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #f59e0b; padding: 14px 18px; border-radius: 0 12px 12px 0;">
+                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 2: Configure AI Studio Key (Optional BYOK)</h4>
+                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
+                                Click <strong>"Set AI Key"</strong> in the top header. You can paste a free Google AI Studio Gemini API key for advanced multimodal vision and generative neural reasoning. <em>Note: If you don't provide a key, ScamShield AI runs seamlessly using its 100% offline deterministic rule engine at zero cost!</em>
+                            </p>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #00f5c4; padding: 14px 18px; border-radius: 0 12px 12px 0;">
+                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 3: Analyze Suspicious SMS or Chat Messages</h4>
+                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
+                                In the <strong>Message</strong> tab, paste any suspicious SMS, WhatsApp notification, or Telegram message. You can also click <strong>"Try real scam"</strong> or pick from the sample dropdown. Choose analysis depth (<em>Standard</em> or <em>Deep Neural</em>), then click <strong>"Analyze Threat"</strong>.
+                            </p>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #38bdf8; padding: 14px 18px; border-radius: 0 12px 12px 0;">
+                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 4: Analyze Phishing &amp; Typosquatting URLs</h4>
+                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
+                                Switch to the <strong>URL</strong> tab. Paste a suspicious link (e.g. <code>http://chase-auth-security.top/login</code>). ScamShield automatically extracts domain components, checks for brand typosquatting, evaluates TLD risk, and scores deceptive indicators without opening the dangerous link.
+                            </p>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #a855f7; padding: 14px 18px; border-radius: 0 12px 12px 0;">
+                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 5: Inspect Screenshots &amp; Payment Receipts</h4>
+                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
+                                Switch to the <strong>Screenshot</strong> tab. Drag &amp; drop an image (PNG, JPG, WEBP). Tesseract.js extracts the visible text locally in your browser. The extracted text is then passed to the threat engine to detect fraudulent payment slips, fake UPI transfers, or counterfeit lottery vouchers.
+                            </p>
+                        </div>
+
+                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #10b981; padding: 14px 18px; border-radius: 0 12px 12px 0;">
+                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 6: Review Forensic Report, Safe Steps &amp; DO NOT Checklist</h4>
+                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
+                                Inspect the Threat Assessment score (e.g. <em>CRITICAL • 92/100</em>), examine the verbatim highlighted snippets in <em>"Why This Was Flagged"</em>, review the <em>"Safe Verification"</em> protocols, and follow the <em>"DO NOT"</em> checklist (e.g., never share OTPs, never click destination links).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 5: Technical Specifications Table -->
+                <div class="manual-section-card">
+                    <div class="manual-sec-header">
+                        <span style="font-size: 1.3rem;">📊</span>
+                        <h3>5. Full Technical Specifications</h3>
+                    </div>
+                    <div class="manual-table-wrap">
+                        <table class="manual-table">
+                            <thead>
+                                <tr>
+                                    <th>Architecture Dimension</th>
+                                    <th>Technology / Library Selected</th>
+                                    <th>Design Rationale &amp; Industry Benefit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Frontend Framework</strong></td>
+                                    <td>React 19 + TypeScript (Strict Mode)</td>
+                                    <td>Modern concurrency, fast component rendering, strict type-checking across threat schemas.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Build Tooling &amp; Bundler</strong></td>
+                                    <td>Vite 6 + Rolldown Engine</td>
+                                    <td>Sub-second HMR development, optimized production chunking, zero build bloat.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>AI Neural Engine</strong></td>
+                                    <td>Google Gemini 2.5 Flash (@google/genai SDK)</td>
+                                    <td>High-speed, low-latency reasoning with structured JSON Schema enforcement.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Offline Rule Engine</strong></td>
+                                    <td>Deterministic Regex &amp; Entropy Parser</td>
+                                    <td>100% offline fallback; zero financial API cost, zero external downtime dependency.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>In-Browser OCR</strong></td>
+                                    <td>Tesseract.js v5 Web Worker</td>
+                                    <td>Decentralized text extraction running locally in client thread; protects user image privacy.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Styling &amp; Aesthetic</strong></td>
+                                    <td>Tailwind CSS + JetBrains Mono Font</td>
+                                    <td>Cybersecurity SaaS developer-console visual aesthetic inspired by OpenAI &amp; Linear.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Privacy &amp; Data Vault</strong></td>
+                                    <td>In-Browser LocalStorage / IndexedDB</td>
+                                    <td>Zero server-side persistence; no user messages or screenshots ever stored on remote databases.</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hosting &amp; CI/CD</strong></td>
+                                    <td>GitHub Pages + GitHub Actions CI/CD</td>
+                                    <td>Automated build pipeline, global CDN edge delivery with 100% uptime and SSL.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Section 6: College Viva / Defense Quick Reference -->
+                <div class="manual-section-card" style="margin-bottom: 0;">
+                    <div class="manual-sec-header">
+                        <span style="font-size: 1.3rem;">🎓</span>
+                        <h3>6. Technical Defense &amp; Viva Quick Reference</h3>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
+                        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 12px;">
+                            <strong style="color: #38bdf8; font-size: 0.88rem; display: block; margin-bottom: 4px;">Q1: Why combine Neural AI with a Deterministic Rule Engine?</strong>
+                            <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0;">
+                                Pure LLMs can hallucinate false threats or miss known malicious regex signatures. Combining 70% neural reasoning with 30% deterministic heuristics grounds the score in verifiable regex patterns while handling creative social engineering.
+                            </p>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 12px;">
+                            <strong style="color: #34d399; font-size: 0.88rem; display: block; margin-bottom: 4px;">Q2: How is user data kept confidential during analysis?</strong>
+                            <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0;">
+                                OCR extraction occurs 100% locally in the browser via Tesseract.js Web Workers. In deterministic mode, zero packets leave the user's browser. When Gemini is queried, only the ephemeral prompt is sent without permanent backend logging.
+                            </p>
+                        </div>
+                        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 12px;">
+                            <strong style="color: #f472b6; font-size: 0.88rem; display: block; margin-bottom: 4px;">Q3: How does the system avoid false alarms on legitimate bank OTPs?</strong>
+                            <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0;">
+                                The signal engine checks for coercive elements. Legitimate bank OTPs state <em>"Do not share this code"</em> (protective intent), whereas phishing messages command <em>"Submit OTP to prevent account suspension within 10 minutes"</em> (coercive intent).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ScamShield Modal Controller Script (Immediate Global Execution) -->
+    <script>
+        function openScamshieldModal() {
+            var m = document.getElementById('scamshieldModal');
+            if (m) {
+                m.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        function closeScamshieldModal() {
+            var m = document.getElementById('scamshieldModal');
+            if (m) {
+                m.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        window.openScamshieldModal = openScamshieldModal;
+        window.closeScamshieldModal = closeScamshieldModal;
+    </script>
+
     <!-- macOS In-App Browser Window (AryanOS Safari / Web Inspector) -->
     <div class="os-browser-backdrop" id="osBrowserModal">
         <div class="os-browser-window glass">
@@ -1617,108 +1975,127 @@
                 <h2 class="section-title text-3d-subtle">Featured Projects</h2>
                 <div class="section-line"></div>
             </div>
-            <div class="projects-grid">
-                <!-- Flagship Project: CareerPilot — AI-Based Smart Placement & Resume Analyzer -->
-                <div class="flagship-project-card glass-card reveal-up" id="careerpilotCard">
-                    <!-- Left: Interactive Visual with Real Live Screenshot -->
-                    <div class="flagship-visual open-careerpilot-modal-btn" title="Click to open Full Project Architecture & Student User Manual">
-                        <div class="flagship-window-bar">
-                            <div class="mac-dots">
-                                <span class="mac-dot red"></span>
-                                <span class="mac-dot yellow"></span>
-                                <span class="mac-dot green"></span>
-                            </div>
-                            <div class="flagship-url-pill">
-                                <span>🔒</span> careerpilot.vercel.app
-                            </div>
-                            <span class="flagship-live-badge">🟢 Live Production</span>
+            <div class="projects-grid two-projects-grid">
+                <!-- Single Featured Project 1: CareerPilot — AI-Based Smart Placement & Resume Analyzer -->
+                <div class="project-card glass-card reveal-up" id="careerpilotCard">
+                    <!-- macOS Window Header Bar -->
+                    <div class="mac-window-bar">
+                        <div class="mac-dots">
+                            <span class="mac-dot red"></span>
+                            <span class="mac-dot yellow"></span>
+                            <span class="mac-dot green"></span>
                         </div>
-                        <div class="flagship-img-wrapper">
-                            <img src="careerpilot_thumbnail.png" alt="CareerPilot — AI-Based Smart Placement & Resume Analyzer Screenshot" loading="lazy">
-                            <div class="flagship-visual-overlay">
-                                <div class="flagship-inspect-hint">
-                                    <span>🔍 Click to View Architecture &amp; User Manual</span>
-                                    <span>↗</span>
-                                </div>
-                            </div>
+                        <span class="mac-path">~/projects/careerpilot-ai.tsx</span>
+                        <span class="mac-tag">Next.js 16 + AI</span>
+                    </div>
+
+                    <!-- Clean Standard-Height Preview Image (Real Production Screenshot) -->
+                    <div class="project-image careerpilot-preview" onclick="openCareerpilotModal()" title="Click to View Architecture &amp; User Manual" style="cursor: pointer;">
+                        <img src="careerpilot_thumbnail.png" alt="CareerPilot — AI Placement &amp; Resume Analyzer Live App Preview" loading="lazy">
+                        <div class="careerpilot-status-badge">
+                            <span class="status-pulse-dot"></span>
+                            <span>Production Live</span>
+                        </div>
+                        <div class="project-img-overlay">
+                            <span class="overlay-hint">🔍 View Architecture &amp; Manual ↗</span>
                         </div>
                     </div>
 
-                    <!-- Right: Project Information, Specs & CTAs -->
-                    <div class="flagship-content">
-                        <div>
-                            <div class="flagship-tag-bar">
-                                <span class="flagship-badge-capstone">🎓 7th Sem B.Tech Capstone Project</span>
-                                <span class="mac-tag" style="background: rgba(0, 245, 196, 0.1); color: #00f5c4; border: 1px solid rgba(0, 245, 196, 0.3);">Next.js 16 + React 19</span>
-                                <span class="mac-tag" style="background: rgba(117, 98, 255, 0.1); color: #a594fd; border: 1px solid rgba(117, 98, 255, 0.3);">Hybrid AI / Fallback</span>
-                            </div>
-
-                            <h3 class="flagship-title">CareerPilot — AI-Based Smart Placement &amp; Resume Analyzer</h3>
-                            
-                            <p class="flagship-desc">
-                                A production-ready, full-stack placement intelligence web platform designed to solve the campus placement preparation crisis. Automatically parses candidate resumes, calculates granular ATS scores, matches candidate profiles against company job descriptions, detects critical missing skills, and generates tailored technical/HR mock interview sessions.
-                            </p>
-
-                            <!-- Key Capabilities Matrix -->
-                            <div class="flagship-features-grid">
-                                <div class="flagship-feat-item">
-                                    <span class="flagship-feat-icon">📄</span>
-                                    <div class="flagship-feat-text">
-                                        <h5>Multi-Stage Parser</h5>
-                                        <p>Extracts contact, education, skills &amp; projects from PDF/DOCX with human-in-the-loop review.</p>
-                                    </div>
-                                </div>
-                                <div class="flagship-feat-item">
-                                    <span class="flagship-feat-icon">📊</span>
-                                    <div class="flagship-feat-text">
-                                        <h5>Dynamic ATS Scorer</h5>
-                                        <p>0-100 rubric evaluating ATS formatting, skill density, impact metrics &amp; project depth.</p>
-                                    </div>
-                                </div>
-                                <div class="flagship-feat-item">
-                                    <span class="flagship-feat-icon">🎯</span>
-                                    <div class="flagship-feat-text">
-                                        <h5>Job Description Matcher</h5>
-                                        <p>Keyword &amp; cosine similarity to identify missing skills against campus placement JDs.</p>
-                                    </div>
-                                </div>
-                                <div class="flagship-feat-item">
-                                    <span class="flagship-feat-icon">🧠</span>
-                                    <div class="flagship-feat-text">
-                                        <h5>Hybrid AI Engine</h5>
-                                        <p>Gemini 2.0 / GPT-4o / Claude LLM integration + 100% offline deterministic rule engine.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Tech Stack Badges -->
-                            <div class="flagship-tech-stack">
-                                <span class="flagship-tech-chip">Next.js 16 (App Router)</span>
-                                <span class="flagship-tech-chip">React 19</span>
-                                <span class="flagship-tech-chip">TypeScript</span>
-                                <span class="flagship-tech-chip">Tailwind CSS 4</span>
-                                <span class="flagship-tech-chip">Prisma ORM</span>
-                                <span class="flagship-tech-chip">PostgreSQL / SQLite</span>
-                                <span class="flagship-tech-chip">PBKDF2 SHA-512 Auth</span>
-                                <span class="flagship-tech-chip">Vercel Serverless Edge</span>
-                            </div>
+                    <!-- Card Body Content -->
+                    <div class="project-info">
+                        <div class="project-badge-row">
+                            <span class="capstone-badge">🎓 7th Sem Capstone Project</span>
+                            <span class="model-badge">Hybrid AI / Offline Fallback</span>
+                        </div>
+                        <h3>CareerPilot — AI Placement &amp; Resume Analyzer</h3>
+                        <p>Full-stack campus placement suite. Features multi-stage PDF/DOCX resume parsing, 0–100 ATS scoring matrix, JD match algorithm, and role-tailored mock interview prep with hybrid AI &amp; offline fallback.</p>
+                        
+                        <div class="card-tags">
+                            <span class="skill-tag">Next.js 16</span>
+                            <span class="skill-tag">React 19</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                            <span class="skill-tag">Prisma ORM</span>
+                            <span class="skill-tag">Multi-Model AI</span>
                         </div>
 
-                        <!-- Action Buttons -->
-                        <div class="flagship-actions">
-                            <button type="button" class="btn-crystal primary ripple-btn open-careerpilot-modal-btn" style="cursor: pointer;">
+                        <div class="project-links">
+                            <button type="button" class="btn-crystal primary ripple-btn" onclick="openCareerpilotModal()" title="View System Architecture &amp; Student User Manual" style="cursor: pointer;">
                                 <span class="btn-icon">📖</span>
-                                <span class="btn-text">View Specs &amp; User Manual</span>
+                                <span class="btn-text">Specs &amp; Manual</span>
                                 <span class="btn-kbd">⌘M</span>
                             </button>
-                            <a href="https://careerpilot-green-three.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-crystal secondary ripple-btn">
+                            <a href="https://careerpilot-green-three.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-crystal secondary ripple-btn" title="Open Live Vercel App">
                                 <span class="btn-icon">🚀</span>
-                                <span class="btn-text">Launch Live App (Vercel)</span>
+                                <span class="btn-text">Live App</span>
                                 <span class="btn-kbd">↗</span>
                             </a>
-                            <a href="https://github.com/gmraj11132-tech/careerpilot-ai-resume-analyzer" target="_blank" rel="noopener noreferrer" class="btn-crystal ripple-btn">
+                            <a href="https://github.com/gmraj11132-tech/careerpilot-ai-resume-analyzer" target="_blank" rel="noopener noreferrer" class="btn-crystal ripple-btn" title="View Source on GitHub">
                                 <span class="btn-icon">🐙</span>
-                                <span class="btn-text">Source Code</span>
+                                <span class="btn-text">Source</span>
+                                <span class="btn-kbd">⌘G</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Project 2: ScamShield AI — Multi-Vector Cyber Threat & Fraud Signal Analysis Platform -->
+                <div class="project-card glass-card reveal-up scamshield-card" id="scamshieldCard">
+                    <!-- macOS Window Header Bar -->
+                    <div class="mac-window-bar">
+                        <div class="mac-dots">
+                            <span class="mac-dot red"></span>
+                            <span class="mac-dot yellow"></span>
+                            <span class="mac-dot green"></span>
+                        </div>
+                        <span class="mac-path">~/cybersecurity/scamshield-core-3.0.tsx</span>
+                        <span class="mac-tag" style="background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3);">Dual AI / Threat Intel</span>
+                    </div>
+
+                    <!-- Clean Standard-Height Preview Image (Real Production Screenshot) -->
+                    <div class="project-image scamshield-preview" onclick="openScamshieldModal()" title="Click to View Architecture &amp; User Manual" style="cursor: pointer;">
+                        <img src="scamshield_thumbnail.png" alt="ScamShield AI — Cyber Threat &amp; Fraud Signal Analysis Live App Preview" loading="lazy">
+                        <div class="careerpilot-status-badge" style="background: rgba(239, 68, 68, 0.18); border-color: rgba(239, 68, 68, 0.45); color: #f87171;">
+                            <span class="status-pulse-dot" style="background: #ef4444; box-shadow: 0 0 8px #ef4444;"></span>
+                            <span>Production Live</span>
+                        </div>
+                        <div class="project-img-overlay">
+                            <span class="overlay-hint" style="border-color: rgba(239, 68, 68, 0.45); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.25);">🔍 View Architecture &amp; Manual ↗</span>
+                        </div>
+                    </div>
+
+                    <!-- Card Body Content -->
+                    <div class="project-info">
+                        <div class="project-badge-row">
+                            <span class="capstone-badge" style="background: rgba(239, 68, 68, 0.12); color: #fca5a5; border-color: rgba(239, 68, 68, 0.3);">🛡️ Cybersecurity SaaS</span>
+                            <span class="model-badge" style="background: rgba(245, 158, 11, 0.1); color: #fbbf24; border-color: rgba(245, 158, 11, 0.3);">Gemini 2.5 + Tesseract.js</span>
+                        </div>
+                        <h3>ScamShield AI — Dual-Engine Cyber Threat Analysis</h3>
+                        <p>Production cybersecurity platform analyzing deceptive SMS, spoofed emails, malicious typosquatting URLs, and fraudulent screenshots. Features a hybrid dual-engine (Gemini 2.5 Flash + offline deterministic rules), in-browser OCR, verbatim flagged annotations, and safe verification protocols.</p>
+                        
+                        <div class="card-tags">
+                            <span class="skill-tag">React 19</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Gemini 2.5 Flash</span>
+                            <span class="skill-tag">Tesseract.js OCR</span>
+                            <span class="skill-tag">Tailwind CSS</span>
+                            <span class="skill-tag">Client Vault</span>
+                        </div>
+
+                        <div class="project-links">
+                            <button type="button" class="btn-crystal primary ripple-btn open-scamshield-modal-btn" onclick="openScamshieldModal()" title="View System Architecture &amp; Forensic User Manual" style="cursor: pointer;">
+                                <span class="btn-icon">📖</span>
+                                <span class="btn-text">Specs &amp; Manual</span>
+                                <span class="btn-kbd">⌘M</span>
+                            </button>
+                            <a href="https://gmraj11132-tech.github.io/scamshield-ai/" target="_blank" rel="noopener noreferrer" class="btn-crystal secondary ripple-btn" title="Open Live ScamShield AI Web App">
+                                <span class="btn-icon">🚀</span>
+                                <span class="btn-text">Live App</span>
+                                <span class="btn-kbd">↗</span>
+                            </a>
+                            <a href="https://github.com/gmraj11132-tech/scamshield-ai" target="_blank" rel="noopener noreferrer" class="btn-crystal ripple-btn" title="View Source on GitHub">
+                                <span class="btn-icon">🐙</span>
+                                <span class="btn-text">Source</span>
                                 <span class="btn-kbd">⌘G</span>
                             </a>
                         </div>
