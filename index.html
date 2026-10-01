@@ -34,7 +34,9 @@
                     <span class="boot-light green"></span>
                 </div>
                 <div class="boot-title">
-                    <span class="boot-icon">💻</span>
+                    <span class="boot-icon">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                    </span>
                     <span>aryan@macbook-pro: ~ (boot.sh)</span>
                 </div>
                 <button class="boot-skip-btn" id="bootSkipBtn" type="button" onclick="dismissBootScreen()" aria-label="Skip boot sequence">Skip ↗</button>
@@ -68,25 +70,25 @@
                     screen.classList.add('dismissed');
                     setTimeout(function() {
                         if (screen && screen.parentNode) screen.style.display = 'none';
-                    }, 500);
+                    }, 400);
                 }
             }
             window.dismissBootScreen = dismiss;
 
             var steps = [
-                { tag: '[INIT]', text: 'Booting AryanOS JVM 21 environment...', status: 'OK', progress: 18, delay: 500 },
-                { tag: '[CONFIG]', text: 'Target Location: Noida, Alpha 2, India', status: 'VERIFIED', progress: 38, delay: 700 },
-                { tag: '[MODULES]', text: 'Loading: Java, Spring Boot, React, SQL...', status: 'LOADED', progress: 62, delay: 800 },
-                { tag: '[SECURITY]', text: 'Verifying 12 Industry Credentials...', status: 'ACTIVE', progress: 84, delay: 800 },
-                { tag: '[GUI]', text: 'Launching MacBook Crystal UI...', status: 'READY', progress: 96, delay: 650 },
-                { tag: '[SUCCESS]', text: 'Welcome to Aryan Raj Portfolio!', status: '100%', progress: 100, delay: 500 }
+                { tag: '[INIT]', text: 'Booting AryanOS JVM 21 environment...', status: 'OK', progress: 18, delay: 180 },
+                { tag: '[CONFIG]', text: 'Target Location: Noida, Alpha 2, India', status: 'VERIFIED', progress: 38, delay: 200 },
+                { tag: '[MODULES]', text: 'Loading: Java, Spring Boot, React, SQL...', status: 'LOADED', progress: 62, delay: 220 },
+                { tag: '[SECURITY]', text: 'Verifying 12 Industry Credentials...', status: 'ACTIVE', progress: 84, delay: 200 },
+                { tag: '[GUI]', text: 'Launching MacBook Crystal UI...', status: 'READY', progress: 96, delay: 180 },
+                { tag: '[SUCCESS]', text: 'Welcome to Aryan Raj Portfolio!', status: '100%', progress: 100, delay: 220 }
             ];
 
             var idx = 0;
             function next() {
                 if (isDismissed) return;
                 if (idx >= steps.length) {
-                    setTimeout(dismiss, 350);
+                    setTimeout(dismiss, 300);
                     return;
                 }
                 var s = steps[idx];
@@ -95,6 +97,7 @@
                     el.className = 'boot-log-entry';
                     el.innerHTML = '<span class="log-tag">' + s.tag + '</span><span class="log-text">' + s.text + '</span><span class="log-status">' + s.status + '</span>';
                     logs.appendChild(el);
+                    logs.scrollTop = logs.scrollHeight;
                 }
                 if (bar) bar.style.width = s.progress + '%';
                 if (pct) pct.textContent = s.progress + '%';
@@ -103,10 +106,10 @@
             }
 
             // Start immediately
-            setTimeout(next, 100);
+            setTimeout(next, 50);
 
-            // Safety timeout: automatically close after 4.5 seconds no matter what
-            setTimeout(dismiss, 4500);
+            // Safety failsafe
+            setTimeout(dismiss, 3500);
         })();
     </script>
 
@@ -136,7 +139,7 @@
         </ul>
         <div class="nav-actions">
             <button class="theme-toggle glass-btn" id="themeToggle" aria-label="Toggle theme">
-                <span class="toggle-icon">🌙</span>
+                <span class="toggle-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></span>
             </button>
             <button class="hamburger" id="hamburger" aria-label="Menu">
                 <span></span><span></span><span></span>
@@ -179,27 +182,37 @@
             <!-- MacBook Crystal App-Icon Buttons -->
             <div class="hero-buttons">
                 <a href="#projects" class="btn-crystal primary ripple-btn">
-                    <span class="btn-icon">📁</span>
+                    <span class="btn-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    </span>
                     <span class="btn-text">Featured Projects</span>
                     <span class="btn-kbd">⌘P</span>
                 </a>
                 <a href="#credentials" class="btn-crystal secondary ripple-btn">
-                    <span class="btn-icon">📜</span>
+                    <span class="btn-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                    </span>
                     <span class="btn-text">12 Credentials</span>
                     <span class="btn-kbd">⌘C</span>
                 </a>
                 <a href="#resume" class="btn-crystal ripple-btn">
-                    <span class="btn-icon">📄</span>
+                    <span class="btn-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    </span>
                     <span class="btn-text">Resume</span>
                     <span class="btn-kbd">⌘R</span>
                 </a>
                 <a href="https://www.linkedin.com/in/aryanrajcse" class="btn-crystal os-browser-trigger ripple-btn" data-url="https://www.linkedin.com/in/aryanrajcse" data-title="LinkedIn — Aryan Raj">
-                    <span class="btn-icon">💼</span>
+                    <span class="btn-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </span>
                     <span class="btn-text">LinkedIn</span>
                     <span class="btn-kbd">↗</span>
                 </a>
                 <a href="https://github.com/gmraj11132-tech" class="btn-crystal os-browser-trigger ripple-btn" data-url="https://github.com/gmraj11132-tech" data-title="GitHub — Aryan Raj">
-                    <span class="btn-icon">🐙</span>
+                    <span class="btn-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </span>
                     <span class="btn-text">GitHub</span>
                     <span class="btn-kbd">↗</span>
                 </a>
@@ -272,28 +285,36 @@
                     </p>
                     <div class="about-info-grid">
                         <div class="info-item">
-                            <span class="info-icon">🎓</span>
+                            <span class="info-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                            </span>
                             <div>
                                 <span class="info-label">Degree</span>
                                 <span class="info-value">B.Tech CSE</span>
                             </div>
                         </div>
                         <div class="info-item">
-                            <span class="info-icon">📅</span>
+                            <span class="info-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                            </span>
                             <div>
                                 <span class="info-label">Status</span>
                                 <span class="info-value">7th Sem (2023-27)</span>
                             </div>
                         </div>
                         <div class="info-item">
-                            <span class="info-icon">📊</span>
+                            <span class="info-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                            </span>
                             <div>
                                 <span class="info-label">Academic CGPA</span>
                                 <span class="info-value">8.0 / 10 CGPA</span>
                             </div>
                         </div>
                         <div class="info-item">
-                            <span class="info-icon">📍</span>
+                            <span class="info-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            </span>
                             <div>
                                 <span class="info-label">Location</span>
                                 <span class="info-value">Noida, Alpha 2</span>
@@ -311,12 +332,12 @@
                             </div>
                             <div class="ide-tabs">
                                 <div class="ide-tab active" id="tabJava">
-                                    <span class="java-icon">☕</span>
+                                    <span class="java-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>
                                     <span class="tab-name">AryanRaj.java</span>
                                     <span class="tab-close">×</span>
                                 </div>
                                 <div class="ide-tab" id="tabJson">
-                                    <span class="file-icon">⚡</span>
+                                    <span class="file-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg></span>
                                     <span class="tab-name">Portfolio.json</span>
                                 </div>
                             </div>
@@ -367,7 +388,7 @@
         <span class="code-class">AryanRaj</span> <span class="code-var">dev</span> = <span class="code-keyword">new</span> <span class="code-class">AryanRaj</span>();
         <span class="code-var">dev</span>.<span class="code-method">setAvailableForHire</span>(<span class="code-keyword">true</span>);
         <span class="code-class">System</span>.out.<span class="code-method">println</span>(
-            <span class="code-string">"🚀 Ready to engineer systems!"</span>
+            <span class="code-string">"System online: Ready to engineer scalable solutions."</span>
         );
     }
 }</code></pre>
@@ -375,14 +396,14 @@
                         <!-- Terminal Output Window -->
                         <div class="ide-terminal" id="ideTerminal">
                             <div class="terminal-bar">
-                                <span class="term-title">🖥️ Run: AryanRaj.main()</span>
+                                <span class="term-title">Run: AryanRaj.main()</span>
                                 <span class="term-status"><span class="status-pulse"></span> BUILD SUCCESSFUL</span>
                             </div>
                             <div class="terminal-content">
                                 <div class="term-line cmd">&gt; java -cp target/classes com.aryan.portfolio.AryanRaj</div>
-                                <div class="term-line success">✔ [JVM 21.0.2] Compilation complete (0.114s)</div>
-                                <div class="term-line output">🚀 Ready to engineer scalable systems!</div>
-                                <div class="term-line info">📍 Aryan Raj | B.Tech CSE (7th Sem) | 12 Verified Credentials | CGPA 8.0</div>
+                                <div class="term-line success">[OK] [JVM 21.0.2] Compilation complete (0.114s)</div>
+                                <div class="term-line output">System online: Ready to engineer scalable solutions.</div>
+                                <div class="term-line info">&gt; Aryan Raj | B.Tech CSE (7th Sem) | 12 Verified Credentials | CGPA 8.0</div>
                                 <div class="term-line exit">Process finished with exit code 0</div>
                             </div>
                         </div>
@@ -486,7 +507,9 @@
                         <span class="mac-path">~/skills/languages.sh</span>
                         <span class="mac-tag">LANGS</span>
                     </div>
-                    <div class="skill-icon">💻</div>
+                    <div class="skill-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
                     <h3>Programming Languages</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Python</span>
@@ -502,7 +525,9 @@
                         <span class="mac-path">~/skills/core_cs.sql</span>
                         <span class="mac-tag">THEORY</span>
                     </div>
-                    <div class="skill-icon">🧠</div>
+                    <div class="skill-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
+                    </div>
                     <h3>Core CS Fundamentals</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Data Structures & Algorithms</span>
@@ -518,7 +543,9 @@
                         <span class="mac-path">~/skills/web_stack.ts</span>
                         <span class="mac-tag">WEB</span>
                     </div>
-                    <div class="skill-icon">🌐</div>
+                    <div class="skill-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                    </div>
                     <h3>Web Technologies</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">HTML5</span>
@@ -535,7 +562,9 @@
                         <span class="mac-path">~/skills/ai_ml.py</span>
                         <span class="mac-tag">AI/ML</span>
                     </div>
-                    <div class="skill-icon">🤖</div>
+                    <div class="skill-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"></path></svg>
+                    </div>
                     <h3>AI & Machine Learning</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Artificial Intelligence</span>
@@ -551,7 +580,9 @@
                         <span class="mac-path">~/skills/devtools.yml</span>
                         <span class="mac-tag">DEVOPS</span>
                     </div>
-                    <div class="skill-icon">🛠️</div>
+                    <div class="skill-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+                    </div>
                     <h3>Tools & Platforms</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">Git & GitHub</span>
@@ -566,7 +597,9 @@
                         <span class="mac-path">~/skills/traits.md</span>
                         <span class="mac-tag">PRO</span>
                     </div>
-                    <div class="skill-icon">🗣️</div>
+                    <div class="skill-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
                     <h3>Languages & Professional Traits</h3>
                     <div class="skill-tags">
                         <span class="skill-tag">English (Fluent)</span>
@@ -612,7 +645,7 @@
                                 alt="Certificate of Internship - Eisystems Services & Technex'25 IIT BHU"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -664,7 +697,7 @@
                                 alt="IBM Developer Skills Network Cognitive Class Python 101 for Data Science"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -714,7 +747,7 @@
                                 alt="TATA Data Visualisation Empowering Business with Effective Insights"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -764,7 +797,7 @@
                                 alt="Certificate of Internship - NV Enterprises ML Craft With Python"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -814,7 +847,7 @@
                                 alt="InternPe AI/ML Internship Completion Certificate"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -864,7 +897,7 @@
                                 alt="Prodigy InfoTech Full Stack Web Development Internship Offer"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -914,7 +947,7 @@
                                 alt="Enrollment & Training Letter - EXCELRS Powered by Lawazia Tech"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -966,7 +999,7 @@
                                 alt="Bureau of Indian Standards & MyGov Bhartiya Manak Certificate"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -1016,7 +1049,7 @@
                                 alt="SWAYAM Plus ArthNirmiti Personal Finance Certificate"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -1065,7 +1098,7 @@
                             <img src="cert_jnj.jpg" alt="Johnson & Johnson MedTech Robotics & Controls Job Simulation"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -1115,7 +1148,7 @@
                             <img src="cert_siemens.jpg" alt="Siemens Operations Industrial Engineer Job Simulation"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -1165,7 +1198,7 @@
                             <img src="cert_mygov.jpg" alt="Government of India MyGov Blue Economy Certificate"
                                 class="cert-thumbnail">
                             <div class="cert-overlay">
-                                <span class="overlay-btn ripple-btn">Inspect Credentials 🔍</span>
+                                <span class="overlay-btn ripple-btn">Inspect Credential <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-left:4px;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
                             </div>
                         </div>
                     </div>
@@ -1220,756 +1253,9 @@
         </div>
     </div>
 
-    <!-- CareerPilot Project Deep Dive & Complete Student User Manual Modal -->
-    <div class="project-modal-backdrop" id="careerpilotModal" role="dialog" aria-modal="true" aria-labelledby="careerpilotModalTitle" onclick="if (event.target === this) closeCareerpilotModal()">
-        <div class="project-modal-window glass">
-            <!-- macOS Topbar -->
-            <div class="project-modal-topbar">
-                <div class="project-modal-topbar-left">
-                    <div class="mac-dots">
-                        <button class="mac-dot red close-careerpilot-modal" title="Close (Esc)" aria-label="Close modal" onclick="closeCareerpilotModal()"></button>
-                        <span class="mac-dot yellow"></span>
-                        <span class="mac-dot green"></span>
-                    </div>
-                    <div class="project-modal-title" id="careerpilotModalTitle">
-                        <span>🚀</span>
-                        <span>CareerPilot — System Architecture &amp; Student User Manual</span>
-                        <span class="flagship-live-badge" style="font-size: 0.68rem; padding: 2px 8px;">v1.0.0 Production</span>
-                    </div>
-                </div>
-                <div class="project-modal-topbar-actions">
-                    <a href="https://careerpilot-green-three.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-crystal secondary" style="padding: 6px 14px; font-size: 0.78rem;">
-                        <span>🚀 Open Live App</span>
-                    </a>
-                    <a href="https://github.com/gmraj11132-tech/careerpilot-ai-resume-analyzer" target="_blank" rel="noopener noreferrer" class="btn-crystal" style="padding: 6px 14px; font-size: 0.78rem;">
-                        <span>🐙 GitHub Repo</span>
-                    </a>
-                    <button class="modal-close-btn close-careerpilot-modal" style="position: static; width: 34px; height: 34px; font-size: 1rem;" aria-label="Close modal" onclick="closeCareerpilotModal()">✕</button>
-                </div>
-            </div>
-
-            <!-- Modal Body (Comprehensive Specifications & User Manual) -->
-            <div class="project-modal-body">
-                <!-- Hero Highlight Banner -->
-                <div class="manual-banner">
-                    <div class="manual-banner-text">
-                        <h2>CareerPilot — Smart Placement &amp; Resume Analyzer</h2>
-                        <p>
-                            An end-to-end full-stack web application designed for B.Tech CSE 7th-semester campus placement preparation. Built with Next.js 16, React 19, TypeScript, Tailwind CSS 4, Prisma ORM, and a Hybrid Multi-Model AI + Deterministic Heuristic Engine.
-                        </p>
-                    </div>
-                    <div class="manual-banner-links">
-                        <a href="https://careerpilot-green-three.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-crystal primary ripple-btn">
-                            <span class="btn-icon">🚀</span>
-                            <span class="btn-text">Visit Live Deployment</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Section 1: Executive Summary & Real-World Problem -->
-                <div class="manual-section-card">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">🎯</span>
-                        <h3>1. Project Overview &amp; The Real-World Problem</h3>
-                    </div>
-                    <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; margin-bottom: 14px;">
-                        During campus placement drives, over <strong>75% of engineering student resumes are rejected by automated Applicant Tracking Systems (ATS)</strong> before any human recruiter or hiring manager reviews them. This happens due to incompatible file formats, poorly parsed column layouts, missing industry keywords, and lack of quantifiable impact metrics.
-                    </p>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
-                        <div style="background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.2); padding: 16px; border-radius: 12px;">
-                            <h4 style="color: #f87171; font-size: 0.92rem; margin-bottom: 6px;">❌ The Problem for College Students</h4>
-                            <ul style="color: #cbd5e1; font-size: 0.82rem; line-height: 1.6; padding-left: 18px; margin: 0;">
-                                <li>Rejection by ATS due to unparseable formatting or missing keywords.</li>
-                                <li>Skill blind spots: Not knowing what skills are missing for a target job description.</li>
-                                <li>Unstructured placement preparation: Random questions without tailored technical &amp; HR drilling.</li>
-                            </ul>
-                        </div>
-                        <div style="background: rgba(0, 245, 196, 0.06); border: 1px solid rgba(0, 245, 196, 0.2); padding: 16px; border-radius: 12px;">
-                            <h4 style="color: #00f5c4; font-size: 0.92rem; margin-bottom: 6px;">✔️ The CareerPilot Solution</h4>
-                            <ul style="color: #cbd5e1; font-size: 0.82rem; line-height: 1.6; padding-left: 18px; margin: 0;">
-                                <li>Multi-stage PDF/DOCX resume parser with human-in-the-loop verification.</li>
-                                <li>5-category ATS scoring matrix providing concrete, actionable feedback.</li>
-                                <li>Job description comparison with instant matching %, missing skills &amp; keyword recommendations.</li>
-                                <li>Role-tailored mock interview generator with structured STAR method answer blueprints.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 2: Architecture & Working Principle -->
-                <div class="manual-section-card">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">🏗️</span>
-                        <h3>2. System Architecture &amp; Working Principle</h3>
-                    </div>
-                    <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px;">
-                        CareerPilot follows a modern, decoupled layered full-stack architecture built on Next.js 16 App Router, utilizing Server Components for speed, Client Components for reactivity, and secure API Route Handlers for business logic:
-                    </p>
-
-                    <div class="manual-arch-diagram">
-+-----------------------------------------------------------------------------------+
-|                           CLIENT LAYER (Next.js 16 + React 19)                    |
-|   Landing Page  •  Auth  •  Dashboard  •  Upload  •  Analyze  •  Jobs  •  Skills  |
-+------------------------------------------+----------------------------------------+
-                                           | HTTPS / JSON / Multipart
-+------------------------------------------v----------------------------------------+
-|                     SERVER &amp; API GATEWAY LAYER (Edge / Node.js)                   |
-|   • Session Validation (JWT in HTTP-only Cookie)   • Zod Schema Input Validation  |
-|   • Rate Limiting &amp; Security Headers (OWASP)       • Multi-Stage PDF/DOCX Parser   |
-+---------------------+---------------------------------------+---------------------+
-                      |                                       |
-+---------------------v-------------------+   +---------------v---------------------+
-|      HYBRID INTELLIGENCE ENGINE         |   |          PERSISTENCE LAYER          |
-|  [Mode A: External Multi-Model LLM API] |   |   • Prisma 6.19 ORM                 |
-|  - Gemini 2.0 Flash / GPT-4o / Claude   |   |   • SQLite (Local Development)      |
-|  [Mode B: Deterministic Heuristic Core] |   |   • PostgreSQL (Production Cloud)   |
-|  - 100% Offline Rule Engine (Zero Cost) |   |   • 9 Normalized Relational Tables  |
-+-----------------------------------------+   +-------------------------------------+
-                    </div>
-
-                    <div style="background: rgba(117, 98, 255, 0.08); border: 1px solid rgba(117, 98, 255, 0.25); border-radius: 12px; padding: 16px; margin-top: 14px;">
-                        <h4 style="color: #a594fd; font-size: 0.92rem; margin-bottom: 6px;">🧠 Hybrid AI &amp; Fallback Engine Design (Key Viva Point)</h4>
-                        <p style="color: #cbd5e1; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                            A key engineering innovation in CareerPilot is its <strong>Graceful Degradation Architecture</strong>. When an API key is provided, the platform queries advanced LLMs for generative recommendations. However, during college lab demonstrations, campus defense, or when API quotas expire, CareerPilot automatically routes to its <strong>Deterministic Rule-Based Heuristic Engine</strong>. This engine tokenizes text, matches regex taxonomies across 500+ tech skills, and computes weighted scores with zero external latency and zero financial cost.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Section 3: Core Modules & Functionality -->
-                <div class="manual-section-card">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">⚙️</span>
-                        <h3>3. Core Modules &amp; Functional Capabilities</h3>
-                    </div>
-                    <div class="manual-step-grid">
-                        <div class="manual-step-item">
-                            <div class="manual-step-num">01</div>
-                            <h4>Multi-Stage Resume Parser</h4>
-                            <p>Ingests PDF and DOCX files up to 5MB. Strips binary payloads, parses raw text with <code>pdf-parse</code> and <code>mammoth</code>, segments sections (Education, Skills, Experience, Projects), extracts contact details, and displays an editable verification form before saving.</p>
-                        </div>
-                        <div class="manual-step-item">
-                            <div class="manual-step-num">02</div>
-                            <h4>CareerPilot ATS Resume Scorer</h4>
-                            <p>Evaluates resumes across 5 key dimensions: ATS Formatting (20 pts), Skill Coverage (25 pts), Project Depth (25 pts), Experience (15 pts), and Education (15 pts). Clearly identifies missing standard sections and provides actionable bulleted suggestions.</p>
-                        </div>
-                        <div class="manual-step-item">
-                            <div class="manual-step-num">03</div>
-                            <h4>Job Description Matcher</h4>
-                            <p>Compares candidate profile against any pasted job posting. Calculates match percentage, identifies matching skills in green tags, flags missing required skills in red tags, and recommends specific keyword additions for resume optimization.</p>
-                        </div>
-                        <div class="manual-step-item">
-                            <div class="manual-step-num">04</div>
-                            <h4>Categorized Skill Gap Tracker</h4>
-                            <p>Organizes student skills across 8 core domains: Programming, Web Development, Database, Data Science, AI/ML, Cloud/DevOps, Tools, and Soft Skills. Allows students to cycle status through <em>Identified ➔ Learning ➔ Completed</em>.</p>
-                        </div>
-                        <div class="manual-step-item">
-                            <div class="manual-step-num">05</div>
-                            <h4>Interview Preparation Studio</h4>
-                            <p>Generates mock interview drills customized by target job title, candidate skills, and difficulty level (Easy/Medium/Hard). Spans Technical, Behavioral, HR, and Project questions with structured STAR-method answer blueprints.</p>
-                        </div>
-                        <div class="manual-step-item">
-                            <div class="manual-step-num">06</div>
-                            <h4>Job Application Funnel</h4>
-                            <p>Enables students to manage their campus placement pipeline across 6 standardized milestones: <em>Saved ➔ Applied ➔ Assessment ➔ Interview ➔ Offer ➔ Rejected</em> with quick search, filtering, and conversion metrics.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 4: Complete Student User Manual -->
-                <div class="manual-section-card">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">📖</span>
-                        <h3>4. Step-by-Step Student User Manual (How It Works)</h3>
-                    </div>
-                    <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">
-                        Follow this simple 6-step walkthrough to analyze your resume and prepare for campus placement interviews on the live production platform:
-                    </p>
-
-                    <div style="display: flex; flex-direction: column; gap: 14px;">
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #7562ff; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 1: Access Platform &amp; Instant Demo Login</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                Open <a href="https://careerpilot-green-three.vercel.app/login" target="_blank" style="color: #00f5c4; text-decoration: underline;">https://careerpilot-green-three.vercel.app/login</a>. Click the <strong>"Student Demo"</strong> button to auto-fill pre-seeded credentials (<code>demo@careerpilot.dev</code> / <code>Demo@1234</code>) and click <strong>"Sign In to Dashboard"</strong>. You can also create a new student account using the registration page.
-                            </p>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #00f5c4; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 2: Upload Your Resume (.PDF or .DOCX)</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                In the dashboard sidebar, navigate to <strong>"Resume Upload"</strong>. Drag and drop your current resume. The parser will immediately extract your contact details, education, detected skills, projects, and work history. Verify or edit any parsed field in the preview form, then click <strong>"Save Resume"</strong>.
-                            </p>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #38bdf8; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 3: Analyze Your Resume &amp; Review ATS Breakdown</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                Head to <strong>"Resume Analyzer"</strong> and click <strong>"Analyze Latest Resume"</strong>. The system generates your <em>CareerPilot Resume Score (e.g., 82/100)</em> with categorical progress bars, identified formatting weaknesses, detected technical skills, and tailored suggestions to strengthen your resume before campus shortlisting.
-                            </p>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #ffb703; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 4: Paste Target Job Description &amp; Check Match %</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                Go to <strong>"Job Matching"</strong>. Paste a company's job description (e.g., TCS Digital, Infosys SP, Google, Amazon, Startup JD). Click <strong>"Match Resume"</strong>. The matcher displays your Match Percentage, lists matching skills in green, highlights missing prerequisites in red, and advises which projects to emphasize.
-                            </p>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #a855f7; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 5: Bridge Skill Gaps &amp; Track Learning</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                Navigate to <strong>"Skills"</strong>. Review the recommended skills populated from your job matching results. Click on any skill card to transition its status from <em>Identified ➔ Learning ➔ Completed</em> as you study for campus interviews.
-                            </p>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #ec4899; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 6: Practice Mock Interviews &amp; Track Job Applications</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                Select <strong>"Interview Prep"</strong>, choose your target role, difficulty, and click <strong>"Generate Questions"</strong>. Review suggested STAR-method answer blueprints. Finally, log all your campus placement drives in <strong>"Applications"</strong> to manage dates and stages systematically.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 5: Technical Specifications Table -->
-                <div class="manual-section-card">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">📊</span>
-                        <h3>5. Full Technical Specifications</h3>
-                    </div>
-                    <div class="manual-table-wrap">
-                        <table class="manual-table">
-                            <thead>
-                                <tr>
-                                    <th>Architecture Dimension</th>
-                                    <th>Technology / Library Selected</th>
-                                    <th>Design Rationale &amp; Industry Benefit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Frontend Framework</strong></td>
-                                    <td>Next.js 16.3 + React 19 (App Router)</td>
-                                    <td>Turbopack compilation, React Server Components (RSC), SSR speed and SEO.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Styling &amp; Design</strong></td>
-                                    <td>Tailwind CSS 4.0 + Lucide React</td>
-                                    <td>High-performance utility-first styling, zero CSS bloat, fully responsive dark theme.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Language</strong></td>
-                                    <td>TypeScript 5 (Strict Mode)</td>
-                                    <td>End-to-end type safety across API payloads, DB models, and client components.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>ORM &amp; Database</strong></td>
-                                    <td>Prisma ORM 6.19 (SQLite / PostgreSQL)</td>
-                                    <td>Type-safe database migrations, relational modeling across 9 normalized tables.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Authentication &amp; Security</strong></td>
-                                    <td>PBKDF2 (SHA-512) + Jose JWT Sessions</td>
-                                    <td>100,000 salt iterations, HTTP-only SameSite cookies, OWASP compliance, Zod validation.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Document Ingestion</strong></td>
-                                    <td>pdf-parse + Mammoth (.docx)</td>
-                                    <td>Robust multi-format binary buffer decoding with fallback error handling.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Deployment &amp; Hosting</strong></td>
-                                    <td>Vercel Serverless Edge Network</td>
-                                    <td>Global CDN distribution, automated HTTPS, zero-config CI/CD linked to GitHub.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Section 6: College Viva / Defense Quick Reference -->
-                <div class="manual-section-card" style="margin-bottom: 0;">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">🎓</span>
-                        <h3>6. B.Tech 7th Semester Viva / Presentation Quick Reference</h3>
-                    </div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
-                        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 12px;">
-                            <strong style="color: #38bdf8; font-size: 0.88rem; display: block; margin-bottom: 4px;">Q1: How do you handle non-standard resume layouts?</strong>
-                            <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0;">
-                                The parser implements a two-pass token scanner: first locating standard anchor headers, then performing keyword entity matching with a mandatory human-in-the-loop review step before saving.
-                            </p>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 12px;">
-                            <strong style="color: #34d399; font-size: 0.88rem; display: block; margin-bottom: 4px;">Q2: What happens if external AI API is down or quota exceeded?</strong>
-                            <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0;">
-                                The system gracefully switches to its local Deterministic Heuristic Engine, which computes ATS scores, matching %, and question sets using curated local taxonomies without failing.
-                            </p>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 12px;">
-                            <strong style="color: #f472b6; font-size: 0.88rem; display: block; margin-bottom: 4px;">Q3: How is user data kept confidential?</strong>
-                            <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0;">
-                                Passwords are never stored in plaintext (PBKDF2 SHA-512), JWT sessions are stored in HTTP-only cookies, and all database queries are strictly scoped to the authenticated user ID.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CareerPilot Modal Controller Script (Immediate Global Execution) -->
-    <script>
-        function openCareerpilotModal() {
-            var m = document.getElementById('careerpilotModal');
-            if (m) {
-                m.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-        function closeCareerpilotModal() {
-            var m = document.getElementById('careerpilotModal');
-            if (m) {
-                m.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-        window.openCareerpilotModal = openCareerpilotModal;
-        window.closeCareerpilotModal = closeCareerpilotModal;
-    </script>
-
-    <!-- ScamShield AI Project Deep Dive & Complete Forensic User Manual Modal -->
-    <div class="project-modal-backdrop" id="scamshieldModal" role="dialog" aria-modal="true" aria-labelledby="scamshieldModalTitle" onclick="if (event.target === this) closeScamshieldModal()">
-        <div class="project-modal-window glass">
-            <!-- macOS Topbar -->
-            <div class="project-modal-topbar">
-                <div class="project-modal-topbar-left">
-                    <div class="mac-dots">
-                        <button class="mac-dot red close-scamshield-modal" title="Close (Esc)" aria-label="Close modal" onclick="closeScamshieldModal()"></button>
-                        <span class="mac-dot yellow"></span>
-                        <span class="mac-dot green"></span>
-                    </div>
-                    <div class="project-modal-title" id="scamshieldModalTitle">
-                        <span>🛡️</span>
-                        <span>ScamShield AI — System Architecture &amp; Forensic User Manual</span>
-                        <span class="flagship-live-badge" style="font-size: 0.68rem; padding: 2px 8px; background: rgba(239, 68, 68, 0.18); border-color: rgba(239, 68, 68, 0.45); color: #f87171;">v3.0.0 Production</span>
-                    </div>
-                </div>
-                <div class="project-modal-topbar-actions">
-                    <a href="https://gmraj11132-tech.github.io/scamshield-ai/" target="_blank" rel="noopener noreferrer" class="btn-crystal secondary" style="padding: 6px 14px; font-size: 0.78rem;">
-                        <span>🚀 Open Live App</span>
-                    </a>
-                    <a href="https://github.com/gmraj11132-tech/scamshield-ai" target="_blank" rel="noopener noreferrer" class="btn-crystal" style="padding: 6px 14px; font-size: 0.78rem;">
-                        <span>🐙 GitHub Repo</span>
-                    </a>
-                    <button class="modal-close-btn close-scamshield-modal" style="position: static; width: 34px; height: 34px; font-size: 1rem;" aria-label="Close modal" onclick="closeScamshieldModal()">✕</button>
-                </div>
-            </div>
-
-            <!-- Modal Body (Comprehensive Specifications & User Manual) -->
-            <div class="project-modal-body">
-                <!-- Hero Highlight Banner -->
-                <div class="manual-banner" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%); border-color: rgba(239, 68, 68, 0.25);">
-                    <div class="manual-banner-text">
-                        <h2>ScamShield AI — Deceptive Signal Detection &amp; Threat Verification Platform</h2>
-                        <p>
-                            An industrial-grade cybersecurity SaaS web application built with React 19, TypeScript, Tailwind CSS, Google Gemini 2.5 Flash, client-side Tesseract.js OCR, and a deterministic offline heuristic rule engine. Analyzes SMS, emails, phishing URLs, and screenshots for social engineering signals, computes a multi-factor risk score (0-100), and provides actionable forensic guidance.
-                        </p>
-                    </div>
-                    <div class="manual-banner-links">
-                        <a href="https://gmraj11132-tech.github.io/scamshield-ai/" target="_blank" rel="noopener noreferrer" class="btn-crystal primary ripple-btn">
-                            <span class="btn-icon">🚀</span>
-                            <span class="btn-text">Visit Live Deployment</span>
-                        </a>
-                        <a href="https://github.com/gmraj11132-tech/scamshield-ai" target="_blank" rel="noopener noreferrer" class="btn-crystal ripple-btn">
-                            <span class="btn-icon">🐙</span>
-                            <span class="btn-text">View GitHub Repo</span>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Section 1: Executive Summary & The Real-World Cyber Threat Crisis -->
-                <div class="manual-section-card">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">🎯</span>
-                        <h3>1. Project Overview &amp; The Real-World Cybersecurity Crisis</h3>
-                    </div>
-                    <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; margin-bottom: 14px;">
-                        Globally, over <strong>$10.3 Billion is lost annually to social engineering and fraud schemes</strong>. Threat actors exploit psychological panic through artificial urgency, bank impersonation, credential harvesting, spoofed domains, and forged payment screenshots. Traditional spam filters and opaque AI chatbots fail users by offering either binary "Is it a scam?" answers with high hallucination rates, or offering no actionable out-of-band verification steps.
-                    </p>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
-                        <div style="background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.2); padding: 16px; border-radius: 12px;">
-                            <h4 style="color: #f87171; font-size: 0.92rem; margin-bottom: 6px;">❌ The Problem With Existing Solutions</h4>
-                            <ul style="color: #cbd5e1; font-size: 0.82rem; line-height: 1.6; padding-left: 18px; margin: 0;">
-                                <li>Binary verdicts ("Scam" vs "Safe") that provide zero forensic explanation of why.</li>
-                                <li>AI Hallucinations: Generic LLMs making definitive claims without citing verbatim evidence.</li>
-                                <li>Privacy violations: Services sending user messages and financial screenshots to third-party databases.</li>
-                                <li>Lack of offline resilience: If the external AI API is down, the entire analysis fails.</li>
-                            </ul>
-                        </div>
-                        <div style="background: rgba(0, 245, 196, 0.06); border: 1px solid rgba(0, 245, 196, 0.2); padding: 16px; border-radius: 12px;">
-                            <h4 style="color: #00f5c4; font-size: 0.92rem; margin-bottom: 6px;">✔️ The ScamShield AI Solution</h4>
-                            <ul style="color: #cbd5e1; font-size: 0.82rem; line-height: 1.6; padding-left: 18px; margin: 0;">
-                                <li><strong>Hybrid Dual-Engine:</strong> 70% Gemini 2.5 Flash neural reasoning + 30% deterministic heuristics.</li>
-                                <li><strong>Verbatim Flagging:</strong> Quotes and annotates the exact deceptive triggers from the user input.</li>
-                                <li><strong>In-Browser OCR:</strong> Offline Tesseract.js worker extracting text from screenshots without server upload.</li>
-                                <li><strong>Actionable Safe Steps:</strong> Practical out-of-band verification steps and a strict DO NOT checklist.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 2: Architecture & Working Principle -->
-                <div class="manual-section-card">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">🏗️</span>
-                        <h3>2. System Architecture &amp; Working Principle</h3>
-                    </div>
-                    <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px;">
-                        ScamShield AI utilizes a multi-vector decoupled pipeline designed for speed, zero-trust cybersecurity, and complete client-side data privacy:
-                    </p>
-
-                    <div class="manual-arch-diagram">
-+-----------------------------------------------------------------------------------+
-|                       CLIENT INGESTION (React 19 + TypeScript + Vite)             |
-|    [Message Tab]    •    [URL Tab]    •    [Screenshot Tab]    •    [Email Tab]   |
-+------------------------------------------+----------------------------------------+
-                                           | In-Browser Preprocessing
-+------------------------------------------v----------------------------------------+
-|                PREPROCESSING & IN-BROWSER FORENSIC PIPELINE                       |
-|  • Tesseract.js OCR Web Worker (Offline Text Extraction from Images)               |
-|  • URL Normalizer, Punycode Decoder, TLD Entropy & Phishing Domain Parser         |
-|  • Social Engineering Regex Heuristic Matrix (Urgency, Impersonation, Credential)  |
-+------------------------------------------+----------------------------------------+
-                                           |
-               +---------------------------+---------------------------+
-               |                                                       |
-+--------------v---------------------------+   +-----------------------v------------+
-|   VECTOR A: NEURAL INTELLIGENCE ENGINE   |   |   VECTOR B: DETERMINISTIC ENGINE   |
-|   • Google Gemini 2.5 Flash API          |   |   • 100% Offline Rule Engine       |
-|   • Multimodal Vision + Deceptive Logic  |   |   • Zero External Network Latency  |
-|   • Strict JSON Schema Validation        |   |   • Zero-Cost Fallback Guarantee   |
-+------------------------------------------+   +------------------------------------+
-                                           |
-+------------------------------------------v----------------------------------------+
-|                  HYBRID RISK SCORING & FORENSIC SYNTHESIS                         |
-|  Risk Score = (0.70 × Neural Score) + (0.30 × Deterministic Score) [Weighted Mean]|
-|  • Threat Level (Low / Moderate / High / Critical)  • Confidence Interval Metric  |
-|  • Verbatim Inline Quotes [Urgency] [External Link] [Financial Request]           |
-|  • Safe Verification Guidance Protocols             • DO NOT Threat Checklist     |
-|  • Local Storage Encrypted Vault (Zero Permanent Server Logging)                  |
-+-----------------------------------------------------------------------------------+
-                    </div>
-
-                    <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.25); border-radius: 12px; padding: 16px; margin-top: 14px;">
-                        <h4 style="color: #f87171; font-size: 0.92rem; margin-bottom: 6px;">🧠 Hybrid AI &amp; Graceful Degradation Engine (Core Viva Defense Concept)</h4>
-                        <p style="color: #cbd5e1; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                            A key design requirement of ScamShield AI is <strong>Non-Authoritative Risk Modeling</strong> and <strong>Zero-Failure Resilience</strong>. The system never claims <em>"This is definitely a scam."</em> Instead, it outputs <em>"High-risk indicators detected"</em> based on mathematical signals. When an API key is present, it computes a 70/30 weighted synthesis of Gemini 2.5 Flash reasoning and deterministic regex heuristics. When offline or during network outages, it seamlessly falls back to 100% local deterministic heuristics with zero user interruption and zero privacy compromise.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Section 3: Core Functional Capabilities -->
-                <div class="manual-section-card">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">⚙️</span>
-                        <h3>3. Core Modules &amp; Functional Capabilities</h3>
-                    </div>
-                    <div class="manual-step-grid">
-                        <div class="manual-step-item">
-                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">01</div>
-                            <h4>Multi-Vector Input Workspace</h4>
-                            <p>Specialized tabs for SMS/Chat messages, live URLs, image screenshots, and raw email headers. Includes token counters, analysis depth toggles (Standard vs Deep Neural), and one-click test scenarios.</p>
-                        </div>
-                        <div class="manual-step-item">
-                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">02</div>
-                            <h4>Client-Side OCR Engine</h4>
-                            <p>Integrates Tesseract.js running in a local Web Worker. Ingests PNG, JPG, and WEBP screenshots of suspicious payment transactions, bank alerts, or WhatsApp chats and extracts textual content without server transmission.</p>
-                        </div>
-                        <div class="manual-step-item">
-                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">03</div>
-                            <h4>Typosquatting &amp; URL Inspector</h4>
-                            <p>Parses hostname entropy, detects punycode homograph attacks, flags suspicious high-risk TLDs (<code>.top</code>, <code>.xyz</code>, <code>.loan</code>), extracts embedded IP addresses, and detects domain impersonation of major financial institutions.</p>
-                        </div>
-                        <div class="manual-step-item">
-                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">04</div>
-                            <h4>Verbatim Evidence Flagging</h4>
-                            <p>Extracts and quotes exact incriminating phrases directly from user input (e.g., <em>"Account blocked within 30 minutes"</em>) and labels them with specific risk tags: <code>[Urgency]</code>, <code>[Credential Request]</code>, <code>[Financial Request]</code>.</p>
-                        </div>
-                        <div class="manual-step-item">
-                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">05</div>
-                            <h4>Safe Verification Guidance</h4>
-                            <p>Automatically generates organization-specific out-of-band verification steps (e.g., navigating directly to an official bank portal, dialing published customer care numbers) to verify claims without touching suspicious links.</p>
-                        </div>
-                        <div class="manual-step-item">
-                            <div class="manual-step-num" style="background: linear-gradient(135deg, #ef4444, #f59e0b);">06</div>
-                            <h4>Local Vault &amp; Forensic History</h4>
-                            <p>Maintains an encrypted, zero-knowledge threat telemetry log stored strictly in browser LocalStorage. Allows users to view historical risk scores, inspect past reports, and export forensic JSON audit logs with one click.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 4: Complete Step-by-Step User Manual -->
-                <div class="manual-section-card">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">📖</span>
-                        <h3>4. Step-by-Step User Manual (How to Use ScamShield AI)</h3>
-                    </div>
-                    <p style="color: #cbd5e1; font-size: 0.9rem; line-height: 1.7; margin-bottom: 16px;">
-                        Follow this 6-step operational walkthrough to analyze suspicious messages, phishing URLs, or screenshots on the live production application:
-                    </p>
-
-                    <div style="display: flex; flex-direction: column; gap: 14px;">
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #ef4444; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 1: Open Live Web Application</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                Navigate to <a href="https://gmraj11132-tech.github.io/scamshield-ai/" target="_blank" style="color: #00f5c4; text-decoration: underline;">https://gmraj11132-tech.github.io/scamshield-ai/</a>. The interface greets you with a technical, cybersecurity-inspired dark console featuring live threat telemetry badges and instant navigation.
-                            </p>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #f59e0b; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 2: Configure AI Studio Key (Optional BYOK)</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                Click <strong>"Set AI Key"</strong> in the top header. You can paste a free Google AI Studio Gemini API key for advanced multimodal vision and generative neural reasoning. <em>Note: If you don't provide a key, ScamShield AI runs seamlessly using its 100% offline deterministic rule engine at zero cost!</em>
-                            </p>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #00f5c4; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 3: Analyze Suspicious SMS or Chat Messages</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                In the <strong>Message</strong> tab, paste any suspicious SMS, WhatsApp notification, or Telegram message. You can also click <strong>"Try real scam"</strong> or pick from the sample dropdown. Choose analysis depth (<em>Standard</em> or <em>Deep Neural</em>), then click <strong>"Analyze Threat"</strong>.
-                            </p>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #38bdf8; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 4: Analyze Phishing &amp; Typosquatting URLs</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                Switch to the <strong>URL</strong> tab. Paste a suspicious link (e.g. <code>http://chase-auth-security.top/login</code>). ScamShield automatically extracts domain components, checks for brand typosquatting, evaluates TLD risk, and scores deceptive indicators without opening the dangerous link.
-                            </p>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #a855f7; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 5: Inspect Screenshots &amp; Payment Receipts</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                Switch to the <strong>Screenshot</strong> tab. Drag &amp; drop an image (PNG, JPG, WEBP). Tesseract.js extracts the visible text locally in your browser. The extracted text is then passed to the threat engine to detect fraudulent payment slips, fake UPI transfers, or counterfeit lottery vouchers.
-                            </p>
-                        </div>
-
-                        <div style="background: rgba(255, 255, 255, 0.02); border-left: 3px solid #10b981; padding: 14px 18px; border-radius: 0 12px 12px 0;">
-                            <h4 style="color: #ffffff; font-size: 0.95rem; margin-bottom: 4px;">Step 6: Review Forensic Report, Safe Steps &amp; DO NOT Checklist</h4>
-                            <p style="color: #94a3b8; font-size: 0.84rem; line-height: 1.6; margin: 0;">
-                                Inspect the Threat Assessment score (e.g. <em>CRITICAL • 92/100</em>), examine the verbatim highlighted snippets in <em>"Why This Was Flagged"</em>, review the <em>"Safe Verification"</em> protocols, and follow the <em>"DO NOT"</em> checklist (e.g., never share OTPs, never click destination links).
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 5: Technical Specifications Table -->
-                <div class="manual-section-card">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">📊</span>
-                        <h3>5. Full Technical Specifications</h3>
-                    </div>
-                    <div class="manual-table-wrap">
-                        <table class="manual-table">
-                            <thead>
-                                <tr>
-                                    <th>Architecture Dimension</th>
-                                    <th>Technology / Library Selected</th>
-                                    <th>Design Rationale &amp; Industry Benefit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Frontend Framework</strong></td>
-                                    <td>React 19 + TypeScript (Strict Mode)</td>
-                                    <td>Modern concurrency, fast component rendering, strict type-checking across threat schemas.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Build Tooling &amp; Bundler</strong></td>
-                                    <td>Vite 6 + Rolldown Engine</td>
-                                    <td>Sub-second HMR development, optimized production chunking, zero build bloat.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>AI Neural Engine</strong></td>
-                                    <td>Google Gemini 2.5 Flash (@google/genai SDK)</td>
-                                    <td>High-speed, low-latency reasoning with structured JSON Schema enforcement.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Offline Rule Engine</strong></td>
-                                    <td>Deterministic Regex &amp; Entropy Parser</td>
-                                    <td>100% offline fallback; zero financial API cost, zero external downtime dependency.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>In-Browser OCR</strong></td>
-                                    <td>Tesseract.js v5 Web Worker</td>
-                                    <td>Decentralized text extraction running locally in client thread; protects user image privacy.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Styling &amp; Aesthetic</strong></td>
-                                    <td>Tailwind CSS + JetBrains Mono Font</td>
-                                    <td>Cybersecurity SaaS developer-console visual aesthetic inspired by OpenAI &amp; Linear.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Privacy &amp; Data Vault</strong></td>
-                                    <td>In-Browser LocalStorage / IndexedDB</td>
-                                    <td>Zero server-side persistence; no user messages or screenshots ever stored on remote databases.</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Hosting &amp; CI/CD</strong></td>
-                                    <td>GitHub Pages + GitHub Actions CI/CD</td>
-                                    <td>Automated build pipeline, global CDN edge delivery with 100% uptime and SSL.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Section 6: College Viva / Defense Quick Reference -->
-                <div class="manual-section-card" style="margin-bottom: 0;">
-                    <div class="manual-sec-header">
-                        <span style="font-size: 1.3rem;">🎓</span>
-                        <h3>6. Technical Defense &amp; Viva Quick Reference</h3>
-                    </div>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px;">
-                        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 12px;">
-                            <strong style="color: #38bdf8; font-size: 0.88rem; display: block; margin-bottom: 4px;">Q1: Why combine Neural AI with a Deterministic Rule Engine?</strong>
-                            <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0;">
-                                Pure LLMs can hallucinate false threats or miss known malicious regex signatures. Combining 70% neural reasoning with 30% deterministic heuristics grounds the score in verifiable regex patterns while handling creative social engineering.
-                            </p>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 12px;">
-                            <strong style="color: #34d399; font-size: 0.88rem; display: block; margin-bottom: 4px;">Q2: How is user data kept confidential during analysis?</strong>
-                            <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0;">
-                                OCR extraction occurs 100% locally in the browser via Tesseract.js Web Workers. In deterministic mode, zero packets leave the user's browser. When Gemini is queried, only the ephemeral prompt is sent without permanent backend logging.
-                            </p>
-                        </div>
-                        <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.08); padding: 14px; border-radius: 12px;">
-                            <strong style="color: #f472b6; font-size: 0.88rem; display: block; margin-bottom: 4px;">Q3: How does the system avoid false alarms on legitimate bank OTPs?</strong>
-                            <p style="color: #94a3b8; font-size: 0.8rem; line-height: 1.5; margin: 0;">
-                                The signal engine checks for coercive elements. Legitimate bank OTPs state <em>"Do not share this code"</em> (protective intent), whereas phishing messages command <em>"Submit OTP to prevent account suspension within 10 minutes"</em> (coercive intent).
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ScamShield Modal Controller Script (Immediate Global Execution) -->
-    <script>
-        function openScamshieldModal() {
-            var m = document.getElementById('scamshieldModal');
-            if (m) {
-                m.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-        }
-        function closeScamshieldModal() {
-            var m = document.getElementById('scamshieldModal');
-            if (m) {
-                m.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        }
-        window.openScamshieldModal = openScamshieldModal;
-        window.closeScamshieldModal = closeScamshieldModal;
-    </script>
-
-    <!-- macOS In-App Browser Window (AryanOS Safari / Web Inspector) -->
-    <div class="os-browser-backdrop" id="osBrowserModal">
-        <div class="os-browser-window glass">
-            <!-- macOS Window Header & Safari Toolbar -->
-            <div class="os-browser-header">
-                <div class="os-traffic-lights">
-                    <button class="os-dot red" id="osCloseBtn" title="Close Window (Esc)">
-                        <span class="dot-sym">✕</span>
-                    </button>
-                    <button class="os-dot yellow" id="osMinimizeBtn" title="Minimize Window">
-                        <span class="dot-sym">−</span>
-                    </button>
-                    <button class="os-dot green" id="osMaximizeBtn" title="Toggle Fullscreen">
-                        <span class="dot-sym">⤢</span>
-                    </button>
-                </div>
-                
-                <div class="os-nav-controls">
-                    <button class="os-nav-btn" id="osBackBtn" title="Back">‹</button>
-                    <button class="os-nav-btn" id="osForwardBtn" title="Forward">›</button>
-                    <button class="os-nav-btn" id="osReloadBtn" title="Reload">⟳</button>
-                </div>
-
-                <!-- macOS Safari Smart Search & URL Bar -->
-                <div class="os-address-bar">
-                    <span class="os-lock-icon">🔒</span>
-                    <input type="text" class="os-url-input" id="osUrlInput" value="https://www.linkedin.com/in/aryanrajcse" placeholder="Search Google or enter web address...">
-                    <button class="os-go-btn" id="osGoBtn" title="Go / Search">↵</button>
-                </div>
-
-                <!-- Window Actions -->
-                <div class="os-window-actions">
-                    <button class="os-action-btn" id="osCopyUrlBtn" title="Copy URL">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                        </svg>
-                        <span class="action-label">Copy</span>
-                    </button>
-                    <a href="https://www.linkedin.com/in/aryanrajcse" target="_blank" rel="noopener noreferrer" class="os-action-btn highlight" id="osExternalBtn" title="Open in External Tab">
-                        <span>New Tab ↗</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- In-App Web View Content Container -->
-            <div class="os-browser-content" id="osBrowserContent">
-                <!-- Dynamically populated profile/web inspection view via JS -->
-            </div>
-            
-            <!-- macOS Safari Status Bar -->
-            <div class="os-browser-statusbar">
-                <span class="os-status-text" id="osStatusText">Ready • AryanOS v26.4 In-App Engine</span>
-                <span class="os-status-engine">WebKit / Apple Safari Core ⚡</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- macOS Terminal Resume Pop-Up Modal -->
-    <div class="resume-modal-backdrop" id="resumeModal" role="dialog" aria-modal="true" aria-label="Resume Document Preview">
-        <div class="resume-modal-window mac-window">
-            <div class="resume-modal-titlebar">
-                <div class="resume-modal-dots">
-                    <span class="dot red" id="resumeModalCloseDot" title="Close Preview"></span>
-                    <span class="dot yellow" title="Minimize"></span>
-                    <span class="dot green" title="Maximize"></span>
-                </div>
-                <div class="resume-modal-title">
-                    <span class="title-icon">📄</span>
-                    <span class="title-text">Preview — Aryan_Raj_Resume.pdf (High Resolution)</span>
-                </div>
-                <div class="resume-modal-actions">
-                    <a href="resume_aryan_raj.jpg" download="Aryan_Raj_Resume.jpg" class="resume-action-btn primary" title="Download Document">
-                        <span>📥 Download</span>
-                    </a>
-                    <button type="button" class="resume-action-btn close" id="resumeModalCloseBtn" title="Close Window">
-                        ✕
-                    </button>
-                </div>
-            </div>
-            <div class="resume-modal-body">
-                <div class="resume-scroll-container">
-                    <img src="resume_aryan_raj.jpg" alt="Aryan Raj Full Resume Document" class="resume-full-img">
-                </div>
-            </div>
-            <div class="resume-modal-statusbar">
-                <span>📄 Aryan Raj — B.Tech CSE (7th Sem) • Techno India University • 8.0 CGPA</span>
-                <span class="status-zoom">100% Crisp Quality View</span>
-            </div>
-        </div>
-    </div>
-
     <!-- Projects Section -->
     <section class="section" id="projects">
-        <div class="section-container">
+        <div class="section-container" style="max-width: 1280px;">
             <div class="section-header">
                 <span class="section-tag glass">Projects</span>
                 <h2 class="section-title text-3d-subtle">Featured Projects</h2>
@@ -1989,25 +1275,25 @@
                         <span class="mac-tag">Next.js 16 + AI</span>
                     </div>
 
-                    <!-- Clean Standard-Height Preview Image (Real Production Screenshot) -->
-                    <div class="project-image careerpilot-preview" onclick="openCareerpilotModal()" title="Click to View Architecture &amp; User Manual" style="cursor: pointer;">
+                    <!-- Clickable Preview Image linking to dedicated user manual -->
+                    <a href="careerpilot-manual.html" target="_blank" class="project-image careerpilot-preview" title="Open CareerPilot Specifications &amp; Student User Manual">
                         <img src="careerpilot_thumbnail.png" alt="CareerPilot — AI Placement &amp; Resume Analyzer Live App Preview" loading="lazy">
                         <div class="careerpilot-status-badge">
                             <span class="status-pulse-dot"></span>
                             <span>Production Live</span>
                         </div>
                         <div class="project-img-overlay">
-                            <span class="overlay-hint">🔍 View Architecture &amp; Manual ↗</span>
+                            <span class="overlay-hint">View Specs &amp; Manual ↗</span>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Card Body Content -->
                     <div class="project-info">
                         <div class="project-badge-row">
-                            <span class="capstone-badge">🎓 7th Sem Capstone Project</span>
+                            <span class="capstone-badge">B.Tech 7th Sem Capstone</span>
                             <span class="model-badge">Hybrid AI / Offline Fallback</span>
                         </div>
-                        <h3>CareerPilot — AI Placement &amp; Resume Analyzer</h3>
+                        <h3><a href="careerpilot-manual.html" target="_blank" class="project-title-link">CareerPilot — AI Placement &amp; Resume Analyzer</a></h3>
                         <p>Full-stack campus placement suite. Features multi-stage PDF/DOCX resume parsing, 0–100 ATS scoring matrix, JD match algorithm, and role-tailored mock interview prep with hybrid AI &amp; offline fallback.</p>
                         
                         <div class="card-tags">
@@ -2020,20 +1306,17 @@
                         </div>
 
                         <div class="project-links">
-                            <button type="button" class="btn-crystal primary ripple-btn" onclick="openCareerpilotModal()" title="View System Architecture &amp; Student User Manual" style="cursor: pointer;">
-                                <span class="btn-icon">📖</span>
+                            <a href="careerpilot-manual.html" target="_blank" class="btn-crystal primary ripple-btn" title="View System Architecture &amp; Student User Manual">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                                 <span class="btn-text">Specs &amp; Manual</span>
-                                <span class="btn-kbd">⌘M</span>
-                            </button>
+                            </a>
                             <a href="https://careerpilot-green-three.vercel.app" target="_blank" rel="noopener noreferrer" class="btn-crystal secondary ripple-btn" title="Open Live Vercel App">
-                                <span class="btn-icon">🚀</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                                 <span class="btn-text">Live App</span>
-                                <span class="btn-kbd">↗</span>
                             </a>
                             <a href="https://github.com/gmraj11132-tech/careerpilot-ai-resume-analyzer" target="_blank" rel="noopener noreferrer" class="btn-crystal ripple-btn" title="View Source on GitHub">
-                                <span class="btn-icon">🐙</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 <span class="btn-text">Source</span>
-                                <span class="btn-kbd">⌘G</span>
                             </a>
                         </div>
                     </div>
@@ -2052,25 +1335,25 @@
                         <span class="mac-tag" style="background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3);">Dual AI / Threat Intel</span>
                     </div>
 
-                    <!-- Clean Standard-Height Preview Image (Real Production Screenshot) -->
-                    <div class="project-image scamshield-preview" onclick="openScamshieldModal()" title="Click to View Architecture &amp; User Manual" style="cursor: pointer;">
+                    <!-- Clickable Preview Image linking to dedicated user manual -->
+                    <a href="scamshield-manual.html" target="_blank" class="project-image scamshield-preview" title="Open ScamShield Specifications &amp; Forensic User Manual">
                         <img src="scamshield_thumbnail.png" alt="ScamShield AI — Cyber Threat &amp; Fraud Signal Analysis Live App Preview" loading="lazy">
                         <div class="careerpilot-status-badge" style="background: rgba(239, 68, 68, 0.18); border-color: rgba(239, 68, 68, 0.45); color: #f87171;">
                             <span class="status-pulse-dot" style="background: #ef4444; box-shadow: 0 0 8px #ef4444;"></span>
                             <span>Production Live</span>
                         </div>
                         <div class="project-img-overlay">
-                            <span class="overlay-hint" style="border-color: rgba(239, 68, 68, 0.45); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.25);">🔍 View Architecture &amp; Manual ↗</span>
+                            <span class="overlay-hint" style="border-color: rgba(239, 68, 68, 0.45); box-shadow: 0 8px 20px rgba(239, 68, 68, 0.25);">View Specs &amp; Manual ↗</span>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Card Body Content -->
                     <div class="project-info">
                         <div class="project-badge-row">
-                            <span class="capstone-badge" style="background: rgba(239, 68, 68, 0.12); color: #fca5a5; border-color: rgba(239, 68, 68, 0.3);">🛡️ Cybersecurity SaaS</span>
+                            <span class="capstone-badge" style="background: rgba(239, 68, 68, 0.12); color: #fca5a5; border-color: rgba(239, 68, 68, 0.3);">Cybersecurity Threat Intel</span>
                             <span class="model-badge" style="background: rgba(245, 158, 11, 0.1); color: #fbbf24; border-color: rgba(245, 158, 11, 0.3);">Gemini 2.5 + Tesseract.js</span>
                         </div>
-                        <h3>ScamShield AI — Dual-Engine Cyber Threat Analysis</h3>
+                        <h3><a href="scamshield-manual.html" target="_blank" class="project-title-link">ScamShield AI — Dual-Engine Cyber Threat Analysis</a></h3>
                         <p>Production cybersecurity platform analyzing deceptive SMS, spoofed emails, malicious typosquatting URLs, and fraudulent screenshots. Features a hybrid dual-engine (Gemini 2.5 Flash + offline deterministic rules), in-browser OCR, verbatim flagged annotations, and safe verification protocols.</p>
                         
                         <div class="card-tags">
@@ -2083,20 +1366,17 @@
                         </div>
 
                         <div class="project-links">
-                            <button type="button" class="btn-crystal primary ripple-btn open-scamshield-modal-btn" onclick="openScamshieldModal()" title="View System Architecture &amp; Forensic User Manual" style="cursor: pointer;">
-                                <span class="btn-icon">📖</span>
+                            <a href="scamshield-manual.html" target="_blank" class="btn-crystal primary ripple-btn" title="View System Architecture &amp; Forensic User Manual">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                                 <span class="btn-text">Specs &amp; Manual</span>
-                                <span class="btn-kbd">⌘M</span>
-                            </button>
+                            </a>
                             <a href="https://gmraj11132-tech.github.io/scamshield-ai/" target="_blank" rel="noopener noreferrer" class="btn-crystal secondary ripple-btn" title="Open Live ScamShield AI Web App">
-                                <span class="btn-icon">🚀</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                                 <span class="btn-text">Live App</span>
-                                <span class="btn-kbd">↗</span>
                             </a>
                             <a href="https://github.com/gmraj11132-tech/scamshield-ai" target="_blank" rel="noopener noreferrer" class="btn-crystal ripple-btn" title="View Source on GitHub">
-                                <span class="btn-icon">🐙</span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                                 <span class="btn-text">Source</span>
-                                <span class="btn-kbd">⌘G</span>
                             </a>
                         </div>
                     </div>
@@ -2107,15 +1387,15 @@
 
     <!-- Resume & Data Science / Analytics Career Section -->
     <section class="section" id="resume">
-        <div class="section-container">
+        <div class="section-container" style="max-width: 960px;">
             <div class="section-header">
                 <span class="section-tag glass">Curriculum Vitae</span>
-                <h2 class="section-title text-3d-subtle">Resume & Career Focus</h2>
+                <h2 class="section-title text-3d-subtle">Resume &amp; Career Focus</h2>
                 <div class="section-line"></div>
             </div>
 
-            <!-- Resume macOS Deck -->
-            <div class="resume-deck glass-card reveal-up">
+            <!-- Resume macOS Deck (Centered Large Window Panel) -->
+            <div class="resume-deck glass-card reveal-up" style="max-width: 860px; margin: 0 auto; overflow: hidden; border-radius: 18px;">
                 <div class="mac-window-bar">
                     <div class="mac-dots">
                         <span class="mac-dot red"></span>
@@ -2126,73 +1406,44 @@
                     <span class="mac-tag">Verified Document (2026)</span>
                 </div>
 
-                <div class="resume-grid">
-                    <!-- Left: Resume Interactive Preview -->
-                    <div class="resume-preview-col">
-                        <div class="resume-sheet-wrap" id="resumeTriggerWrap" title="Click to View in Terminal Pop-up">
-                            <img src="resume_aryan_raj.jpg" alt="Aryan Raj Professional Resume" class="resume-thumb-img">
-                            <div class="resume-sheet-overlay">
-                                <span class="resume-overlay-badge">🔍 Click to Open in Terminal Viewer</span>
-                            </div>
+                <div class="resume-deck-centered-content" style="padding: 28px 24px 32px; display: flex; flex-direction: column; align-items: center; text-align: center;">
+                    <!-- Candidate Profile Bio Card -->
+                    <div class="resume-header-box" style="margin-bottom: 24px; max-width: 720px; width: 100%;">
+                        <span class="resume-badge">B.Tech CSE • 7th Semester</span>
+                        <h3 class="resume-candidate-name">ARYAN RAJ</h3>
+                        <p class="resume-candidate-sub">Aspiring Data Scientist • Data Analyst • Software Engineer</p>
+                        <div class="resume-quick-meta" style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 14px;">
+                            <span class="meta-pill" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; color: #cbd5e1;">Techno India University (8.0 CGPA)</span>
+                            <span class="meta-pill" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; color: #cbd5e1;">12 Verified Certifications (IIT BHU, IBM, Tata, Siemens)</span>
+                            <span class="meta-pill" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 5px 12px; border-radius: 8px; font-size: 0.8rem; color: #cbd5e1;">Noida, Alpha 2, India</span>
                         </div>
                     </div>
 
-                    <!-- Right: Quick Specs & Direct Download Actions -->
-                    <div class="resume-details-col">
-                        <div class="resume-header-box">
-                            <span class="resume-badge">B.Tech CSE • 7th Semester</span>
-                            <h3 class="resume-candidate-name">ARYAN RAJ</h3>
-                            <p class="resume-candidate-sub">Aspiring Data Scientist • Data Analyst • Software Engineer</p>
+                    <!-- Centered Resume Preview Sheet -->
+                    <div class="resume-sheet-wrap" id="resumeTriggerWrap" title="Click to View in Terminal Pop-up" style="max-width: 600px; width: 100%; margin: 0 auto 26px;">
+                        <img src="resume_aryan_raj.jpg" alt="Aryan Raj Professional Resume Document" class="resume-thumb-img" style="height: auto; max-height: 480px; width: 100%; object-fit: contain; background: #000000;">
+                        <div class="resume-sheet-overlay">
+                            <span class="resume-overlay-badge">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 6px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                                Click to Open Fullscreen Terminal Viewer
+                            </span>
                         </div>
+                    </div>
 
-                        <div class="resume-meta-list">
-                            <div class="meta-item">
-                                <span class="meta-icon">🏛️</span>
-                                <div>
-                                    <div class="meta-label">University</div>
-                                    <div class="meta-value">Techno India University</div>
-                                </div>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-icon">📊</span>
-                                <div>
-                                    <div class="meta-label">Academic Score</div>
-                                    <div class="meta-value">8.0 / 10 CGPA</div>
-                                </div>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-icon">📍</span>
-                                <div>
-                                    <div class="meta-label">Current Location</div>
-                                    <div class="meta-value">Noida, Alpha 2, India</div>
-                                </div>
-                            </div>
-                            <div class="meta-item">
-                                <span class="meta-icon">📜</span>
-                                <div>
-                                    <div class="meta-label">Industry Credentials</div>
-                                    <div class="meta-value">12 Verified Certifications (IIT BHU, IBM, Tata, Siemens)</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="resume-actions-group">
-                            <a href="resume_aryan_raj.jpg" download="Aryan_Raj_Resume.jpg" class="btn-crystal primary ripple-btn" id="resumeDownloadBtn">
-                                <span class="btn-icon">📥</span>
-                                <span class="btn-text">Download Official Resume</span>
-                                <span class="btn-kbd">⌘D</span>
-                            </a>
-                            <button type="button" class="btn-crystal secondary ripple-btn" id="resumeOpenModalBtn">
-                                <span class="btn-icon">🖥️</span>
-                                <span class="btn-text">Terminal Pop-up Viewer</span>
-                                <span class="btn-kbd">Space</span>
-                            </button>
-                            <a href="about.html" class="btn-crystal ripple-btn">
-                                <span class="btn-icon">👤</span>
-                                <span class="btn-text">Read Full Biography &amp; Dossier</span>
-                                <span class="btn-kbd">↗</span>
-                            </a>
-                        </div>
+                    <!-- Centered Actions Group -->
+                    <div class="resume-actions-group" style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 680px;">
+                        <a href="resume_aryan_raj.jpg" download="Aryan_Raj_Resume.jpg" class="btn-crystal primary ripple-btn" id="resumeDownloadBtn">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                            <span class="btn-text">Download Official Resume</span>
+                        </a>
+                        <button type="button" class="btn-crystal secondary ripple-btn" id="resumeOpenModalBtn">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                            <span class="btn-text">Terminal Pop-up Viewer</span>
+                        </button>
+                        <a href="about.html" class="btn-crystal ripple-btn">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                            <span class="btn-text">Read Full Biography &amp; Dossier ↗</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -2211,7 +1462,7 @@
 
                 <div class="ds-card-body">
                     <div class="ds-header-block">
-                        <div class="ds-tag-badge">🎯 Target Roles: Data Scientist • Data Analyst • Machine Learning Engineer</div>
+                        <div class="ds-tag-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:4px;"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg> Target Roles: Data Scientist • Data Analyst • Machine Learning Engineer</div>
                         <h3 class="ds-title">Specialization in Data Science &amp; Business Intelligence Analytics</h3>
                         <p class="ds-desc">
                             Passionate about decoding complex datasets to discover high-value business insights and engineering automated machine learning pipelines. Combining rigorous mathematical reasoning with modern Python analytics, relational SQL databases, and executive data storytelling.
@@ -2220,22 +1471,22 @@
 
                     <div class="ds-pillars-grid">
                         <div class="ds-pillar">
-                            <div class="pillar-icon">🐍</div>
+                            <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
                             <h4>Python for Data Science &amp; ML</h4>
                             <p>Hands-on proficiency in NumPy, Pandas, Scikit-Learn, data cleaning, automated feature scaling, and predictive classification/regression pipelines (Certified by IBM &amp; trained at NV Enterprises).</p>
                         </div>
                         <div class="ds-pillar">
-                            <div class="pillar-icon">🗄️</div>
+                            <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></div>
                             <h4>Advanced SQL &amp; Relational Databases</h4>
                             <p>Expertise in complex multi-table joins, subqueries, aggregations, window functions, and database schema normalization (DBMS) for high-performance enterprise querying.</p>
                         </div>
                         <div class="ds-pillar">
-                            <div class="pillar-icon">📊</div>
+                            <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></div>
                             <h4>Executive Data Visualisation</h4>
                             <p>Translating quantitative trends into intuitive C-suite dashboards and charts. Experience with data storytelling principles and business intelligence metrics (Certified by Tata via Forage).</p>
                         </div>
                         <div class="ds-pillar">
-                            <div class="pillar-icon">🤖</div>
+                            <div class="pillar-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg></div>
                             <h4>AI &amp; Predictive Modeling Pipelines</h4>
                             <p>Building predictive algorithms, integrating pre-trained transformer APIs, and developing end-to-end data pipelines from ingestion to automated prediction reports.</p>
                         </div>
@@ -2244,7 +1495,7 @@
                     <!-- Upcoming & Active Data Science Projects -->
                     <div class="ds-projects-banner">
                         <div class="ds-banner-title">
-                            <span>🚀</span>
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:4px;"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                             <span>Dedicated Data Science &amp; Analytics Projects</span>
                         </div>
                         <div class="ds-project-chips">
@@ -2279,28 +1530,28 @@
                         conversation. Feel free to reach out!</p>
                     <div class="contact-items">
                         <a href="mailto:aryanjaiswal11132@gmail.com" class="contact-item glass-card">
-                            <div class="contact-icon">📧</div>
+                            <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
                             <div>
                                 <span class="contact-label">Email</span>
                                 <span class="contact-value">aryanjaiswal11132@gmail.com</span>
                             </div>
                         </a>
                         <a href="https://www.linkedin.com/in/aryanrajcse" class="contact-item glass-card os-browser-trigger" data-url="https://www.linkedin.com/in/aryanrajcse" data-title="LinkedIn — Aryan Raj">
-                            <div class="contact-icon">💼</div>
+                            <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></div>
                             <div>
                                 <span class="contact-label">LinkedIn</span>
                                 <span class="contact-value">linkedin.com/in/aryanrajcse</span>
                             </div>
                         </a>
                         <a href="https://github.com/gmraj11132-tech" class="contact-item glass-card os-browser-trigger" data-url="https://github.com/gmraj11132-tech" data-title="GitHub — gmraj11132-tech">
-                            <div class="contact-icon">🐙</div>
+                            <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></div>
                             <div>
                                 <span class="contact-label">GitHub</span>
                                 <span class="contact-value">github.com/gmraj11132-tech</span>
                             </div>
                         </a>
                         <a href="tel:+918340177620" class="contact-item glass-card">
-                            <div class="contact-icon">📱</div>
+                            <div class="contact-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
                             <div>
                                 <span class="contact-label">Phone</span>
                                 <span class="contact-value">+91 8340177620</span>
@@ -2343,7 +1594,7 @@
                             <div class="input-line"></div>
                         </div>
                         <button type="submit" class="btn-crystal primary ripple-btn form-submit" id="formSubmitBtn">
-                            <span class="btn-icon">📨</span>
+                            <span class="btn-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></span>
                             <span class="btn-text">Send Direct to Aryan's Gmail</span>
                             <span class="btn-kbd">⌘↵</span>
                         </button>
@@ -2358,7 +1609,7 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <span class="brand-icon">⟨/⟩</span>
-                <span>Designed & Built with ❤️ for ARYAN RAJ</span>
+                <span>Designed &amp; Engineered with Precision for ARYAN RAJ</span>
             </div>
             <div class="footer-socials">
                 <a href="https://github.com/gmraj11132-tech" class="social-link ripple-btn os-browser-trigger" data-url="https://github.com/gmraj11132-tech" data-title="GitHub — gmraj11132-tech" aria-label="GitHub">
@@ -2377,6 +1628,101 @@
             <p class="footer-copy">© 2026 ARYAN RAJ. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- macOS In-App Browser Window (AryanOS Safari / Web Inspector) -->
+    <div class="os-browser-backdrop" id="osBrowserModal">
+        <div class="os-browser-window glass">
+            <!-- macOS Window Header & Safari Toolbar -->
+            <div class="os-browser-header">
+                <div class="os-traffic-lights">
+                    <button class="os-dot red" id="osCloseBtn" title="Close Window (Esc)">
+                        <span class="dot-sym">✕</span>
+                    </button>
+                    <button class="os-dot yellow" id="osMinimizeBtn" title="Minimize Window">
+                        <span class="dot-sym">−</span>
+                    </button>
+                    <button class="os-dot green" id="osMaximizeBtn" title="Toggle Fullscreen">
+                        <span class="dot-sym">⤢</span>
+                    </button>
+                </div>
+                
+                <div class="os-nav-controls">
+                    <button class="os-nav-btn" id="osBackBtn" title="Back">‹</button>
+                    <button class="os-nav-btn" id="osForwardBtn" title="Forward">›</button>
+                    <button class="os-nav-btn" id="osReloadBtn" title="Reload">⟳</button>
+                </div>
+
+                <!-- macOS Safari Smart Search & URL Bar -->
+                <div class="os-address-bar">
+                    <span class="os-lock-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+                    <input type="text" class="os-url-input" id="osUrlInput" value="https://www.linkedin.com/in/aryanrajcse" placeholder="Search Google or enter web address...">
+                    <button class="os-go-btn" id="osGoBtn" title="Go / Search">↵</button>
+                </div>
+
+                <!-- Window Actions -->
+                <div class="os-window-actions">
+                    <button class="os-action-btn" id="osCopyUrlBtn" title="Copy URL">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                        </svg>
+                        <span class="action-label">Copy</span>
+                    </button>
+                    <a href="https://www.linkedin.com/in/aryanrajcse" target="_blank" rel="noopener noreferrer" class="os-action-btn highlight" id="osExternalBtn" title="Open in External Tab">
+                        <span>New Tab ↗</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- In-App Web View Content Container -->
+            <div class="os-browser-content" id="osBrowserContent">
+                <!-- Dynamically populated profile/web inspection view via JS -->
+            </div>
+            
+            <!-- macOS Safari Status Bar -->
+            <div class="os-browser-statusbar">
+                <span class="os-status-text" id="osStatusText">Ready • AryanOS v26.4 In-App Engine</span>
+                <span class="os-status-engine">WebKit / Apple Safari Core</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- macOS Terminal Resume Pop-Up Modal -->
+    <div class="resume-modal-backdrop" id="resumeModal" role="dialog" aria-modal="true" aria-label="Resume Document Preview">
+        <div class="resume-modal-window mac-window">
+            <div class="resume-modal-titlebar">
+                <div class="resume-modal-dots">
+                    <span class="dot red" id="resumeModalCloseDot" title="Close Preview"></span>
+                    <span class="dot yellow" title="Minimize"></span>
+                    <span class="dot green" title="Maximize"></span>
+                </div>
+                <div class="resume-modal-title">
+                    <span class="title-icon">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    </span>
+                    <span class="title-text">Preview — Aryan_Raj_Resume.pdf (High Resolution)</span>
+                </div>
+                <div class="resume-modal-actions">
+                    <a href="resume_aryan_raj.jpg" download="Aryan_Raj_Resume.jpg" class="resume-action-btn primary" title="Download Document">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span>Download</span>
+                    </a>
+                    <button type="button" class="resume-action-btn close" id="resumeModalCloseBtn" title="Close Window">
+                        ✕
+                    </button>
+                </div>
+            </div>
+            <div class="resume-modal-body">
+                <div class="resume-scroll-container">
+                    <img src="resume_aryan_raj.jpg" alt="Aryan Raj Full Resume Document" class="resume-full-img">
+                </div>
+            </div>
+            <div class="resume-modal-statusbar">
+                <span>Aryan Raj — B.Tech CSE (7th Sem) • Techno India University • 8.0 CGPA</span>
+                <span class="status-zoom">100% Crisp Quality View</span>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>

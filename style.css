@@ -6,22 +6,22 @@
 :root {
     /* Pure AMOLED Dark Theme (Default) */
     --bg-primary: #000000;
-    --bg-secondary: #050508;
-    --bg-tertiary: #090a14;
+    --bg-secondary: #000000;
+    --bg-tertiary: #050505;
     --text-primary: #ffffff;
-    --text-secondary: #a9afc3;
-    --text-muted: #666c82;
+    --text-secondary: #cbd5e1;
+    --text-muted: #94a3b8;
     --accent-primary: #7562ff;
     --accent-secondary: #00f5c4;
     --accent-tertiary: #ff2d78;
     --accent-amber: #ffb703;
-    --glass-bg: rgba(8, 9, 16, 0.76);
+    --glass-bg: rgba(10, 10, 10, 0.88);
     --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.85);
+    --glass-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
     --glass-blur: 24px;
-    --card-bg: rgba(9, 10, 18, 0.82);
-    --card-border: rgba(255, 255, 255, 0.07);
-    --card-hover-border: rgba(117, 98, 255, 0.45);
+    --card-bg: rgba(10, 10, 10, 0.92);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-hover-border: rgba(0, 245, 196, 0.45);
     --gradient-primary: linear-gradient(135deg, #7562ff 0%, #00f5c4 100%);
     --gradient-secondary: linear-gradient(135deg, #ff2d78 0%, #7562ff 100%);
     --gradient-tertiary: linear-gradient(135deg, #00f5c4 0%, #00b4d8 100%);
@@ -108,16 +108,15 @@ img { max-width: 100%; height: auto; display: block; }
     z-index: 0;
     pointer-events: none;
     overflow: hidden;
-    background-color: #030407;
+    background-color: #000000;
 }
 
 .ambient-glow {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle 850px at 50% -80px, rgba(117, 98, 255, 0.12), transparent 70%),
-        radial-gradient(circle 650px at 10% 25%, rgba(0, 245, 196, 0.05), transparent 60%),
-        radial-gradient(circle 750px at 90% 75%, rgba(139, 92, 246, 0.07), transparent 70%);
+        radial-gradient(circle 900px at 50% -80px, rgba(255, 255, 255, 0.025), transparent 70%),
+        radial-gradient(circle 600px at 15% 25%, rgba(0, 245, 196, 0.025), transparent 60%);
 }
 
 .grid-mesh {
@@ -3722,8 +3721,8 @@ img { max-width: 100%; height: auto; display: block; }
 .boot-screen {
     position: fixed;
     inset: 0;
-    z-index: 999999;
-    background: #040508;
+    z-index: 9999999 !important;
+    background: #000000 !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3731,20 +3730,14 @@ img { max-width: 100%; height: auto; display: block; }
     opacity: 1;
     visibility: visible;
     transform: scale(1);
-    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-                visibility 0.5s;
-    animation: bootFailsafe 5.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes bootFailsafe {
-    0%, 85% { opacity: 1; visibility: visible; }
-    100% { opacity: 0; visibility: hidden; pointer-events: none; }
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.4s;
 }
 
 .boot-screen.dismissed {
     opacity: 0 !important;
-    transform: scale(1.04) !important;
+    transform: scale(1.03) !important;
     visibility: hidden !important;
     pointer-events: none !important;
 }
@@ -3752,11 +3745,11 @@ img { max-width: 100%; height: auto; display: block; }
 .boot-terminal {
     width: 100%;
     max-width: 540px;
-    background: rgba(13, 17, 23, 0.95);
-    border: 1px solid rgba(56, 189, 248, 0.3);
+    background: rgba(10, 10, 10, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 14px;
-    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9),
-                0 0 35px rgba(56, 189, 248, 0.15);
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95),
+                0 0 35px rgba(0, 245, 196, 0.1);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     overflow: hidden;
@@ -3942,6 +3935,19 @@ img { max-width: 100%; height: auto; display: block; }
     border-radius: 18px;
     overflow: hidden;
     padding: 0;
+    max-width: 860px;
+    margin: 0 auto;
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 25px 65px rgba(0, 0, 0, 0.95);
+}
+
+.resume-deck-centered-content {
+    padding: 30px 24px 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .resume-grid {
@@ -3956,10 +3962,10 @@ img { max-width: 100%; height: auto; display: block; }
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 245, 196, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     cursor: pointer;
-    background: #090d14;
+    background: #000000;
     transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
 }
 
@@ -4587,22 +4593,58 @@ img { max-width: 100%; height: auto; display: block; }
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 28px;
     align-items: stretch;
+    width: 100%;
 }
 
 .two-projects-grid .project-card {
     display: flex;
     flex-direction: column;
     height: 100%;
+    background: rgba(10, 10, 10, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    overflow: hidden;
 }
 
 .two-projects-grid .project-card .project-info {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    padding: 24px;
 }
 
 .two-projects-grid .project-card .project-links {
     margin-top: auto;
+    display: grid !important;
+    grid-template-columns: 1.25fr 1fr 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.two-projects-grid .project-links .btn-crystal {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 9px 8px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    font-size: 0.78rem !important;
+    font-weight: 600 !important;
+    white-space: nowrap !important;
+    box-sizing: border-box !important;
+    border-radius: 8px !important;
+}
+
+.project-title-link {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+.project-title-link:hover {
+    color: var(--accent-secondary);
 }
 
 .scamshield-card {
@@ -4611,13 +4653,20 @@ img { max-width: 100%; height: auto; display: block; }
 
 .scamshield-card:hover {
     border-color: rgba(239, 68, 68, 0.45);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.7), 0 0 35px rgba(239, 68, 68, 0.18);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 35px rgba(239, 68, 68, 0.18);
 }
 
 @media (max-width: 950px) {
     .two-projects-grid {
         grid-template-columns: 1fr;
         gap: 24px;
+    }
+}
+
+@media (max-width: 540px) {
+    .two-projects-grid .project-card .project-links {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
     }
 }
 
@@ -4925,26 +4974,24 @@ img { max-width: 100%; height: auto; display: block; }
     .manual-step-grid {
         grid-template-columns: 1fr;
     }
-    .project-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-    }
-    .project-links .btn-crystal {
-        flex: 1 1 calc(50% - 6px);
-        min-width: 110px;
-        justify-content: center;
-        padding: 8px 10px;
-        font-size: 0.78rem;
+    .two-projects-grid .project-card .project-links {
+        display: grid !important;
+        grid-template-columns: 1.25fr 1fr 1fr !important;
+        gap: 8px !important;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 580px) {
     .careerpilot-preview {
         height: 180px;
     }
-    .project-links .btn-crystal {
-        flex: 1 1 100%;
+    .two-projects-grid .project-card .project-links {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+    .two-projects-grid .project-links .btn-crystal {
+        width: 100% !important;
+        flex: none !important;
     }
     .project-modal-title span:nth-child(2) {
         max-width: 160px;

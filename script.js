@@ -110,23 +110,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleIcon = themeToggle.querySelector('.toggle-icon');
     const html = document.documentElement;
 
+    const moonSvg = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>`;
+    const sunSvg = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
+
     // Load saved theme
     const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
     html.setAttribute('data-theme', savedTheme);
-    toggleIcon.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+    if (toggleIcon) toggleIcon.innerHTML = savedTheme === 'dark' ? moonSvg : sunSvg;
 
     themeToggle.addEventListener('click', () => {
         const current = html.getAttribute('data-theme');
         const next = current === 'dark' ? 'light' : 'dark';
         html.setAttribute('data-theme', next);
-        toggleIcon.textContent = next === 'dark' ? '🌙' : '☀️';
+        if (toggleIcon) toggleIcon.innerHTML = next === 'dark' ? moonSvg : sunSvg;
         localStorage.setItem('portfolio-theme', next);
 
         // Animate icon
-        toggleIcon.style.transform = 'rotate(360deg) scale(1.2)';
-        setTimeout(() => {
-            toggleIcon.style.transform = '';
-        }, 500);
+        if (toggleIcon) {
+            toggleIcon.style.transform = 'rotate(360deg) scale(1.2)';
+            setTimeout(() => {
+                toggleIcon.style.transform = '';
+            }, 500);
+        }
     });
 
     // ─── Scroll Reveal Animation ───
@@ -299,13 +304,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Input Validation & Security Sanitization
             if (!name || !email || !message) {
-                showFormStatus('error', '⚠️ Please complete Name, Email, and Message.');
+                showFormStatus('error', 'Please complete Name, Email, and Message.');
                 return;
             }
 
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(email)) {
-                showFormStatus('error', '⚠️ Please enter a valid email address.');
+                showFormStatus('error', 'Please enter a valid email address.');
                 return;
             }
 
@@ -343,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok && (data.success === 'true' || data.success === true || data.message)) {
                     // Success feedback
-                    showFormStatus('success', '🎉 Message delivered directly to Aryan Raj (aryanjaiswal11132@gmail.com)! Expect a response within 24 hours.');
+                    showFormStatus('success', 'Message delivered directly to Aryan Raj (aryanjaiswal11132@gmail.com). Expect a response within 24 hours.');
                     formSubmitBtn.innerHTML = `
                         <span class="btn-icon">✓</span>
                         <span class="btn-text">Delivered to Gmail</span>
@@ -635,13 +640,13 @@ document.addEventListener('DOMContentLoaded', () => {
                         <img src="${data.image}" alt="${data.title}" class="modal-cert-img" onclick="window.open('${data.image}', '_blank')">
                     </div>
                     <p style="text-align:center; margin-top: 10px; font-size: 0.78rem; color: var(--text-muted);">
-                        💡 Click image to view in high-resolution tab
+                        Click image to view in high-resolution tab
                     </p>
                 </div>
                 <div class="modal-info-col">
                     <span class="cred-category-badge badge-ai" style="margin-bottom:12px; display:inline-block;">${data.category}</span>
                     <h2>${data.title}</h2>
-                    <span class="modal-issuer-tag">🏛️ ${data.issuer}</span>
+                    <span class="modal-issuer-tag">${data.issuer}</span>
                     
                     <div class="cred-meta" style="margin-bottom: 20px;">
                         <div class="meta-row">
@@ -658,21 +663,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
 
-                    <h4 class="modal-section-title">📌 Brief Overview</h4>
+                    <h4 class="modal-section-title">Brief Overview</h4>
                     <p class="modal-desc-text">${data.summary}</p>
 
-                    <h4 class="modal-section-title">🧠 Key Skills Acquired & Industry Work</h4>
+                    <h4 class="modal-section-title">Key Skills Acquired &amp; Industry Work</h4>
                     <ul class="modal-highlights-list">
                         ${data.learnings.map(item => `<li>${item}</li>`).join('')}
                     </ul>
 
-                    <h4 class="modal-section-title">🛠️ Applied Tech Stack & Frameworks</h4>
+                    <h4 class="modal-section-title">Applied Tech Stack &amp; Frameworks</h4>
                     <div class="skill-badges" style="margin-bottom: 20px;">
                         ${data.skills.map(s => `<span class="badge">${s}</span>`).join('')}
                     </div>
 
                     <div style="padding: 12px; border-radius: 12px; background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.2); font-size: 0.82rem; color: var(--accent-secondary);">
-                        ✔️ <strong>Recruiter Verification:</strong> ${data.verifiable}
+                        <span style="color:#00f5c4; font-weight:700;">[Verified]</span> <strong>Recruiter Verification:</strong> ${data.verifiable}
                     </div>
                 </div>
             </div>
@@ -718,89 +723,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ─── CareerPilot Project Deep Dive & User Manual Modal ───
-    const careerpilotModal = document.getElementById('careerpilotModal');
+    // ─── CareerPilot & ScamShield Specifications & Manual Navigators ───
     function openCareerpilotModal() {
-        const modal = careerpilotModal || document.getElementById('careerpilotModal');
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        window.open('careerpilot-manual.html', '_blank');
     }
     function closeCareerpilotModal() {
-        const modal = careerpilotModal || document.getElementById('careerpilotModal');
-        if (modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        // Standalone manual page opened in separate tab
     }
     window.openCareerpilotModal = openCareerpilotModal;
     window.closeCareerpilotModal = closeCareerpilotModal;
 
-    document.querySelectorAll('.open-careerpilot-modal-btn, .careerpilot-preview, [onclick*="openCareerpilotModal"]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            openCareerpilotModal();
-        });
-    });
-
-    document.querySelectorAll('.close-careerpilot-modal').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeCareerpilotModal();
-        });
-    });
-
-    if (careerpilotModal) {
-        careerpilotModal.addEventListener('click', (e) => {
-            if (e.target === careerpilotModal) {
-                closeCareerpilotModal();
-            }
-        });
-    }
-
-    // ─── ScamShield AI Project Deep Dive & User Manual Modal ───
-    const scamshieldModal = document.getElementById('scamshieldModal');
     function openScamshieldModal() {
-        const modal = scamshieldModal || document.getElementById('scamshieldModal');
-        if (modal) {
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
+        window.open('scamshield-manual.html', '_blank');
     }
     function closeScamshieldModal() {
-        const modal = scamshieldModal || document.getElementById('scamshieldModal');
-        if (modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-        }
+        // Standalone manual page opened in separate tab
     }
     window.openScamshieldModal = openScamshieldModal;
     window.closeScamshieldModal = closeScamshieldModal;
-
-    document.querySelectorAll('.open-scamshield-modal-btn, .scamshield-preview, [onclick*="openScamshieldModal"]').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            openScamshieldModal();
-        });
-    });
-
-    document.querySelectorAll('.close-scamshield-modal').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            closeScamshieldModal();
-        });
-    });
-
-    if (scamshieldModal) {
-        scamshieldModal.addEventListener('click', (e) => {
-            if (e.target === scamshieldModal) {
-                closeScamshieldModal();
-            }
-        });
-    }
 
 
     // ─── Close Mobile Menu on Outside Tap ───
@@ -844,7 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <span class="code-class">AryanRaj</span> <span class="code-var">dev</span> = <span class="code-keyword">new</span> <span class="code-class">AryanRaj</span>();
         <span class="code-var">dev</span>.<span class="code-method">setAvailableForHire</span>(<span class="code-keyword">true</span>);
         <span class="code-class">System</span>.out.<span class="code-method">println</span>(
-            <span class="code-string">"🚀 Ready to engineer systems!"</span>
+            <span class="code-string">"System online: Ready to engineer scalable solutions."</span>
         );
     }
 }`;
@@ -894,15 +834,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 ideTerminal.style.display = 'block';
                 ideTerminal.innerHTML = `
                     <div class="terminal-bar">
-                        <span class="term-title">🖥️ Run: AryanRaj.main()</span>
+                        <span class="term-title">Run: AryanRaj.main()</span>
                         <span class="term-status"><span class="status-pulse"></span> BUILD SUCCESSFUL</span>
                     </div>
                     <div class="terminal-content">
                         <div class="term-line cmd">&gt; /usr/bin/javac -d bin src/com/aryan/portfolio/AryanRaj.java</div>
                         <div class="term-line cmd">&gt; /usr/bin/java -cp bin com.aryan.portfolio.AryanRaj</div>
-                        <div class="term-line success">✔ [JVM 21.0.2] Build finished in 0.098s</div>
-                        <div class="term-line output">🚀 Ready to engineer scalable systems!</div>
-                        <div class="term-line info">📍 Aryan Raj | B.Tech CSE (7th Sem) | 12 Verified Credentials | CGPA 8.0</div>
+                        <div class="term-line success">[OK] [JVM 21.0.2] Build finished in 0.098s</div>
+                        <div class="term-line output">System online: Ready to engineer scalable solutions.</div>
+                        <div class="term-line info">&gt; Aryan Raj | B.Tech CSE (7th Sem) | 12 Verified Credentials | CGPA 8.0</div>
                         <div class="term-line exit">Process finished with exit code 0</div>
                     </div>
                 `;
@@ -988,11 +928,11 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                         <h1 class="li-name">ARYAN RAJ <span class="li-badge">Verified Student</span></h1>
-                        <p class="li-headline">B.Tech Computer Science & Engineering (4th Year, 7th Sem) | Full-Stack & AI Developer | Aspiring Software Engineer / GET</p>
+                        <p class="li-headline">B.Tech Computer Science &amp; Engineering (4th Year, 7th Sem) | Full-Stack &amp; AI Developer | Aspiring Software Engineer / GET</p>
                         <div class="li-meta">
-                            <span>📍 Noida, Alpha 2, India</span>
+                            <span>Noida, Alpha 2, India</span>
                             <span class="li-connections">500+ connections</span>
-                            <span>🏛️ Techno India University</span>
+                            <span>Techno India University</span>
                         </div>
                     </div>
                 </div>
@@ -1001,7 +941,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="li-card" style="padding: 22px;">
                     <h3 class="li-section-title">About</h3>
                     <p style="color: #c9d1d9; font-size: 0.92rem; line-height: 1.7;">
-                        Passionate Computer Science & Engineering student currently pursuing 4th Year (7th Sem). Skilled in Python, Java, C++, DSA, DBMS (SQL), Full-Stack Web Development, and AI API integrations. Recipient of 12+ verified credentials from IBM, Siemens, Tata, HP, Accenture, and Government of India.
+                        Passionate Computer Science &amp; Engineering student currently pursuing 4th Year (7th Sem). Skilled in Python, Java, C++, DSA, DBMS (SQL), Full-Stack Web Development, and AI API integrations. Recipient of 12+ verified credentials from IBM, Siemens, Tata, HP, Accenture, and Government of India.
                     </p>
                 </div>
 
@@ -1009,7 +949,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="li-card" style="padding: 22px;">
                     <h3 class="li-section-title">Education</h3>
                     <div class="li-exp-item">
-                        <div class="li-exp-icon">🎓</div>
+                        <div class="li-exp-icon" style="font-size:0.75rem; font-weight:700; color:var(--accent-secondary);">BTech</div>
                         <div>
                             <div class="li-exp-role">Techno India University</div>
                             <div class="li-exp-company">Bachelor of Technology - BTech, Computer Science and Engineering (8.0 CGPA)</div>
@@ -1017,7 +957,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </div>
                     <div class="li-exp-item">
-                        <div class="li-exp-icon">🏫</div>
+                        <div class="li-exp-icon" style="font-size:0.75rem; font-weight:700; color:var(--accent-primary);">CBSE</div>
                         <div>
                             <div class="li-exp-role">SSVM School</div>
                             <div class="li-exp-company">Class 12th CBSE (Science Stream) - 64.8% | Class 10th CBSE - 72.4%</div>
@@ -1028,28 +968,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 <!-- Experience Card -->
                 <div class="li-card" style="padding: 22px;">
-                    <h3 class="li-section-title">Experience & Internships</h3>
+                    <h3 class="li-section-title">Experience &amp; Internships</h3>
                     <div class="li-exp-item">
-                        <div class="li-exp-icon">🔬</div>
+                        <div class="li-exp-icon" style="font-size:0.75rem; font-weight:700; color:var(--accent-secondary);">AI</div>
                         <div>
-                            <div class="li-exp-role">AI & Machine Learning Virtual Internship</div>
+                            <div class="li-exp-role">AI &amp; Machine Learning Virtual Internship</div>
                             <div class="li-exp-company">IIT BHU Varanasi (Technex '24)</div>
                             <div class="li-exp-date">Issued: 2024</div>
                         </div>
                     </div>
                     <div class="li-exp-item">
-                        <div class="li-exp-icon">💻</div>
+                        <div class="li-exp-icon" style="font-size:0.75rem; font-weight:700; color:var(--accent-primary);">Web</div>
                         <div>
-                            <div class="li-exp-role">Web Development & Full-Stack Intern</div>
+                            <div class="li-exp-role">Web Development &amp; Full-Stack Intern</div>
                             <div class="li-exp-company">InternPe / AICTE Approved</div>
                             <div class="li-exp-date">Issued: 2024</div>
                         </div>
                     </div>
                     <div class="li-exp-item">
-                        <div class="li-exp-icon">⚙️</div>
+                        <div class="li-exp-icon" style="font-size:0.75rem; font-weight:700; color:var(--accent-amber);">Dev</div>
                         <div>
                             <div class="li-exp-role">Software Development Internship</div>
-                            <div class="li-exp-company">NV Enterprises & Consulting</div>
+                            <div class="li-exp-company">NV Enterprises &amp; Consulting</div>
                             <div class="li-exp-date">Issued: 2024</div>
                         </div>
                     </div>
@@ -1066,11 +1006,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="gh-user-info">
                         <h2>Aryan Raj</h2>
                         <div class="gh-handle">gmraj11132-tech</div>
-                        <p class="gh-bio">B.Tech CSE Student (7th Sem) • Full-Stack Developer • AI Tools & Automation Enthusiast</p>
+                        <p class="gh-bio">B.Tech CSE Student (7th Sem) • Full-Stack Developer • AI Tools &amp; Automation Enthusiast</p>
                         <div class="gh-stats-row">
                             <span><strong>12+</strong> Credentials</span>
-                            <span><strong>4+</strong> Key Repositories</span>
-                            <span>📍 Noida, Alpha 2</span>
+                            <span><strong>4+</strong> Active Projects</span>
+                            <span>Noida, Alpha 2</span>
                         </div>
                     </div>
                 </div>
@@ -1079,53 +1019,49 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="gh-repo-grid">
                     <div class="gh-repo-card">
                         <div class="gh-repo-title">
-                            <span>📦</span>
-                            <span>personal-portfolio-2026</span>
+                            <span class="gh-lang-dot dot-js"></span>
+                            <span>careerpilot-ai-resume-analyzer</span>
                         </div>
-                        <p class="gh-repo-desc">Ultra high-end portfolio featuring AMOLED dark mode, 3D cosmic starfield, Java IDE engine, and macOS in-app browser window.</p>
+                        <p class="gh-repo-desc">AI-powered placement prep &amp; ATS resume analysis platform with rule-based fallback, scoring engine, job matching, and interview prep.</p>
                         <div class="gh-repo-meta">
-                            <span><span class="gh-lang-dot dot-js"></span>JavaScript</span>
-                            <span>⭐ 18</span>
-                            <span>🍴 4</span>
+                            <span>Next.js 15 / TypeScript</span>
+                            <span>Full-Stack SaaS</span>
                         </div>
                     </div>
 
                     <div class="gh-repo-card">
                         <div class="gh-repo-title">
-                            <span>🛡️</span>
-                            <span>secure-multi-user-portal</span>
+                            <span class="gh-lang-dot dot-java"></span>
+                            <span>scamshield-ai</span>
                         </div>
-                        <p class="gh-repo-desc">Full-stack insurance/govt application with role-based auth, SQL DBMS automation, and integrated AI assistant.</p>
+                        <p class="gh-repo-desc">Real-time AI cyber scam and fraud detection system with in-browser Tesseract.js OCR, URL phishing inspector, and dual-engine scoring.</p>
                         <div class="gh-repo-meta">
-                            <span><span class="gh-lang-dot dot-java"></span>Java / Node.js</span>
-                            <span>⭐ 12</span>
-                            <span>🍴 2</span>
+                            <span>Vanilla JS / OCR</span>
+                            <span>Security Engine</span>
                         </div>
                     </div>
 
                     <div class="gh-repo-card">
                         <div class="gh-repo-title">
-                            <span>🤖</span>
-                            <span>unified-ai-tools-platform</span>
+                            <span class="gh-lang-dot dot-js"></span>
+                            <span>portfolio</span>
                         </div>
-                        <p class="gh-repo-desc">Multi-capability AI platform combining chat, image generation, and music synthesis via unified REST APIs.</p>
+                        <p class="gh-repo-desc">Ultra high-end personal portfolio featuring pure AMOLED dark mode, macOS crystal UI, Java IDE engine, and architecture manuals.</p>
                         <div class="gh-repo-meta">
-                            <span><span class="gh-lang-dot dot-js"></span>JavaScript / REST</span>
-                            <span>⭐ 15</span>
-                            <span>🍴 3</span>
+                            <span>HTML5 / CSS3 / JS</span>
+                            <span>Production</span>
                         </div>
                     </div>
 
                     <div class="gh-repo-card">
                         <div class="gh-repo-title">
-                            <span>🎓</span>
-                            <span>ai-study-assistant-cs</span>
+                            <span class="gh-lang-dot dot-py"></span>
+                            <span>Aryan-Portfolio</span>
                         </div>
-                        <p class="gh-repo-desc">Interactive student chatbot for CS coursework, DSA concept visualization, and SQL doubt clearing with query log.</p>
+                        <p class="gh-repo-desc">Personal developer showcase and technical portfolio repository.</p>
                         <div class="gh-repo-meta">
-                            <span><span class="gh-lang-dot dot-py"></span>Python</span>
-                            <span>⭐ 21</span>
-                            <span>🍴 5</span>
+                            <span>Web Stack</span>
+                            <span>Open Source</span>
                         </div>
                     </div>
                 </div>
@@ -1136,7 +1072,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderGenericWebView(url) {
         return `
             <div style="padding: 40px 20px; text-align: center; color: #c9d1d9; max-width: 600px; margin: 0 auto;">
-                <div style="font-size: 3rem; margin-bottom: 16px;">🌐</div>
+                <div style="margin-bottom: 16px; color: var(--accent-secondary); display:flex; justify-content:center;">
+                    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
                 <h2 style="color: #ffffff; margin-bottom: 8px;">In-App Web Inspector</h2>
                 <p style="font-size: 0.92rem; color: #8b949e; margin-bottom: 24px;">
                     Browsing URL: <code style="color: var(--accent-secondary); background: rgba(0,245,196,0.1); padding: 3px 8px; border-radius: 6px;">${url}</code>
