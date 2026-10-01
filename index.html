@@ -1538,13 +1538,13 @@
     </script>
 
     <!-- ScamShield AI Project Deep Dive & Complete Forensic User Manual Modal -->
-    <div class="project-modal-backdrop" id="scamshieldModal" role="dialog" aria-modal="true" aria-labelledby="scamshieldModalTitle">
+    <div class="project-modal-backdrop" id="scamshieldModal" role="dialog" aria-modal="true" aria-labelledby="scamshieldModalTitle" onclick="if (event.target === this) closeScamshieldModal()">
         <div class="project-modal-window glass">
             <!-- macOS Topbar -->
             <div class="project-modal-topbar">
                 <div class="project-modal-topbar-left">
                     <div class="mac-dots">
-                        <button class="mac-dot red close-scamshield-modal" title="Close (Esc)" aria-label="Close modal"></button>
+                        <button class="mac-dot red close-scamshield-modal" title="Close (Esc)" aria-label="Close modal" onclick="closeScamshieldModal()"></button>
                         <span class="mac-dot yellow"></span>
                         <span class="mac-dot green"></span>
                     </div>
@@ -1561,7 +1561,7 @@
                     <a href="https://github.com/gmraj11132-tech/scamshield-ai" target="_blank" rel="noopener noreferrer" class="btn-crystal" style="padding: 6px 14px; font-size: 0.78rem;">
                         <span>🐙 GitHub Repo</span>
                     </a>
-                    <button class="modal-close-btn close-scamshield-modal" style="position: static; width: 34px; height: 34px; font-size: 1rem;" aria-label="Close modal">✕</button>
+                    <button class="modal-close-btn close-scamshield-modal" style="position: static; width: 34px; height: 34px; font-size: 1rem;" aria-label="Close modal" onclick="closeScamshieldModal()">✕</button>
                 </div>
             </div>
 
