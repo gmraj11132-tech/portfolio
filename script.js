@@ -737,16 +737,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const javaCodeSnippet = `<span class="code-keyword">package</span> com.aryan.portfolio;
 
 <span class="code-comment">/**
- * @author Aryan Raj - B.Tech CSE (7th Sem)
- * Target: Software Engineer / Graduate Engineer Trainee
+ * @author Aryan Raj (7th Sem)
+ * Target: Software Engineer / GET
  */</span>
-<span class="code-keyword">public class</span> <span class="code-class">AryanRaj</span> <span class="code-keyword">extends</span> <span class="code-class">FullStackEngineer</span> {
-    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">COLLEGE</span> = <span class="code-string">"Techno India University"</span>;
-    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">LOCATION</span> = <span class="code-string">"Noida, Alpha 2"</span>;
+<span class="code-keyword">public class</span> <span class="code-class">AryanRaj</span> <span class="code-keyword">extends</span> <span class="code-class">Developer</span> {
+    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">COLLEGE</span> =
+        <span class="code-string">"Techno India University"</span>;
+    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">LOCATION</span> =
+        <span class="code-string">"Noida, Alpha 2"</span>;
     <span class="code-keyword">public static final</span> <span class="code-type">double</span> <span class="code-const">CGPA</span> = <span class="code-number">8.0</span>;
 
     <span class="code-annotation">@Override</span>
-    <span class="code-keyword">public</span> <span class="code-type">List</span>&lt;<span class="code-type">String</span>&gt; <span class="code-method">getCoreStack</span>() {
+    <span class="code-keyword">public</span> <span class="code-type">List</span>&lt;<span class="code-type">String</span>&gt; <span class="code-method">getStack</span>() {
         <span class="code-keyword">return</span> <span class="code-class">List</span>.of(
             <span class="code-string">"Java"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"DSA"</span>,
             <span class="code-string">"DBMS"</span>, <span class="code-string">"Web"</span>, <span class="code-string">"AI APIs"</span>
@@ -754,8 +756,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     <span class="code-keyword">public static void</span> <span class="code-method">main</span>(<span class="code-type">String</span>[] <span class="code-var">args</span>) {
-        <span class="code-class">AryanRaj</span> <span class="code-var">engineer</span> = <span class="code-keyword">new</span> <span class="code-class">AryanRaj</span>();
-        <span class="code-var">engineer</span>.<span class="code-method">setAvailableForHire</span>(<span class="code-keyword">true</span>);
+        <span class="code-class">AryanRaj</span> <span class="code-var">dev</span> = <span class="code-keyword">new</span> <span class="code-class">AryanRaj</span>();
+        <span class="code-var">dev</span>.<span class="code-method">setAvailableForHire</span>(<span class="code-keyword">true</span>);
         <span class="code-class">System</span>.out.<span class="code-method">println</span>(
             <span class="code-string">"🚀 Ready to engineer systems!"</span>
         );
@@ -764,17 +766,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const jsonCodeSnippet = `{
   <span class="code-keyword">"name"</span>: <span class="code-string">"ARYAN RAJ"</span>,
-  <span class="code-keyword">"degree"</span>: <span class="code-string">"B.Tech Computer Science & Engineering"</span>,
+  <span class="code-keyword">"degree"</span>: <span class="code-string">"B.Tech CSE (8.0 CGPA)"</span>,
   <span class="code-keyword">"semester"</span>: <span class="code-number">7</span>,
-  <span class="code-keyword">"academicCGPA"</span>: <span class="code-number">8.0</span>,
-  <span class="code-keyword">"university"</span>: <span class="code-string">"Techno India University"</span>,
-  <span class="code-keyword">"schooling"</span>: <span class="code-string">"SSVM School (10th: 72.4%, 12th: 64.8%)"</span>,
-  <span class="code-keyword">"verifiedCredentials"</span>: <span class="code-number">12</span>,
-  <span class="code-keyword">"primaryStack"</span>: [
-    <span class="code-string">"Java"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"Data Structures & Algorithms"</span>,
-    <span class="code-string">"DBMS (SQL)"</span>, <span class="code-string">"Full-Stack Web"</span>, <span class="code-string">"AI Integrations"</span>
+  <span class="code-keyword">"college"</span>: <span class="code-string">"Techno India Univ"</span>,
+  <span class="code-keyword">"credentials"</span>: <span class="code-number">12</span>,
+  <span class="code-keyword">"coreStack"</span>: [
+    <span class="code-string">"Java"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"DSA"</span>,
+    <span class="code-string">"DBMS"</span>, <span class="code-string">"Web"</span>, <span class="code-string">"AI Tools"</span>
   ],
-  <span class="code-keyword">"location"</span>: <span class="code-string">"Noida, Alpha 2, India"</span>,
+  <span class="code-keyword">"location"</span>: <span class="code-string">"Noida, Alpha 2"</span>,
   <span class="code-keyword">"openForWork"</span>: <span class="code-const">true</span>
 }`;
 

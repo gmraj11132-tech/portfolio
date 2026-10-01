@@ -340,21 +340,23 @@
                         </div>
                         <div class="ide-editor">
                             <div class="line-numbers">
-                                <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span>
+                                <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span><span>09</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span>
                             </div>
                             <pre class="code-content"><code><span class="code-keyword">package</span> com.aryan.portfolio;
 
 <span class="code-comment">/**
- * @author Aryan Raj - B.Tech CSE (7th Sem)
- * Target: Software Engineer / Graduate Engineer Trainee
+ * @author Aryan Raj (7th Sem)
+ * Target: Software Engineer / GET
  */</span>
-<span class="code-keyword">public class</span> <span class="code-class">AryanRaj</span> <span class="code-keyword">extends</span> <span class="code-class">FullStackEngineer</span> {
-    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">COLLEGE</span> = <span class="code-string">"Techno India University"</span>;
-    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">LOCATION</span> = <span class="code-string">"Noida, Alpha 2"</span>;
+<span class="code-keyword">public class</span> <span class="code-class">AryanRaj</span> <span class="code-keyword">extends</span> <span class="code-class">Developer</span> {
+    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">COLLEGE</span> =
+        <span class="code-string">"Techno India University"</span>;
+    <span class="code-keyword">public static final</span> <span class="code-type">String</span> <span class="code-const">LOCATION</span> =
+        <span class="code-string">"Noida, Alpha 2"</span>;
     <span class="code-keyword">public static final</span> <span class="code-type">double</span> <span class="code-const">CGPA</span> = <span class="code-number">8.0</span>;
 
     <span class="code-annotation">@Override</span>
-    <span class="code-keyword">public</span> <span class="code-type">List</span>&lt;<span class="code-type">String</span>&gt; <span class="code-method">getCoreStack</span>() {
+    <span class="code-keyword">public</span> <span class="code-type">List</span>&lt;<span class="code-type">String</span>&gt; <span class="code-method">getStack</span>() {
         <span class="code-keyword">return</span> <span class="code-class">List</span>.of(
             <span class="code-string">"Java"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"DSA"</span>,
             <span class="code-string">"DBMS"</span>, <span class="code-string">"Web"</span>, <span class="code-string">"AI APIs"</span>
@@ -362,8 +364,8 @@
     }
 
     <span class="code-keyword">public static void</span> <span class="code-method">main</span>(<span class="code-type">String</span>[] <span class="code-var">args</span>) {
-        <span class="code-class">AryanRaj</span> <span class="code-var">engineer</span> = <span class="code-keyword">new</span> <span class="code-class">AryanRaj</span>();
-        <span class="code-var">engineer</span>.<span class="code-method">setAvailableForHire</span>(<span class="code-keyword">true</span>);
+        <span class="code-class">AryanRaj</span> <span class="code-var">dev</span> = <span class="code-keyword">new</span> <span class="code-class">AryanRaj</span>();
+        <span class="code-var">dev</span>.<span class="code-method">setAvailableForHire</span>(<span class="code-keyword">true</span>);
         <span class="code-class">System</span>.out.<span class="code-method">println</span>(
             <span class="code-string">"🚀 Ready to engineer systems!"</span>
         );
