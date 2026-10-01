@@ -718,6 +718,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ─── CareerPilot Project Deep Dive & User Manual Modal ───
+    const careerpilotModal = document.getElementById('careerpilotModal');
+    function openCareerpilotModal() {
+        if (careerpilotModal) {
+            careerpilotModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+    function closeCareerpilotModal() {
+        if (careerpilotModal) {
+            careerpilotModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+
+    document.querySelectorAll('.open-careerpilot-modal-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            openCareerpilotModal();
+        });
+    });
+
+    document.querySelectorAll('.close-careerpilot-modal').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeCareerpilotModal();
+        });
+    });
+
+    if (careerpilotModal) {
+        careerpilotModal.addEventListener('click', (e) => {
+            if (e.target === careerpilotModal) {
+                closeCareerpilotModal();
+            }
+        });
+    }
+
+
     // ─── Close Mobile Menu on Outside Tap ───
     document.addEventListener('click', (e) => {
         if (navLinksContainer.classList.contains('open') && !navLinksContainer.contains(e.target) && !hamburger.contains(e.target)) {
@@ -1231,6 +1270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
             closeOsBrowser();
             closeResumeModal();
+            closeCareerpilotModal();
         }
     });
 
