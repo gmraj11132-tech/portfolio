@@ -742,6 +742,15 @@ document.addEventListener('DOMContentLoaded', () => {
     window.openScamshieldModal = openScamshieldModal;
     window.closeScamshieldModal = closeScamshieldModal;
 
+    function openMacosModal() {
+        window.open('macos-manual.html', '_blank');
+    }
+    function closeMacosModal() {
+        // Standalone manual page opened in separate tab
+    }
+    window.openMacosModal = openMacosModal;
+    window.closeMacosModal = closeMacosModal;
+
 
     // ─── Close Mobile Menu on Outside Tap ───
     document.addEventListener('click', (e) => {
@@ -1044,6 +1053,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="gh-repo-card">
                         <div class="gh-repo-title">
                             <span class="gh-lang-dot dot-js"></span>
+                            <span>macos-web-os</span>
+                        </div>
+                        <p class="gh-repo-desc">Web-based Apple Sequoia macOS operating system with 18+ functional apps, interactive Siri with audio synthesis, virtual filesystem, and responsive landscape rotation.</p>
+                        <div class="gh-repo-meta">
+                            <span>Vanilla JS / HTML5</span>
+                            <span>Web OS</span>
+                        </div>
+                    </div>
+
+                    <div class="gh-repo-card">
+                        <div class="gh-repo-title">
+                            <span class="gh-lang-dot dot-js"></span>
                             <span>portfolio</span>
                         </div>
                         <p class="gh-repo-desc">Ultra high-end personal portfolio featuring pure AMOLED dark mode, macOS crystal UI, Java IDE engine, and architecture manuals.</p>
@@ -1256,6 +1277,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeResumeModal();
             closeCareerpilotModal();
             closeScamshieldModal();
+            closeMacosModal();
         } else if ((e.metaKey || e.ctrlKey) && (e.key === 'm' || e.key === 'M')) {
             e.preventDefault();
             openCareerpilotModal();

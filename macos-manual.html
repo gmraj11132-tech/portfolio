@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>macOS Web OS (Apple Sequoia) — System Architecture & Specifications | Aryan Raj</title>
+    <meta name="description" content="Technical documentation, system architecture, virtual filesystem, Siri engine, auto fullscreen, and mobile landscape controls for macOS Web OS by Aryan Raj.">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --bg-amoled: #000000;
+            --panel-bg: rgba(12, 12, 14, 0.95);
+            --border-subtle: rgba(255, 255, 255, 0.1);
+            --accent-apple: #007aff;
+            --accent-cyan: #00f5c4;
+            --accent-purple: #af52de;
+            --accent-amber: #ff9500;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            background-color: #000000 !important;
+            color: var(--text-main);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .manual-page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px 80px;
+        }
+
+        .manual-top-nav {
+            position: sticky;
+            top: 12px;
+            z-index: 100;
+            background: rgba(10, 10, 12, 0.92);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .traffic-lights {
+            display: flex;
+            gap: 7px;
+        }
+
+        .t-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .t-dot.red { background: #ff5f56; }
+        .t-dot.yellow { background: #ffbd2e; }
+        .t-dot.green { background: #27c93f; }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .back-btn:hover {
+            background: rgba(0, 122, 255, 0.15);
+            border-color: var(--accent-apple);
+            color: var(--accent-apple);
+        }
+
+        .nav-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-title span.active-tab {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 15px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .nav-btn.primary {
+            background: var(--accent-apple);
+            color: #ffffff;
+            border: 1px solid var(--accent-apple);
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.35);
+        }
+        .nav-btn.primary:hover {
+            background: #0066d6;
+            transform: translateY(-1px);
+        }
+        .nav-btn.secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            border: 1px solid var(--border-subtle);
+        }
+        .nav-btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Banner */
+        .manual-hero {
+            background: linear-gradient(180deg, rgba(20, 30, 48, 0.7) 0%, rgba(10, 10, 12, 0.96) 100%);
+            border: 1px solid var(--border-subtle);
+            border-radius: 18px;
+            padding: 36px 32px;
+            margin-bottom: 36px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .manual-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #007aff, #00f5c4, #af52de);
+        }
+
+        .hero-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 16px;
+        }
+
+        .hero-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .hero-badge.blue { background: rgba(0, 122, 255, 0.15); color: #38bdf8; border: 1px solid rgba(0, 122, 255, 0.3); }
+        .hero-badge.green { background: rgba(52, 199, 89, 0.15); color: #4ade80; border: 1px solid rgba(52, 199, 89, 0.3); }
+        .hero-badge.purple { background: rgba(175, 82, 222, 0.15); color: #c084fc; border: 1px solid rgba(175, 82, 222, 0.3); }
+
+        .manual-hero h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 0 0 12px;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .manual-hero p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 850px;
+            margin: 0 0 24px;
+            line-height: 1.6;
+        }
+
+        .hero-preview-box {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+            margin-bottom: 24px;
+            background: #000;
+        }
+
+        .hero-preview-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Content Grid */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+
+        .spec-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .spec-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spec-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .spec-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .spec-list li:last-child { border-bottom: none; }
+
+        .spec-list li strong {
+            color: #ffffff;
+        }
+
+        .bullet-icon {
+            color: var(--accent-apple);
+            margin-top: 3px;
+        }
+
+        .code-block {
+            background: #050508;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 16px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: #38bdf8;
+            overflow-x: auto;
+            margin-top: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .manual-top-nav { flex-direction: column; gap: 12px; align-items: flex-start; }
+            .nav-actions { width: 100%; justify-content: flex-start; }
+            .manual-hero h1 { font-size: 1.6rem; }
+            .manual-hero { padding: 24px 18px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="manual-page-container">
+    <!-- Top Nav -->
+    <header class="manual-top-nav">
+        <div class="nav-left">
+            <div class="traffic-lights">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+            </div>
+            <a href="index.html" class="back-btn">← Back to Portfolio</a>
+            <div class="nav-title">
+                <span>portfolio</span> / <span>projects</span> / <span class="active-tab">macos-web-os</span>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <a href="https://macos-web-os-ashy.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-btn primary">
+                🚀 Launch Live OS
+            </a>
+            <a href="https://github.com/gmraj11132-tech/macos-web-os" target="_blank" rel="noopener noreferrer" class="nav-btn secondary">
+                🐙 View Source
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="manual-hero">
+        <div class="hero-badge-row">
+            <span class="hero-badge blue">Web Operating System</span>
+            <span class="hero-badge green">Apple Sequoia 15.0</span>
+            <span class="hero-badge purple">18+ Native Apps &amp; Siri AI</span>
+        </div>
+        <h1>macOS Web OS (Apple Sequoia Edition)</h1>
+        <p>A full-fidelity, browser-based recreation of macOS Sequoia built with modern web technologies. Engineered with a realistic boot sequence, login/lock screen, Siri assistant with audio synthesis, Finder virtual filesystem, native GitHub &amp; LinkedIn apps, auto full-screen, and mobile landscape auto-orientation.</p>
+
+        <div class="hero-preview-box">
+            <img src="macos_thumbnail.png" alt="macOS Web OS Boot Animation Preview">
+        </div>
+    </section>
+
+    <!-- System Architecture & Capabilities Grid -->
+    <div class="specs-grid">
+        <!-- Card 1: Core OS Engines -->
+        <div class="spec-card">
+            <h3><span class="bullet-icon"></span> Core OS Engines</h3>
+            <ul class="spec-list">
+                <li><span class="bullet-icon">✓</span> <span><strong>WindowManager:</strong> Multi-window management with z-index stacking, focus control, minimization, maximize-to-viewport, and smooth mouse/touch dragging.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Virtual FileSystem:</strong> Hierarchical UNIX virtual filesystem mounted at <code>/Users/admin/</code> with LocalStorage persistence.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Boot &amp; Auth Sequence:</strong> Realistic Apple startup progress loader, followed by user avatar login with credential authentication and sleep/restart controls.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Task Manager (Force Quit):</strong> Interactive ⌥⌘⎋ modal to inspect running processes and terminate windows on demand.</span></li>
+            </ul>
+        </div>
+
+        <!-- Card 2: Mobile & Fullscreen -->
+        <div class="spec-card">
+            <h3><span class="bullet-icon">📱</span> Mobile &amp; Fullscreen Experience</h3>
+            <ul class="spec-list">
+                <li><span class="bullet-icon">✓</span> <span><strong>Automatic Full Screen:</strong> On the very first user interaction (click/touch), triggers native full screen without friction.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Orientation Lock API:</strong> Automatically requests landscape lock on supported mobile devices to guarantee desktop fidelity.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Rotate Device Guidance:</strong> Displays a 3D animated rotation card when viewed in portrait on handheld devices.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Responsive Dock Scaling:</strong> Scales down to 30px compact icons in mobile landscape mode so all 18+ apps fit comfortably.</span></li>
+            </ul>
+        </div>
+
+        <!-- Card 3: Siri & Web Audio -->
+        <div class="spec-card">
+            <h3><span class="bullet-icon">🎙️</span> Siri AI &amp; Web Audio API</h3>
+            <ul class="spec-list">
+                <li><span class="bullet-icon">✓</span> <span><strong>Interactive Siri Assistant:</strong> Glowing multi-color conic sound orb with dialogue history and smart responses.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Audio Synthesizer:</strong> Zero external audio files required — Web Audio API generates authentic click and chime frequencies in real-time.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Contextual Query Answering:</strong> Instant answers for Aryan's biography, portfolio projects, weather, tech jokes, and app launching.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Prompt Chips:</strong> One-tap suggestion chips for rapid user engagement.</span></li>
+            </ul>
+        </div>
+
+        <!-- Card 4: Built-in Native Apps -->
+        <div class="spec-card">
+            <h3><span class="bullet-icon">🗂️</span> 18+ Built-in Applications</h3>
+            <ul class="spec-list">
+                <li><span class="bullet-icon">✓</span> <span><strong>About This Mac (Aryan Raj Edition):</strong> 5-tab personal biography, projects showcase, 12 credentials, and resume viewer.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Native GitHub &amp; LinkedIn Apps:</strong> Live profile viewers synced with @gmraj11132-tech and Aryan's LinkedIn.</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Terminal:</strong> Functional shell with custom commands (<code>whoami</code>, <code>neofetch</code>, <code>projects</code>, <code>bio</code>, <code>clear</code>).</span></li>
+                <li><span class="bullet-icon">✓</span> <span><strong>Productivity Suite:</strong> Safari, Notes, TextEdit, Calculator, Weather, Music, Maps, and App Store.</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Tech Stack Summary -->
+    <section class="spec-card" style="margin-bottom: 36px;">
+        <h3><span class="bullet-icon">⚡</span> Technology Stack &amp; Deployment</h3>
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">Engineered without heavy frameworks for raw performance, 60fps animations, and instantaneous load times:</p>
+        <div class="code-block">
+Language:        Vanilla JavaScript (ES6+), HTML5, CSS3 Glassmorphism
+Web APIs:        Fullscreen API, Screen Orientation Lock API, Web Audio API, Web Battery API
+Styling:         CSS Backdrop-Filter, Conic Gradients, Flexbox/Grid Architecture, CSS Keyframes
+Server & Host:   Node.js / Express Backend, Deployed Globally on Vercel Production
+Repository:      https://github.com/gmraj11132-tech/macos-web-os
+Live Production: https://macos-web-os-ashy.vercel.app
+        </div>
+    </section>
+
+    <!-- Footer Action -->
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="https://macos-web-os-ashy.vercel.app" target="_blank" rel="noopener noreferrer" class="nav-btn primary" style="font-size: 1rem; padding: 12px 28px; border-radius: 30px;">
+            🚀 Open macOS Web OS Live
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
