@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryan Raj — ATS Data Scientist &amp; Analytics Resume (2026)</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 7mm 10mm 7mm 10mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #111827;
+            background: #ffffff;
+            font-size: 9.1pt;
+            line-height: 1.28;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .resume-page {
+            width: 100%;
+            max-width: 820px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 8px 16px;
+        }
+
+        /* Header Block */
+        .header {
+            text-align: center;
+            border-bottom: 1.5pt solid #047857;
+            padding-bottom: 5px;
+            margin-bottom: 6px;
+        }
+
+        .name {
+            font-size: 19pt;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: #0f172a;
+            text-transform: uppercase;
+            line-height: 1.05;
+            margin-bottom: 2px;
+        }
+
+        .headline {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #059669;
+            margin-bottom: 3px;
+            letter-spacing: 0.01em;
+        }
+
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px 7px;
+            font-size: 8.5pt;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .contact-bar a {
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-bar span.sep {
+            color: #94a3b8;
+            user-select: none;
+        }
+
+        /* Section Formatting */
+        .section {
+            margin-bottom: 6px;
+        }
+
+        .section-title {
+            font-size: 9.8pt;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: #0f172a;
+            border-bottom: 1pt solid #cbd5e1;
+            padding-bottom: 1.5px;
+            margin-bottom: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        /* Summary */
+        .summary-text {
+            font-size: 9pt;
+            color: #1e293b;
+            text-align: justify;
+            line-height: 1.34;
+        }
+
+        /* Skills Table/List */
+        .skills-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5px;
+            font-size: 8.9pt;
+        }
+
+        .skill-row {
+            display: flex;
+            line-height: 1.3;
+        }
+
+        .skill-label {
+            font-weight: 700;
+            color: #0f172a;
+            min-width: 152px;
+            flex-shrink: 0;
+        }
+
+        .skill-values {
+            color: #334155;
+        }
+
+        /* Experience & Projects Items */
+        .entry {
+            margin-bottom: 6px;
+        }
+
+        .entry:last-child {
+            margin-bottom: 2px;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1px;
+        }
+
+        .entry-title {
+            font-size: 9.6pt;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .entry-org {
+            font-weight: 600;
+            color: #047857;
+        }
+
+        .entry-date {
+            font-size: 8.7pt;
+            font-weight: 600;
+            color: #475569;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .entry-subtitle {
+            display: flex;
+            justify-content: space-between;
+            font-size: 8.6pt;
+            color: #475569;
+            font-style: italic;
+            margin-bottom: 2px;
+        }
+
+        .bullets {
+            list-style-type: none;
+            padding-left: 0;
+            margin-top: 2px;
+        }
+
+        .bullets li {
+            position: relative;
+            padding-left: 12px;
+            font-size: 8.75pt;
+            color: #1e293b;
+            line-height: 1.28;
+            margin-bottom: 1.5px;
+            text-align: justify;
+        }
+
+        .bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 2px;
+            top: 0;
+            color: #059669;
+            font-weight: bold;
+            font-size: 9pt;
+        }
+
+        .bullets li strong {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        /* Education */
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.5px;
+        }
+
+        .edu-degree {
+            font-size: 9.2pt;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .edu-school {
+            font-size: 8.75pt;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .edu-score {
+            font-size: 8.75pt;
+            font-weight: 700;
+            color: #047857;
+        }
+
+        .edu-date {
+            font-size: 8.5pt;
+            font-weight: 600;
+            color: #475569;
+        }
+
+        /* Certifications List */
+        .certs-list {
+            font-size: 8.5pt;
+            color: #1e293b;
+            line-height: 1.28;
+        }
+
+        .certs-list span {
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+            .resume-page {
+                padding: 0;
+                max-width: 100%;
+            }
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="resume-page">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="name">Aryan Raj</h1>
+            <div class="headline">Data Scientist | Machine Learning &amp; Analytics Engineer</div>
+            <div class="contact-bar">
+                <span>Noida, UP, India</span>
+                <span class="sep">•</span>
+                <span>+91 8340177620</span>
+                <span class="sep">•</span>
+                <a href="mailto:aryanjaiswal11132@gmail.com">aryanjaiswal11132@gmail.com</a>
+                <span class="sep">•</span>
+                <a href="https://linkedin.com/in/aryanrajcse">linkedin.com/in/aryanrajcse</a>
+                <span class="sep">•</span>
+                <a href="https://github.com/gmraj11132-tech">github.com/gmraj11132-tech</a>
+            </div>
+        </header>
+
+        <!-- Professional Summary -->
+        <section class="section">
+            <div class="section-title">Professional Summary</div>
+            <p class="summary-text">
+                Analytical and code-first Computer Science Engineer (B.Tech, 8.0 CGPA) specialized in predictive machine learning, statistical exploratory data analysis (EDA), and relational database engineering. Experienced building end-to-end data pipelines from ingestion and automated feature engineering through XGBoost classification and executive BI dashboarding. Completed verified AI/ML internships at IIT BHU (Grade A) and NV Enterprises, certified in Data Science by IBM and Tata Group. Seeking Data Scientist, Data Analyst, or Machine Learning Engineer roles.
+            </p>
+        </section>
+
+        <!-- Technical Skills -->
+        <section class="section">
+            <div class="section-title">Technical Skills &amp; Competencies</div>
+            <div class="skills-grid">
+                <div class="skill-row">
+                    <span class="skill-label">Programming Languages:</span>
+                    <span class="skill-values">Python 3.12 (Advanced), SQL (PostgreSQL, MySQL), Java 21, TypeScript, JavaScript (ES6+), C++</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-label">Data Science &amp; ML:</span>
+                    <span class="skill-values">Pandas, NumPy, Scikit-Learn, SciPy, XGBoost, Statsmodels, Feature Engineering, EDA, Cross-Validation, ROC-AUC</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-label">Databases &amp; Warehousing:</span>
+                    <span class="skill-values">PostgreSQL, MySQL, SQLite, Complex Joins, Window Functions, CTEs, Aggregation Pipelines, Schema Normalization</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-label">AI &amp; Generative Models:</span>
+                    <span class="skill-values">Gemini 2.5 Flash, Prompt Engineering, RAG Pipelines, Vector Search, LangChain, Tesseract.js (OCR)</span>
+                </div>
+                <div class="skill-row">
+                    <span class="skill-label">Visualization &amp; Tools:</span>
+                    <span class="skill-values">Matplotlib, Seaborn, Plotly, Power BI, Streamlit, Git, GitHub, Jupyter Labs, Docker, Postman, Linux</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Projects -->
+        <section class="section">
+            <div class="section-title">Featured Data Science &amp; Analytics Projects</div>
+            
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Customer Churn &amp; Lifetime Value Prediction Engine</span>
+                    <span class="entry-date">Python • Pandas • Scikit-Learn • XGBoost • Seaborn • Streamlit</span>
+                </div>
+                <div class="entry-subtitle">
+                    <span>End-to-End Supervised ML Pipeline with Feature Attribution &amp; Interactive Dashboard</span>
+                </div>
+                <ul class="bullets">
+                    <li><strong>Built an end-to-end classification pipeline</strong> analyzing subscriber transactions, tenure, and support history, achieving an <strong>89% ROC-AUC score</strong> through hyperparameter tuning and SMOTE class balancing.</li>
+                    <li><strong>Formulated SHAP (SHapley Additive exPlanations) attribution models</strong> to extract global feature importance, identifying contract duration and payment method as top 40% attrition drivers.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">CareerPilot — Multi-Pillar Recruitment Analytics &amp; Scoring Matrix</span>
+                    <span class="entry-date">Next.js 16 • React 19 • TypeScript • Prisma • Multi-Model AI</span>
+                </div>
+                <div class="entry-subtitle">
+                    <span>Live: careerpilot-green-three.vercel.app | Source: github.com/gmraj11132-tech/careerpilot-ai-resume-analyzer</span>
+                </div>
+                <ul class="bullets">
+                    <li><strong>Engineered multi-stage parsing engine</strong> normalizing unstructured PDF/DOCX resume text into structured JSON schemas, reducing data extraction anomalies by <strong>95%</strong>.</li>
+                    <li><strong>Designed 5-Pillar quantitative scoring algorithm (0–100)</strong> computing keyword vector intersections and mapping skill gaps against dynamic Job Descriptions.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">ScamShield AI — Threat Signal Analytics &amp; Privacy-Preserving OCR</span>
+                    <span class="entry-date">React 19 • TypeScript • Gemini 2.5 • Tesseract.js OCR • Tailwind</span>
+                </div>
+                <div class="entry-subtitle">
+                    <span>Live: gmraj11132-tech.github.io/scamshield-ai | Source: github.com/gmraj11132-tech/scamshield-ai</span>
+                </div>
+                <ul class="bullets">
+                    <li><strong>Constructed client-side OCR analytics pipeline with Tesseract.js</strong>, extracting transaction text from payment receipts locally with <strong>zero privacy leakage</strong>.</li>
+                    <li><strong>Synthesized dual-engine verification:</strong> combined Gemini 2.5 neural reasoning with offline heuristic filters to deliver verbatim risk annotations and actionable incident response advisories.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Professional Experience & Internships -->
+        <section class="section">
+            <div class="section-title">Professional Experience &amp; Internships</div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title"><span class="entry-org">Eisystems Services</span> — AI &amp; Machine Learning Engineering Intern</span>
+                    <span class="entry-date">May 2026 – Jul 2026</span>
+                </div>
+                <div class="entry-subtitle">
+                    <span>In Association with Technex'25, IIT BHU Varanasi (Grade A Certified • ID: EIS/THX/25SP-0380)</span>
+                </div>
+                <ul class="bullets">
+                    <li>Engineered supervised predictive models in Python; conducted exploratory data analysis, feature scaling, and k-fold cross-validation to achieve <strong>&gt;92% prediction accuracy</strong> on benchmark test sets.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title"><span class="entry-org">NV Enterprises</span> — Machine Learning Intern (ML Craft with Python)</span>
+                    <span class="entry-date">Jun 2025 – Jul 2025</span>
+                </div>
+                <ul class="bullets">
+                    <li>Constructed automated data cleaning and preprocessing pipelines with NumPy and Pandas, reducing tabular dataset ingestion latency by <strong>35%</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title"><span class="entry-org">InternPe</span> — AI &amp; Machine Learning Intern</span>
+                    <span class="entry-date">May 2025 – Jun 2025</span>
+                </div>
+                <ul class="bullets">
+                    <li>Implemented classification algorithms and statistical regression models for customer behavior analysis; validated models using F1-score and confusion matrices.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section class="section">
+            <div class="section-title">Education</div>
+            <div class="edu-item">
+                <div>
+                    <span class="edu-degree">Bachelor of Technology (B.Tech) in Computer Science &amp; Engineering</span> — <span class="edu-school">Techno India University</span>
+                </div>
+                <div>
+                    <span class="edu-score">8.0 / 10 CGPA</span> • <span class="edu-date">2023 – 2027 (7th Sem Active)</span>
+                </div>
+            </div>
+            <div style="font-size: 8.5pt; color: #475569; margin-top: 1px;">
+                <strong>Relevant Coursework:</strong> Machine Learning Foundations, Probability &amp; Statistics, Database Management Systems (DBMS), Data Structures &amp; Algorithms, Object-Oriented Programming, Operating Systems.
+            </div>
+            <div class="edu-item" style="margin-top: 2px;">
+                <div>
+                    <span class="edu-degree">Senior Secondary (CBSE Class XII)</span> — <span class="edu-school">SSVM School (Science &amp; Mathematics)</span>
+                </div>
+                <div>
+                    <span class="edu-score">64.8%</span> • <span class="edu-date">2023</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Certifications -->
+        <section class="section" style="margin-bottom: 0;">
+            <div class="section-title">Verified Certifications &amp; Industry Simulations (12 Verified)</div>
+            <div class="certs-list">
+                • <span>IIT BHU Varanasi &amp; Eisystems:</span> Artificial Intelligence &amp; Machine Learning (Grade A) &nbsp;|&nbsp; 
+                • <span>IBM:</span> Python 101 for Data Science<br>
+                • <span>TATA Group (Forage):</span> Data Visualisation: Empowering Business with Effective Insights &nbsp;|&nbsp; 
+                • <span>EXCELRS:</span> Autonomous AI Agents &amp; RAG<br>
+                • <span>SIEMENS (Forage):</span> Operations &amp; Industrial Engineering &nbsp;|&nbsp; 
+                • <span>SWAYAM Plus:</span> Personal Finance &amp; Capital Budgeting (30 Hours)
+            </div>
+        </section>
+    </div>
+</body>
+</html>
